@@ -121,6 +121,7 @@ export default function PrivateDashboard({ org }) {
   const [auditKpi, setAuditKpi] = useState(null);
   const [localUploads, setLocalUploads] = useState([]);
   const navigate = useNavigate();
+  const handleComingSoon = () => alert(t("coming_soon"));
   const { t } = useLanguage();
   const location = useLocation();
 
@@ -202,13 +203,13 @@ export default function PrivateDashboard({ org }) {
           </div>
           <div className="bg-white p-2 rounded-2xl border border-slate-100 flex gap-2">
             <button 
-              onClick={() => handleDownload('excel')}
+              onClick={handleComingSoon}
               className="px-4 py-2 text-xs font-black uppercase tracking-widest text-slate-400 hover:text-emerald-600 transition-colors"
             >
               {t('dash_export_excel')}
             </button>
             <button
-              onClick={() => handleDownload('pdf')}
+              onClick={handleComingSoon}
               className="bg-slate-900 text-white px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest shadow-lg"
             >
               {t('dash_report_pdf')}

@@ -17,6 +17,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/pitch" element={<Pitch />} />
         <Route path="/pmi/*" element={<PmiFlow />} />
       </Routes>
     </HashRouter>
