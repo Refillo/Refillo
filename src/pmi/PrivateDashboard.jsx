@@ -176,9 +176,9 @@ export default function PrivateDashboard({ org }) {
     <div className="min-h-screen bg-slate-50 font-sans">
       {/* Private Navbar */}
       <nav className="flex justify-between items-center px-12 py-6 bg-white border-b border-slate-100 sticky top-0 z-50">
-        <div className="flex items-center gap-2">
-          <div className="bg-emerald-600 text-white font-black px-3 py-1 rounded-lg text-xl shadow-lg shadow-emerald-100">ESG</div>
-          <span className="text-xl font-black text-slate-900 tracking-tight">lab</span>
+        <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
+          <img src="logo.png" alt="ESGlab Logo" className="h-10 w-auto" />
+          <span className="text-2xl font-black text-slate-900 tracking-tighter">ESG<span className="text-emerald-600">lab</span></span>
           <div className="ml-4 flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-100">
             <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
             <span className="text-[10px] font-black uppercase tracking-widest">{t('dash_private')}</span>
@@ -341,7 +341,7 @@ export default function PrivateDashboard({ org }) {
                       <td className="px-6 py-3 font-mono text-slate-800">{k.quantity?.toLocaleString()} <span className="text-slate-400 font-sans text-xs">{k.unit}</span></td>
                       <td className="px-6 py-3 text-slate-500 text-xs">{k.period}</td>
                       <td className="px-6 py-3">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
                           <div className="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden">
                             <div className="h-full rounded-full" style={{ width: `${(k.confidence || 0) * 100}%`, background: (k.confidence || 0) >= 0.9 ? '#16a34a' : '#f59e0b' }} />
                           </div>
