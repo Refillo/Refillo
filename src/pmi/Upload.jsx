@@ -136,6 +136,7 @@ export default function Upload({ org, onComplete }) {
   return (
     <div style={s.page}>
       <div style={s.card}>
+        <button onClick={() => navigate("/pmi/dashboard")} style={{ background: "none", border: "none", color: "#94a3b8", fontSize: "0.8rem", fontWeight: 800, cursor: "pointer", marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.4rem" }}>← {t("fc_back")}</button>
 
         {/* Badge + Title */}
         <div style={s.badge}>{t('up_step')}</div>
