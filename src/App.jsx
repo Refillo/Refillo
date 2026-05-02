@@ -41,11 +41,23 @@ function App() {
   };
 
   const startDemo = async () => {
-    const res = await callApi('/auth/login', { method: 'POST' });
-    const data = await res.json();
-    localStorage.setItem('user', JSON.stringify(data.user));
-    localStorage.setItem('token', data.token);
-    navigate('/pmi/dashboard');
+    try {
+      const res = await callApi('/auth/login', { method: 'POST' });
+      const data = await res.json();
+      
+      // Salviamo sia nel localStorage che passiamo lo stato alla route
+      localStorage.setItem('esg_token', 'mock-token-123');
+      localStorage.setItem('user', JSON.stringify(data.user));
+      
+      // Passiamo l'oggetto org tramite lo stato della navigazione
+      navigate('/pmi/dashboard', { 
+        state: { 
+          org: data.user.org || { id: 'org-123', name: 'Azienda Demo SPA', sector: 'Manufacturing' } 
+        } 
+      });
+    } catch (err) {
+      console.error("Demo login error", err);
+    }
   };
 
   return (
