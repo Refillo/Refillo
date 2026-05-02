@@ -1,7 +1,7 @@
 import { callApi } from './apiClient';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import { LanguageProvider } from './i18n'
 import './index.css'
 import App from './App.jsx'
@@ -11,13 +11,13 @@ import About from './pages/About.jsx'
 
 createRoot(document.getElementById('root')).render(
   <LanguageProvider>
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/pmi/*" element={<PmiFlow />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </LanguageProvider>,
 )
