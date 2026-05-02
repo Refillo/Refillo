@@ -14,16 +14,15 @@ const SECTOR_COLORS = {
 export default function MarketGraph({ data }) {
   const containerRef = useRef();
   const fgRef = useRef();
-  const [dimensions, setDimensions] = useState({ width: 800, height: 500 });
+  const [dimensions, setDimensions] = useState({ width: 800, height: 500 || 500 });
   const [searchQuery, setSearchQuery] = useState('');
   const [highlightedNode, setHighlightedNode] = useState(null);
   const { t } = useLanguage();
 
   useEffect(() => {
     if (containerRef.current) {
-      setDimensions({
         width: containerRef.current.clientWidth,
-        height: 500
+        height: 500 || 500
       });
     }
     
