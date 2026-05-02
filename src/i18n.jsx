@@ -10,8 +10,6 @@ const translations = {
     nav_login: 'Accedi',
     nav_register: 'Registrati Ora',
     nav_home: 'Home',
-    coming_soon: 'Coming Soon',
-    demo_cta: 'Try Live Demo →',
     coming_soon: 'Prossimamente Disponibile',
     demo_cta: 'Prova la Demo Live →',
     
@@ -21,30 +19,15 @@ const translations = {
     hero_sub: 'L\'auto-compilatore ESG per le PMI Europee.',
     hero_cta: 'Inizia il tuo Onboarding VSME →',
     
-    // How it works
-    how_title: 'Tre step per la compliance totale',
-    how_sub: 'Dimentica la compilazione manuale e i fogli Excel infiniti.',
-    how_step1_title: 'Costruisci il tuo Profilo',
-    how_step1_desc: 'Carica fatture energetiche, certificazioni e bilanci. Il nostro Discovery Engine estrae e valida i dati ESG automaticamente.',
-    how_step2_title: 'Mappatura AI Universale',
-    how_step2_desc: 'L\'AI mappa i tuoi dati sugli standard europei (VSME, ESRS) e sui requisiti specifici di ogni Big Corp nel tuo settore.',
-    how_step3_title: 'Rispondi con un Click',
-    how_step3_desc: 'Esporta i dati pre-compilati verso EcoVadis, CDP, Synesgy o direttamente nei portali custom dei tuoi clienti enterprise.',
+    // Footer
+    footer_desc: 'Democratizziamo la sostenibilità per le PMI italiane attraverso l\'intelligenza artificiale e l\'automazione dei dati.',
+    footer_prod: 'Prodotto',
+    footer_legal: 'Legale',
+    footer_api: 'Documentazione API',
+    footer_privacy: 'Privacy Policy',
+    footer_terms: 'Termini di Servizio',
+    footer_copy: '© 2026 ESGlab Intelligence S.r.l. · P.IVA 12345678901 · Milano, Italia',
     
-    // Market Intelligence
-    market_title: 'Market Intelligence Live',
-    market_sub: 'Analisi in tempo reale delle richieste Big Corp e benchmark di settore.',
-    market_pressure_title: 'Sotto Pressione',
-    market_pressure_sub: 'PMI fornitrici italiane che hanno già ricevuto richieste ESG dirette dai propri clienti.',
-    market_quest_title: 'Questionari/Anno',
-    market_quest_sub: 'Media dei diversi modelli di questionari ricevuti da ogni PMI (Rating, Excel, PDF).',
-    market_cost_title: 'Costo Inefficienza',
-    market_cost_sub: 'Costo stimato in ore uomo per la compilazione manuale e non strutturata dei dati.',
-    market_chart_title: 'Impronta Ambientale per Settore',
-    market_graph_title: 'Ecosistema Corporate',
-    market_graph_sub: 'Relazioni ESG tra i settori e le Big Corp analizzate',
-    market_graph_search: 'Cerca un tuo cliente...',
-
     // About Page
     about_mission_title: 'Semplifichiamo la Sostenibilità',
     about_mission_span: 'per chi crea valore.',
@@ -63,13 +46,6 @@ const translations = {
     value_impact_title: 'Impatto',
     value_impact_desc: 'Crediamo che la vera sostenibilità nasca da dati azionabili, non solo da fogli di calcolo.',
 
-    // Footer
-    footer_desc: 'Democratizziamo la sostenibilità per le PMI italiane attraverso l\'intelligenza artificiale e l\'automazione dei dati.',
-    footer_prod: 'Prodotto',
-    footer_company: 'Azienda',
-    footer_support: 'Supporto',
-    footer_legal: '© 2026 ESGlab Intelligence S.r.l. · P.IVA 12345678901 · Sede Legale: Milano, Italia',
-    
     // Login
     login_welcome: 'Bentornato in ESGlab',
     login_sub: 'Accedi al tuo Profilo certificato.',
@@ -156,28 +132,6 @@ const translations = {
     gap_partial: 'Copertura parziale',
     gap_low: 'Dati insufficienti',
 
-    // FormCompiler
-    fc_who: 'Chi ti ha inviato il form?',
-    fc_who_sub: 'Cerchiamo il cliente nel nostro storico per capire il contesto e gli standard richiesti.',
-    fc_search: "Scrivi il nome dell'impresa (es. Stellantis, Enel...)",
-    fc_upload_title: 'Carica il form del cliente',
-    fc_upload_sub: "Carica il PDF o l'Excel ricevuto. L'AI lo mapperà istantaneamente sul tuo Profilo.",
-    fc_analyzing: "L'AI sta analizzando il form...",
-    fc_drop: 'Trascina qui il form o clicca per sfogliare',
-    fc_formats: 'Supporta PDF, XLSX, XLSM',
-    fc_prefilled: 'Form Pre-compilato',
-    fc_excel_active: 'Excel Mapping Attivo',
-    fc_match_rate: 'Match del Profilo',
-    fc_match100: 'MATCH 100%',
-    fc_gap: 'GAP RILEVATO',
-    fc_source: 'Fonte Evidence',
-    fc_missing_data: 'Questo dato non è presente nel tuo Profilo. Carica un documento correlato per completarlo.',
-    fc_change: '← Cambia Form',
-    fc_download_excel: 'Scarica Excel Compilato ↓',
-    fc_download_pdf: 'Scarica Form Compilato (.pdf)',
-    fc_back: '← TORNA AL CENTRO DI COMANDO',
-    fc_select: 'Seleziona',
-
     // QuestionnaireWizard
     qw_exit: 'Esci e torna alla Home ✕',
     qw_support: 'Supporto Real-Time',
@@ -218,29 +172,6 @@ const translations = {
     dash_gap_analysis: 'Gap Analysis ESRS',
     dash_gap_sub: 'Scopri quali KPI mancano ancora nel tuo Profilo rispetto agli standard richiesti dai tuoi clienti.',
 
-    // QuestionnaireWizard nav
-    qw_nav_market: 'Market Context',
-    qw_nav_baseline: 'Baseline Operativa',
-    qw_nav_evidence: 'Evidence Profilo',
-    qw_nav_readiness: 'Readiness Score',
-    qw_error: 'Errore nel salvataggio. Riprova.',
-
-    // VSME questions by ID
-    vsme_q_v1: 'Numero di dipendenti (FTE)',
-    vsme_q_v2: 'Fatturato annuo (€)',
-    vsme_q_v3: 'Totale Attivo Stato Patrimoniale (€)',
-    vsme_q_prefix: 'Possiedi dati su:',
-
-    // Sector names
-    sector_manifatturiero: 'Manifatturiero',
-    sector_logistica: 'Logistica e Trasporti',
-    sector_alimentare: 'Alimentare',
-    sector_tessile: 'Tessile e Moda',
-    sector_edilizia: 'Edilizia',
-    sector_chimico: 'Chimico e Farmaceutico',
-    sector_metalmeccanico: 'Metalmeccanico',
-    sector_altro: 'Altro',
-
     // Doc types (Upload)
     doc_energy: 'Bolletta energetica',
     doc_energy_hint: 'Consumi elettricità e gas',
@@ -263,8 +194,6 @@ const translations = {
     nav_home: 'Home',
     coming_soon: 'Coming Soon',
     demo_cta: 'Try Live Demo →',
-    coming_soon: 'Prossimamente Disponibile',
-    demo_cta: 'Prova la Demo Live →',
     
     // Hero
     hero_title: 'Fill it in once.',
@@ -272,30 +201,15 @@ const translations = {
     hero_sub: 'The ESG auto-compiler for European SMEs.',
     hero_cta: 'Start your VSME Onboarding →',
     
-    // How it works
-    how_title: 'Three steps to total compliance',
-    how_sub: 'Forget manual compilation and endless Excel sheets.',
-    how_step1_title: 'Build your Profile',
-    how_step1_desc: 'Upload energy bills, certifications, and financial statements. Our Discovery Engine extracts and validates ESG data automatically.',
-    how_step2_title: 'Universal AI Mapping',
-    how_step2_desc: 'The AI maps your data to European standards (VSME, ESRS) and the specific requirements of every Big Corp in your sector.',
-    how_step3_title: 'Reply with a Click',
-    how_step3_desc: 'Export pre-filled data to EcoVadis, CDP, Synesgy, or directly into your enterprise clients\' custom portals.',
+    // Footer
+    footer_desc: 'Democratizing sustainability for European SMEs through artificial intelligence and data automation.',
+    footer_prod: 'Product',
+    footer_legal: 'Legal',
+    footer_api: 'API Documentation',
+    footer_privacy: 'Privacy Policy',
+    footer_terms: 'Terms of Service',
+    footer_copy: '© 2026 ESGlab Intelligence S.r.l. · VAT 12345678901 · Milan, Italy',
     
-    // Market Intelligence
-    market_title: 'Live Market Intelligence',
-    market_sub: 'Real-time analysis of Big Corp requests and industry benchmarks.',
-    market_pressure_title: 'Under Pressure',
-    market_pressure_sub: 'Italian supplier SMEs that have already received direct ESG requests from their clients.',
-    market_quest_title: 'Questionnaires/Year',
-    market_quest_sub: 'Average number of different questionnaire models received by each SME (Rating, Excel, PDF).',
-    market_cost_title: 'Inefficiency Cost',
-    market_cost_sub: 'Estimated cost in man-hours for manual and unstructured data compilation.',
-    market_chart_title: 'Environmental Footprint by Sector',
-    market_graph_title: 'Corporate Ecosystem',
-    market_graph_sub: 'ESG relationships between analyzed sectors and Big Corps',
-    market_graph_search: 'Search for a client...',
-
     // About Page
     about_mission_title: 'Simplifying Sustainability',
     about_mission_span: 'for those who build value.',
@@ -304,7 +218,6 @@ const translations = {
     about_why_p1: 'The market is changing. Large Corporations are asking their suppliers for increasingly precise data. Often, for an SME, responding to these requests means hours of manual work and regulatory confusion.',
     about_why_p2: 'We have built an artificial intelligence engine that "reads" your documents and translates your daily operations into the language of ESRS and CSRD standards.',
     about_why_p3: 'We are not just reporting software; we are the bridge between your company and the future of sustainable industry.',
-    about_made_in_italy: 'Developed with love for the Italian industrial fabric, respecting the unique characteristics of our enterprises.',
     about_team_title: 'The Heart of ESGlab',
     about_team_sub: 'A multidisciplinary team combining expertise in artificial intelligence, environmental regulation, and software development.',
     about_values_title: 'Our Values',
@@ -315,13 +228,6 @@ const translations = {
     value_impact_title: 'Impact',
     value_impact_desc: 'We believe that true sustainability comes from actionable data, not just spreadsheets.',
 
-    // Footer
-    footer_desc: 'Democratizing sustainability for Italian SMEs through artificial intelligence and data automation.',
-    footer_prod: 'Product',
-    footer_company: 'Company',
-    footer_support: 'Support',
-    footer_legal: '© 2026 ESGlab Intelligence S.r.l. · VAT 12345678901 · Registered Office: Milan, Italy',
-    
     // Login
     login_welcome: 'Welcome back to ESGlab',
     login_sub: 'Access your certified Profile.',
@@ -470,29 +376,6 @@ const translations = {
     dash_gap_analysis: 'ESRS Gap Analysis',
     dash_gap_sub: 'Discover which KPIs are still missing from your Profile compared to the standards required by your clients.',
 
-    // QuestionnaireWizard nav
-    qw_nav_market: 'Market Context',
-    qw_nav_baseline: 'Operational Baseline',
-    qw_nav_evidence: 'Profile Evidence',
-    qw_nav_readiness: 'Readiness Score',
-    qw_error: 'Save error. Please try again.',
-
-    // VSME questions by ID
-    vsme_q_v1: 'Number of employees (FTE)',
-    vsme_q_v2: 'Annual revenue (€)',
-    vsme_q_v3: 'Total assets — Balance Sheet (€)',
-    vsme_q_prefix: 'Do you have data on:',
-
-    // Sector names
-    sector_manifatturiero: 'Manufacturing',
-    sector_logistica: 'Logistics & Transport',
-    sector_alimentare: 'Food & Beverage',
-    sector_tessile: 'Textile & Fashion',
-    sector_edilizia: 'Construction',
-    sector_chimico: 'Chemical & Pharmaceutical',
-    sector_metalmeccanico: 'Metalworking',
-    sector_altro: 'Other',
-
     // Doc types (Upload)
     doc_energy: 'Energy bill',
     doc_energy_hint: 'Electricity and gas consumption',
@@ -536,4 +419,3 @@ export function LanguageProvider({ children }) {
     </LanguageContext.Provider>
   );
 }
-

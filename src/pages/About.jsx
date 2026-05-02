@@ -8,15 +8,35 @@ export default function About() {
   const navigate = useNavigate();
   const { lang, setLang, t } = useLanguage();
 
+  const handleComingSoon = () => {
+    alert(t('coming_soon'));
+  };
+
+  const startDemo = async () => {
+    try {
+      const res = await callApi('/auth/login', { method: 'POST' });
+      const data = await res.json();
+      localStorage.setItem('esg_token', 'mock-token-123');
+      localStorage.setItem('user', JSON.stringify(data.user));
+      navigate('/pmi/dashboard', { 
+        state: { 
+          org: data.user.org || { id: 'org-123', name: 'Azienda Demo SPA', sector: 'Manufacturing' } 
+        } 
+      });
+    } catch (err) {
+      console.error("Demo login error", err);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
-      {/* Navbar Pubblica (Riutilizzata) */}
+      {/* Navbar Pubblica (Unificata) */}
       <nav className="flex justify-between items-center px-12 py-6 bg-white border-b border-slate-100 sticky top-0 z-50">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
           <img src="logo.png" alt="ESGlab Logo" className="h-10 w-auto" />
           <span className="text-2xl font-black text-slate-900 tracking-tighter">ESG<span className="text-emerald-600">lab</span></span>
         </div>
-        <div className="flex gap-8 items-center">
+        <div className="flex gap-6 items-center">
           <button 
             onClick={() => setLang(lang === 'it' ? 'en' : 'it')}
             className="w-10 h-10 flex items-center justify-center bg-slate-50 rounded-xl border border-slate-100 text-xs font-black text-slate-400 hover:text-emerald-600 transition-colors uppercase"
@@ -24,9 +44,12 @@ export default function About() {
             {lang}
           </button>
           <button onClick={() => navigate('/')} className="text-sm font-bold text-slate-600 hover:text-emerald-600 transition-colors">{t('nav_home')}</button>
-          <button onClick={() => navigate('/login')} className="px-6 py-2 text-sm font-bold text-slate-600 hover:text-emerald-600 transition-colors">{t('nav_login')}</button>
-          <button onClick={() => navigate('/pmi')} className="bg-emerald-600 text-white px-8 py-2 rounded-xl text-sm font-black shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition-all">
+          <button onClick={handleComingSoon} className="px-6 py-2 text-sm font-bold text-slate-400 opacity-50 cursor-not-allowed transition-colors">{t('nav_login')}</button>
+          <button onClick={handleComingSoon} className="bg-slate-200 text-slate-400 px-8 py-2 rounded-xl text-sm font-black cursor-not-allowed opacity-60">
             {t('nav_register')}
+          </button>
+          <button onClick={startDemo} className="bg-emerald-600 text-white px-8 py-2 rounded-xl text-sm font-black shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition-all active:scale-95">
+            {t('demo_cta')}
           </button>
         </div>
       </nav>
@@ -144,15 +167,15 @@ export default function About() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Footer (Unificato) */}
       <footer className="bg-slate-900 pt-24 pb-12 px-12 text-white">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
-          <div className="col-span-1">
+          <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-2 mb-8">
-              <div className="bg-emerald-600 text-white font-black px-3 py-1.5 rounded-xl text-xl">ESG</div>
-              <span className="text-2xl font-black tracking-tight">lab</span>
+              <img src="logo.png" alt="ESGlab Logo" className="h-10 w-auto brightness-0 invert" />
+              <span className="text-2xl font-black tracking-tighter">ESG<span className="text-emerald-500">lab</span></span>
             </div>
-            <p className="text-slate-400 text-base leading-relaxed mb-8 font-medium">
+            <p className="text-slate-400 text-base leading-relaxed mb-8 font-medium max-w-sm">
               {t('footer_desc')}
             </p>
             <div className="flex gap-5">
@@ -164,37 +187,24 @@ export default function About() {
           <div>
             <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_prod')}</h4>
             <ul className="space-y-5 text-base font-bold text-slate-400">
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/pmi')}>{t('how_step1_title')}</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">{t('market_title')}</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">ESG Brain AI</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">Report Export</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_company')}</h4>
-            <ul className="space-y-5 text-base font-bold text-slate-400">
               <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">Mission</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">Contact</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">Careers</li>
+              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={startDemo}>{t('demo_cta')}</li>
+              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_api')}</li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_support')}</h4>
+            <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_legal')}</h4>
             <ul className="space-y-5 text-base font-bold text-slate-400">
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">Help Center</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">API Docs</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">Privacy Policy</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">Cookie Policy</li>
+              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_privacy')}</li>
+              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_terms')}</li>
             </ul>
           </div>
         </div>
 
         <div className="max-w-7xl mx-auto pt-16 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-8">
           <p className="text-slate-500 text-sm font-bold">
-            {t('footer_legal')}
+            {t('footer_copy')}
           </p>
           <p className="text-slate-600 text-xs font-black uppercase tracking-[0.3em]">
             Built for the Next Industrial Era

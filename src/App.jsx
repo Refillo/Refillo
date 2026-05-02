@@ -44,12 +44,8 @@ function App() {
     try {
       const res = await callApi('/auth/login', { method: 'POST' });
       const data = await res.json();
-      
-      // Salviamo sia nel localStorage che passiamo lo stato alla route
       localStorage.setItem('esg_token', 'mock-token-123');
       localStorage.setItem('user', JSON.stringify(data.user));
-      
-      // Passiamo l'oggetto org tramite lo stato della navigazione
       navigate('/pmi/dashboard', { 
         state: { 
           org: data.user.org || { id: 'org-123', name: 'Azienda Demo SPA', sector: 'Manufacturing' } 
@@ -233,51 +229,47 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="px-12 py-24 bg-white border-t border-slate-100 text-slate-900">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
+      <footer className="bg-slate-900 pt-24 pb-12 px-12 text-white">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-2 mb-8">
-              <img src="logo.png" alt="ESGlab Logo" className="h-8 w-auto" />
-              <span className="text-xl font-black tracking-tighter">ESG<span className="text-emerald-600">lab</span></span>
+              <img src="logo.png" alt="ESGlab Logo" className="h-10 w-auto brightness-0 invert" />
+              <span className="text-2xl font-black tracking-tighter">ESG<span className="text-emerald-600">lab</span></span>
             </div>
-            <p className="text-slate-500 text-lg font-medium leading-relaxed max-w-sm mb-12">
+            <p className="text-slate-400 text-base leading-relaxed mb-8 font-medium max-w-sm">
               {t('footer_desc')}
             </p>
-            <div className="flex gap-4">
-              {['Twitter', 'LinkedIn', 'GitHub'].map(social => (
-                <div key={social} className="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:text-emerald-600 cursor-pointer transition-colors">
-                  <span className="text-[10px] font-black uppercase tracking-tighter">{social[0]}</span>
-                </div>
-              ))}
+            <div className="flex gap-5">
+              <div className="w-10 h-10 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white cursor-pointer transition-colors text-lg">in</div>
+              <div className="w-10 h-10 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white cursor-pointer transition-colors text-lg">𝕏</div>
             </div>
           </div>
-          
+
           <div>
-            <h4 className="font-black text-sm uppercase tracking-widest text-slate-400 mb-8">{t('footer_prod')}</h4>
-            <ul className="space-y-4 font-bold text-slate-600">
-              <li className="hover:text-emerald-600 cursor-pointer transition-colors">Platform</li>
-              <li className="hover:text-emerald-600 cursor-pointer transition-colors">Discovery Engine</li>
-              <li className="hover:text-emerald-600 cursor-pointer transition-colors">Integrations</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">API Docs</li>
+            <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_prod')}</h4>
+            <ul className="space-y-5 text-base font-bold text-slate-400">
+              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
+              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={startDemo}>{t('demo_cta')}</li>
+              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_api')}</li>
             </ul>
           </div>
-          
+
           <div>
-            <h4 className="font-black text-sm uppercase tracking-widest text-slate-400 mb-8">{t('footer_support')}</h4>
-            <ul className="space-y-4 font-bold text-slate-600">
-              <li className="hover:text-emerald-600 cursor-pointer transition-colors">Documentation</li>
-              <li className="hover:text-emerald-600 cursor-pointer transition-colors">Security</li>
-              <li className="hover:text-emerald-600 cursor-pointer transition-colors">Contact</li>
+            <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_legal')}</h4>
+            <ul className="space-y-5 text-base font-bold text-slate-400">
+              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_privacy')}</li>
+              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_terms')}</li>
             </ul>
           </div>
         </div>
-        
-        <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-slate-100 flex justify-between items-center text-xs font-bold text-slate-400 uppercase tracking-widest">
-          <p>{t('footer_legal')}</p>
-          <div className="flex gap-8">
-            <span className="hover:text-slate-600 cursor-pointer">Privacy</span>
-            <span className="hover:text-slate-600 cursor-pointer">Terms</span>
-          </div>
+
+        <div className="max-w-7xl mx-auto pt-16 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-8">
+          <p className="text-slate-500 text-sm font-bold">
+            {t('footer_copy')}
+          </p>
+          <p className="text-slate-600 text-xs font-black uppercase tracking-[0.3em]">
+            Built for the Next Industrial Era
+          </p>
         </div>
       </footer>
     </div>
