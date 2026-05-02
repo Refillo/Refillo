@@ -1,4 +1,5 @@
 import { callApi } from './apiClient';
+const API = ''; // Mock API constant
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { HashRouter, Routes, Route } from 'react-router-dom'

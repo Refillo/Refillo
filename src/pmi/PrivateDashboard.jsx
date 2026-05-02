@@ -1,4 +1,5 @@
 import { callApi } from '../apiClient';
+const API = ''; // Mock API constant
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
@@ -132,7 +133,7 @@ export default function PrivateDashboard({ org }) {
       setLocalUploads(stored);
     } catch { setLocalUploads([]); }
 
-    callApi(`${API}/kpis?org_name=${encodeURIComponent(org.name)}`)
+    callApi(`/kpis?org_name=${encodeURIComponent(org.name)}`)
       .then(r => r.json())
       .then(data => { setKpis(data); setLoading(false); })
       .catch(() => setLoading(false));
@@ -166,7 +167,7 @@ export default function PrivateDashboard({ org }) {
   ];
 
   const handleDownload = (format) => {
-    const url = `${API}/pmi/${org.id}/report?format=${format}`;
+    const url = `/pmi/${org.id}/report?format=${format}`;
     window.open(url, '_blank');
   };
 

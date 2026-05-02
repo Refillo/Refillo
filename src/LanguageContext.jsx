@@ -1,4 +1,5 @@
 import { callApi } from './apiClient';
+const API = ''; // Mock API constant
 import { createContext, useContext } from 'react';
 
 export const LanguageContext = createContext(undefined);

@@ -1,4 +1,5 @@
 import { callApi } from './apiClient';
+const API = ''; // Mock API constant
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -33,7 +34,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    callApi(`${API}/market-intelligence`)
+    callApi(`/market-intelligence`)
       .then(r => r.json())
       .then(data => {
         setIntel(data);

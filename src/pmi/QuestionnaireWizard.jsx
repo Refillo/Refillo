@@ -1,4 +1,5 @@
 import { callApi } from '../apiClient';
+const API = ''; // Mock API constant
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../LanguageContext';
@@ -23,12 +24,12 @@ export default function QuestionnaireWizard({ org, onComplete }) {
 
   useEffect(() => {
     if (!org) return;
-    callApi(`${API}/pmi/sector-context?sector=${encodeURIComponent(org.sector)}`)
+    callApi(`/pmi/sector-context?sector=${encodeURIComponent(org.sector)}`)
       .then(r => r.json())
       .then(data => setContext(data))
       .catch(() => {});
 
-    callApi(`${API}/organizations`)
+    callApi(`/organizations`)
       .then(r => r.json())
       .then(data => {
         setBigCorps(data.filter(o => o.id !== org.id));
@@ -42,7 +43,7 @@ export default function QuestionnaireWizard({ org, onComplete }) {
     try {
       const formData = new FormData();
       formData.append('name', name);
-      await callApi(`${API}/pmi/analyze-client`, { method: 'POST', body: formData });
+      await callApi(`/pmi/analyze-client`, { method: 'POST', body: formData });
     } finally {
       setAnalyzingClients(prev => ({ ...prev, [name]: false }));
     }
@@ -65,7 +66,7 @@ export default function QuestionnaireWizard({ org, onComplete }) {
     formData.append('org_id', org.id);
     formData.append('file', file);
     try {
-      const res = await callApi(`${API}/pmi/ingest`, { method: 'POST', body: formData });
+      const res = await callApi(`/pmi/ingest`, { method: 'POST', body: formData });
       const data = await res.json();
       if (data.status === 'preview') {
         setUploads(prev => [...prev, { name: file.name, type: data.data.type }]);
@@ -80,7 +81,7 @@ export default function QuestionnaireWizard({ org, onComplete }) {
     body.append('org_id', org.id);
     body.append('responses', JSON.stringify(responses));
     try {
-      await callApi(`${API}/pmi/vsme-onboarding`, { method: 'POST', body });
+      await callApi(`/pmi/vsme-onboarding`, { method: 'POST', body });
       onComplete();
     } catch (e) { alert(t('qw_error')); }
   };

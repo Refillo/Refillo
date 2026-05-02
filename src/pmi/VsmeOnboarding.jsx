@@ -1,4 +1,5 @@
 import { callApi } from '../apiClient';
+const API = ''; // Mock API constant
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../LanguageContext';
 
@@ -14,7 +15,7 @@ export default function VsmeOnboarding({ org, onComplete }) {
 
   useEffect(() => {
     if (!org) return;
-    callApi(`${API}/pmi/sector-context?sector=${encodeURIComponent(org.sector)}`)
+    callApi(`/pmi/sector-context?sector=${encodeURIComponent(org.sector)}`)
       .then(r => r.json())
       .then(data => {
         // Prepariamo la lista delle domande unendo VSME e Corporate Extras
@@ -54,7 +55,7 @@ export default function VsmeOnboarding({ org, onComplete }) {
     body.append('responses', JSON.stringify(responses));
     
     try {
-      await callApi(`${API}/pmi/vsme-onboarding`, { method: 'POST', body });
+      await callApi(`/pmi/vsme-onboarding`, { method: 'POST', body });
       onComplete();
     } catch (e) {
       alert("Errore nel salvataggio. Riprova.");

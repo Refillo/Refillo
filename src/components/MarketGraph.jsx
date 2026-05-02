@@ -1,4 +1,5 @@
 import { callApi } from '../apiClient';
+const API = ''; // Mock API constant
 import ForceGraph2D from 'react-force-graph-2d';
 import { useRef, useEffect, useState } from 'react';
 import { useLanguage } from '../LanguageContext';

@@ -1,4 +1,5 @@
 import { callApi } from '../apiClient';
+const API = ''; // Mock API constant
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Onboarding from './Onboarding.jsx';

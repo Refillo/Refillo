@@ -1,4 +1,5 @@
 import { callApi } from '../apiClient';
+const API = ''; // Mock API constant
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../LanguageContext';
@@ -34,7 +35,7 @@ export default function Onboarding({ onComplete }) {
     Object.entries(form).forEach(([k, v]) => body.append(k, v));
 
     try {
-      const res = await callApi(`${API}/auth/register`, { method: 'POST', body });
+      const res = await callApi(`/auth/register`, { method: 'POST', body });
       const data = await res.json();
       
       if (res.ok) {

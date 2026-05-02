@@ -1,4 +1,5 @@
 import { callApi } from '../apiClient';
+const API = ''; // Mock API constant
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../LanguageContext';
@@ -81,7 +82,7 @@ export default function Upload({ org, onComplete }) {
       body.append('org_id', org.id);
       body.append('file', file);
       try {
-        const res = await callApi(`${API}/pmi/ingest`, { method: 'POST', body });
+        const res = await callApi(`/pmi/ingest`, { method: 'POST', body });
         const data = await res.json();
         if (data.status === 'preview' && data.data?.quantity) {
           setPreviews(prev => [...prev, { ...data, file }]);
@@ -124,7 +125,7 @@ export default function Upload({ org, onComplete }) {
     body.append('co2_kg', d.co2_kg ?? 0);
     body.append('raw_evidence', d.raw_evidence || '');
     try {
-      await callApi(`${API}/pmi/ingest/confirm`, { method: 'POST', body });
+      await callApi(`/pmi/ingest/confirm`, { method: 'POST', body });
     } catch { /* silently ignore — UI already updated */ }
   };
 

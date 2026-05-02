@@ -1,4 +1,5 @@
 import { callApi } from '../apiClient';
+const API = ''; // Mock API constant
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../LanguageContext';
 

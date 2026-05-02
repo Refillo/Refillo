@@ -1,4 +1,5 @@
 import { callApi } from '../apiClient';
+const API = ''; // Mock API constant
 import { useState, useRef } from 'react';
 import { useLanguage } from '../LanguageContext';
 
@@ -21,7 +22,7 @@ export default function FormCompiler({ org, onBack }) {
     if (val.length < 2) { setSearchClientResults([]); return; }
     setIsSearching(true);
     try {
-      const res = await callApi(`${API}/organizations`);
+      const res = await callApi(`/organizations`);
       const allOrgs = await res.json();
       setSearchClientResults(allOrgs.filter(o => o.name.toLowerCase().includes(val.toLowerCase())));
     } catch (e) {
@@ -45,7 +46,7 @@ export default function FormCompiler({ org, onBack }) {
     formData.append('client_id', selectedClient.id);
     formData.append('file', selectedFile);
     try {
-      const res = await callApi(`${API}/pmi/compile-form`, { method: 'POST', body: formData });
+      const res = await callApi(`/pmi/compile-form`, { method: 'POST', body: formData });
       const data = await res.json();
       if (data.status === 'success') {
         setCompilationData(data);
@@ -203,13 +204,13 @@ export default function FormCompiler({ org, onBack }) {
                 {t('fc_change')}
               </button>
               {compilationData.download_url ? (
-                <a href={`${API}${compilationData.download_url}`} target="_blank" rel="noopener noreferrer"
+                <a href={`${compilationData.download_url}`} target="_blank" rel="noopener noreferrer"
                   className="flex-[2] py-4 px-6 bg-emerald-600 text-white rounded-2xl font-black text-sm shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition-all text-center flex items-center justify-center">
                   {t('fc_download_excel')}
                 </a>
               ) : (
                 <a
-                  href={`${API}/pmi/${org.id}/compiled-form?client_name=${encodeURIComponent(selectedClient.name)}`}
+                  href={`/pmi/${org.id}/compiled-form?client_name=${encodeURIComponent(selectedClient.name)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-[2] py-4 px-6 bg-emerald-600 text-white rounded-2xl font-black text-sm shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition-all text-center flex items-center justify-center"

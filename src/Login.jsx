@@ -1,4 +1,5 @@
 import { callApi } from './apiClient';
+const API = ''; // Mock API constant
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -26,7 +27,7 @@ export default function Login() {
       formData.append('email', form.email);
       formData.append('password', form.password);
 
-      const response = await callApi(`${API}/auth/login`, {
+      const response = await callApi(`/auth/login`, {
         method: 'POST',
         body: formData,
       });

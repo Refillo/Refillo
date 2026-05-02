@@ -1,4 +1,5 @@
 import { callApi } from '../apiClient';
+const API = ''; // Mock API constant
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
