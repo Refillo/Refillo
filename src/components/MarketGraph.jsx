@@ -14,15 +14,16 @@ const SECTOR_COLORS = {
 export default function MarketGraph({ data }) {
   const containerRef = useRef();
   const fgRef = useRef();
-  const [dimensions, setDimensions] = useState({ width: 800, height: 500 || 500 });
+  const [dimensions, setDimensions] = useState({ width: 800, height: 500 });
   const [searchQuery, setSearchQuery] = useState('');
   const [highlightedNode, setHighlightedNode] = useState(null);
   const { t } = useLanguage();
 
   useEffect(() => {
     if (containerRef.current) {
-        width: containerRef.current.clientWidth,
-        height: 500 || 500
+      setDimensions({
+        width: containerRef.current.clientWidth || 800,
+        height: 500
       });
     }
     
@@ -31,9 +32,11 @@ export default function MarketGraph({ data }) {
       fgRef.current.d3Force('link').distance(40);    
       
       import('d3-force').then(d3 => {
-        fgRef.current.d3Force('collision', d3.forceCollide(node => 28)); 
-        fgRef.current.d3Force('x', d3.forceX(dimensions.width / 2).strength(0.2));
-        fgRef.current.d3Force('y', d3.forceY(dimensions.height / 2).strength(0.2));
+        if (fgRef.current) {
+          fgRef.current.d3Force('collision', d3.forceCollide(node => 28)); 
+          fgRef.current.d3Force('x', d3.forceX(dimensions.width / 2).strength(0.2));
+          fgRef.current.d3Force('y', d3.forceY(dimensions.height / 2).strength(0.2));
+        }
       });
     }
 
@@ -47,7 +50,7 @@ export default function MarketGraph({ data }) {
     }, 120);
 
     return () => clearInterval(jitterInterval);
-  }, [data]);
+  }, [data, dimensions.width, dimensions.height]);
 
   const handleSearch = (e) => {
     const val = e.target.value;

@@ -19,6 +19,30 @@ const translations = {
     hero_sub: 'L\'auto-compilatore ESG per le PMI Europee.',
     hero_cta: 'Inizia il tuo Onboarding VSME →',
     
+    // How it works
+    how_title: 'Tre step per la compliance totale',
+    how_sub: 'Dimentica la compilazione manuale e i fogli Excel infiniti.',
+    how_step1_title: 'Costruisci il tuo Profilo',
+    how_step1_desc: 'Carica fatture energetiche, certificazioni e bilanci. Il nostro Discovery Engine estrae e valida i dati ESG automaticamente.',
+    how_step2_title: 'Mappatura AI Universale',
+    how_step2_desc: 'L\'AI mappa i tuoi dati sugli standard europei (VSME, ESRS) e sui requisiti specifici di ogni Big Corp nel tuo settore.',
+    how_step3_title: 'Rispondi con un Click',
+    how_step3_desc: 'Esporta i dati pre-compilati verso EcoVadis, CDP, Synesgy o direttamente nei portali custom dei tuoi clienti enterprise.',
+
+    // Market Intelligence
+    market_title: 'Market Intelligence Live',
+    market_sub: 'Analisi in tempo reale delle richieste Big Corp e benchmark di settore.',
+    market_pressure_title: 'Sotto Pressione',
+    market_pressure_sub: 'PMI fornitrici italiane che hanno già ricevuto richieste ESG dirette dai propri clienti.',
+    market_quest_title: 'Questionari/Anno',
+    market_quest_sub: 'Media dei diversi modelli di questionari ricevuti da ogni PMI (Rating, Excel, PDF).',
+    market_cost_title: 'Costo Inefficienza',
+    market_cost_sub: 'Costo stimato in ore uomo per la compilazione manuale e non strutturata dei dati.',
+    market_chart_title: 'Impronta Ambientale per Settore',
+    market_graph_title: 'Ecosistema Corporate',
+    market_graph_sub: 'Relazioni ESG tra i settori e le Big Corp analizzate',
+    market_graph_search: 'Cerca un tuo cliente...',
+    
     // Footer
     footer_desc: 'Democratizziamo la sostenibilità per le PMI italiane attraverso l\'intelligenza artificiale e l\'automazione dei dati.',
     footer_prod: 'Prodotto',
@@ -36,6 +60,7 @@ const translations = {
     about_why_p1: 'Il mercato sta cambiando. Le grandi Corporate chiedono dati sempre più precisi ai propri fornitori. Spesso, per una PMI, rispondere a queste richieste significa ore di lavoro manuale e confusione normativa.',
     about_why_p2: 'Abbiamo costruito un motore di intelligenza artificiale che "legge" i tuoi documenti e traduce la tua operatività quotidiana nel linguaggio degli standard ESRS e CSRD.',
     about_why_p3: 'Non siamo solo un software di reporting; siamo il ponte tra la tua azienda e il futuro dell\'industria sostenibile.',
+    about_made_in_italy: 'Sviluppato con amore per il tessuto industriale italiano, rispettando le caratteristiche uniche delle nostre imprese.',
     about_team_title: 'Il Cuore di ESGlab',
     about_team_sub: 'Un team multidisciplinare che unisce competenze in intelligenza artificiale, normativa ambientale e sviluppo software.',
     about_values_title: 'I nostri Valori',
@@ -132,6 +157,28 @@ const translations = {
     gap_partial: 'Copertura parziale',
     gap_low: 'Dati insufficienti',
 
+    // FormCompiler
+    fc_who: 'Chi ti ha inviato il form?',
+    fc_who_sub: 'Cerchiamo il cliente nel nostro storico per capire il contesto e gli standard richiesti.',
+    fc_search: "Scrivi il nome dell'impresa (es. Stellantis, Enel...)",
+    fc_upload_title: 'Carica il form del cliente',
+    fc_upload_sub: "Carica il PDF o l'Excel ricevuto. L'AI lo mapperà istantaneamente sul tuo Profilo.",
+    fc_analyzing: "L'AI sta analizzando il form...",
+    fc_drop: 'Trascina qui il form o clicca per sfogliare',
+    fc_formats: 'Supporta PDF, XLSX, XLSM',
+    fc_prefilled: 'Form Pre-compilato',
+    fc_excel_active: 'Excel Mapping Attivo',
+    fc_match_rate: 'Match del Profilo',
+    fc_match100: 'MATCH 100%',
+    fc_gap: 'GAP RILEVATO',
+    fc_source: 'Fonte Evidence',
+    fc_missing_data: 'Questo dato non è presente nel tuo Profilo. Carica un documento correlato per completarlo.',
+    fc_change: '← Cambia Form',
+    fc_download_excel: 'Scarica Excel Compilato ↓',
+    fc_download_pdf: 'Scarica Form Compilato (.pdf)',
+    fc_back: '← TORNA AL CENTRO DI COMANDO',
+    fc_select: 'Seleziona',
+
     // QuestionnaireWizard
     qw_exit: 'Esci e torna alla Home ✕',
     qw_support: 'Supporto Real-Time',
@@ -201,6 +248,30 @@ const translations = {
     hero_sub: 'The ESG auto-compiler for European SMEs.',
     hero_cta: 'Start your VSME Onboarding →',
     
+    // How it works
+    how_title: 'Three steps to total compliance',
+    how_sub: 'Forget manual compilation and endless Excel sheets.',
+    how_step1_title: 'Build your Profile',
+    how_step1_desc: 'Upload energy bills, certifications, and financial statements. Our Discovery Engine extracts and validates ESG data automatically.',
+    how_step2_title: 'Universal AI Mapping',
+    how_step2_desc: 'The AI maps your data to European standards (VSME, ESRS) and the specific requirements of every Big Corp in your sector.',
+    how_step3_title: 'Reply with a Click',
+    how_step3_desc: 'Export pre-filled data to EcoVadis, CDP, Synesgy, or directly into your enterprise clients\' custom portals.',
+
+    // Market Intelligence
+    market_title: 'Live Market Intelligence',
+    market_sub: 'Real-time analysis of Big Corp requests and industry benchmarks.',
+    market_pressure_title: 'Under Pressure',
+    market_pressure_sub: 'Italian supplier SMEs that have already received direct ESG requests from their clients.',
+    market_quest_title: 'Questionnaires/Year',
+    market_quest_sub: 'Average number of different questionnaire models received by each SME (Rating, Excel, PDF).',
+    market_cost_title: 'Inefficiency Cost',
+    market_cost_sub: 'Estimated cost in man-hours for manual and unstructured data compilation.',
+    market_chart_title: 'Environmental Footprint by Sector',
+    market_graph_title: 'Corporate Ecosystem',
+    market_graph_sub: 'ESG relationships between analyzed sectors and Big Corps',
+    market_graph_search: 'Search for a client...',
+    
     // Footer
     footer_desc: 'Democratizing sustainability for European SMEs through artificial intelligence and data automation.',
     footer_prod: 'Product',
@@ -218,6 +289,7 @@ const translations = {
     about_why_p1: 'The market is changing. Large Corporations are asking their suppliers for increasingly precise data. Often, for an SME, responding to these requests means hours of manual work and regulatory confusion.',
     about_why_p2: 'We have built an artificial intelligence engine that "reads" your documents and translates your daily operations into the language of ESRS and CSRD standards.',
     about_why_p3: 'We are not just reporting software; we are the bridge between your company and the future of sustainable industry.',
+    about_made_in_italy: 'Developed with love for the Italian industrial fabric, respecting the unique characteristics of our enterprises.',
     about_team_title: 'The Heart of ESGlab',
     about_team_sub: 'A multidisciplinary team combining expertise in artificial intelligence, environmental regulation, and software development.',
     about_values_title: 'Our Values',
