@@ -171,9 +171,9 @@ export default function About() {
       <footer className="bg-slate-900 pt-24 pb-12 px-12 text-white">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-2 mb-8">
+            <div className="flex items-center gap-2 mb-8" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
               <img src="logo.png" alt="ESGlab Logo" className="h-10 w-auto brightness-0 invert" />
-              <span className="text-2xl font-black tracking-tighter">ESG<span className="text-emerald-500">lab</span></span>
+              <span className="text-2xl font-black tracking-tighter">ESG<span className="text-emerald-600">lab</span></span>
             </div>
             <p className="text-slate-400 text-base leading-relaxed mb-8 font-medium max-w-sm">
               {t('footer_desc')}
@@ -188,8 +188,8 @@ export default function About() {
             <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_prod')}</h4>
             <ul className="space-y-5 text-base font-bold text-slate-400">
               <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={startDemo}>{t('demo_cta')}</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_api')}</li>
+              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/faq')}>{t('footer_faq')}</li>
+              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
             </ul>
           </div>
 
