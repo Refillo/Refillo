@@ -65,13 +65,16 @@ export default function Pitch() {
         </div>
       </nav>
 
-      <div className="flex-1 flex flex-col items-center bg-black overflow-hidden relative" style={{ height: 'calc(100vh - 80px)' }}>
-        <iframe 
-          src="pitch-content/index.html" 
-          title="ESGlab Pitch Deck"
-          className="w-full h-full border-none"
-          allowFullScreen
-        />
+      {/* Presentation Container */}
+      <div className="flex-1 bg-black flex flex-col items-center">
+        <div className="w-full h-full max-w-[1920px] aspect-video relative overflow-hidden bg-white shadow-2xl">
+          <iframe 
+            src="pitch-content/index.html" 
+            title="ESGlab Pitch Deck"
+            className="w-full h-full border-none"
+            allowFullScreen
+          />
+        </div>
       </div>
 
       <Footer />

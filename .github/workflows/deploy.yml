@@ -46,7 +46,13 @@ jobs:
         run: cd esg-lab-pitch && npm run build
 
       - name: Nest Pitch Deck in Main Build
-        run: mkdir -p dist/pitch-content && cp -r esg-lab-pitch/dist/* dist/pitch-content/
+        run: |
+          mkdir -p dist/pitch-content
+          cp -r esg-lab-pitch/dist/* dist/pitch-content/
+          # Ensure assets are copied correctly if nested
+          if [ -d "esg-lab-pitch/dist/assets" ]; then
+            cp -r esg-lab-pitch/dist/assets dist/pitch-content/
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
