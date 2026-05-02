@@ -1,0 +1,530 @@
+import { callApi } from '../apiClient';
+import React, { useState, useEffect } from 'react';
+import { LanguageContext } from './LanguageContext';
+
+const translations = {
+  it: {
+    // Navbar
+    nav_about: 'Chi Siamo',
+    nav_login: 'Accedi',
+    nav_register: 'Registrati Ora',
+    nav_home: 'Home',
+    
+    // Hero
+    hero_title: 'Compilalo una volta.',
+    hero_title_span: 'Rispondi a tutti.',
+    hero_sub: 'L\'auto-compilatore ESG per le PMI Europee.',
+    hero_cta: 'Inizia il tuo Onboarding VSME →',
+    
+    // How it works
+    how_title: 'Tre step per la compliance totale',
+    how_sub: 'Dimentica la compilazione manuale e i fogli Excel infiniti.',
+    how_step1_title: 'Costruisci il tuo Profilo',
+    how_step1_desc: 'Carica fatture energetiche, certificazioni e bilanci. Il nostro Discovery Engine estrae e valida i dati ESG automaticamente.',
+    how_step2_title: 'Mappatura AI Universale',
+    how_step2_desc: 'L\'AI mappa i tuoi dati sugli standard europei (VSME, ESRS) e sui requisiti specifici di ogni Big Corp nel tuo settore.',
+    how_step3_title: 'Rispondi con un Click',
+    how_step3_desc: 'Esporta i dati pre-compilati verso EcoVadis, CDP, Synesgy o direttamente nei portali custom dei tuoi clienti enterprise.',
+    
+    // Market Intelligence
+    market_title: 'Market Intelligence Live',
+    market_sub: 'Analisi in tempo reale delle richieste Big Corp e benchmark di settore.',
+    market_pressure_title: 'Sotto Pressione',
+    market_pressure_sub: 'PMI fornitrici italiane che hanno già ricevuto richieste ESG dirette dai propri clienti.',
+    market_quest_title: 'Questionari/Anno',
+    market_quest_sub: 'Media dei diversi modelli di questionari ricevuti da ogni PMI (Rating, Excel, PDF).',
+    market_cost_title: 'Costo Inefficienza',
+    market_cost_sub: 'Costo stimato in ore uomo per la compilazione manuale e non strutturata dei dati.',
+    market_chart_title: 'Impronta Ambientale per Settore',
+    market_graph_title: 'Ecosistema Corporate',
+    market_graph_sub: 'Relazioni ESG tra i settori e le Big Corp analizzate',
+    market_graph_search: 'Cerca un tuo cliente...',
+
+    // About Page
+    about_mission_title: 'Semplifichiamo la Sostenibilità',
+    about_mission_span: 'per chi crea valore.',
+    about_mission_desc: "ESGlab trasforma i dati operativi in asset strategici, eliminando la burocrazia per le PMI che guidano l'economia reale.",
+    about_why_title: 'Perché ESGlab?',
+    about_why_p1: 'Il mercato sta cambiando. Le grandi Corporate chiedono dati sempre più precisi ai propri fornitori. Spesso, per una PMI, rispondere a queste richieste significa ore di lavoro manuale e confusione normativa.',
+    about_why_p2: 'Abbiamo costruito un motore di intelligenza artificiale che "legge" i tuoi documenti e traduce la tua operatività quotidiana nel linguaggio degli standard ESRS e CSRD.',
+    about_why_p3: 'Non siamo solo un software di reporting; siamo il ponte tra la tua azienda e il futuro dell\'industria sostenibile.',
+    about_team_title: 'Il Cuore di ESGlab',
+    about_team_sub: 'Un team multidisciplinare che unisce competenze in intelligenza artificiale, normativa ambientale e sviluppo software.',
+    about_values_title: 'I nostri Valori',
+    value_transparency_title: 'Trasparenza',
+    value_transparency_desc: "Ogni dato nel nostro sistema è collegato a un'evidenza reale e verificabile.",
+    value_innovation_title: 'Innovazione',
+    value_innovation_desc: 'Usiamo le tecnologie AI più avanzate per ridurre il carico burocratico.',
+    value_impact_title: 'Impatto',
+    value_impact_desc: 'Crediamo che la vera sostenibilità nasca da dati azionabili, non solo da fogli di calcolo.',
+
+    // Footer
+    footer_desc: 'Democratizziamo la sostenibilità per le PMI italiane attraverso l\'intelligenza artificiale e l\'automazione dei dati.',
+    footer_prod: 'Prodotto',
+    footer_company: 'Azienda',
+    footer_support: 'Supporto',
+    footer_legal: '© 2026 ESGlab Intelligence S.r.l. · P.IVA 12345678901 · Sede Legale: Milano, Italia',
+    
+    // Login
+    login_welcome: 'Bentornato in ESGlab',
+    login_sub: 'Accedi al tuo Profilo certificato.',
+    login_email: 'Email Aziendale',
+    login_pass: 'Password',
+    login_cta: 'Accedi al Profilo →',
+    login_no_account: 'Non hai ancora un account?',
+    login_back: '← Torna alla Home',
+    dash_profile_completeness: 'Completezza Profilo',
+    dash_form_coverage: 'Copertura Form Clienti',
+    dash_ready_at: 'Pronto per il',
+    dash_profile_hint: 'Il tuo profilo può già autocompilare la maggior parte delle richieste ESG standard.',
+    dash_increase_coverage: 'Aumenta Copertura',
+
+    // Onboarding
+    onb_back: '← Torna alla Home',
+    onb_step: 'Passo 1 di 3: Identità Aziendale',
+    onb_title: 'Inizia la tua Trasformazione',
+    onb_sub: 'Crea il tuo account certificato per accedere al Profilo ESG.',
+    onb_name: 'Ragione Sociale',
+    onb_email: 'Email Aziendale',
+    onb_password: 'Password',
+    onb_vat: 'Partita IVA',
+    onb_sector: 'Settore',
+    onb_select: 'Seleziona...',
+    onb_error: 'Errore durante la registrazione.',
+    onb_error_conn: 'Errore di connessione. Assicurati che il backend sia attivo.',
+    onb_loading: 'Creazione account...',
+    onb_cta: 'Crea Account & Continua →',
+
+    // VsmeOnboarding
+    vsme_step: 'Passo 2 di 3',
+    vsme_title: 'Configuriamo il tuo Profilo',
+    vsme_sector_label: 'Intelligence di Settore',
+    vsme_placeholder: 'Inserisci valore...',
+    vsme_opt_yes: 'Sì, ho i dati pronti',
+    vsme_opt_maybe: 'Dovrei recuperarli',
+    vsme_opt_no: 'No, non monitoriamo questo KPI',
+    vsme_back: 'Indietro',
+    vsme_loading: 'Preparazione Profilo...',
+    vsme_finalize: 'Finalizza Profilo →',
+    vsme_continue: 'Continua →',
+
+    // Upload
+    up_step: 'Passo 2 di 3',
+    up_title: 'Carica i tuoi documenti',
+    up_sub: "L'AI estrae i dati e ti chiede conferma prima di salvare nel Profilo.",
+    up_drop: 'Trascina i PDF qui',
+    up_browse: 'oppure clicca per sfogliare',
+    up_min_doc: 'Aggiungi almeno un documento.',
+    up_analyze: 'Analizza',
+    up_analyzing: '⏳ Gemini sta analizzando...',
+    up_done: '✓ Analisi completata — controlla i dati estratti e conferma quelli corretti.',
+    up_no_data: 'Nessun dato trovato',
+    up_remove: 'Rimuovi',
+    up_provider: 'Fornitore',
+    up_quantity: 'Quantità',
+    up_period: 'Periodo',
+    up_co2: 'CO₂ calcolata',
+    up_confirm: '✓ Conferma e Salva nel Profilo',
+    up_discard: 'Scarta',
+    up_confirm_all: '✓ Conferma tutti e salva nel Profilo',
+    up_saved: 'salvato nel Profilo',
+    up_audit: "I dati sono ora nell'ESG Profilo con audit trail completo.",
+    up_gap: 'Vai alla Gap Analysis →',
+
+    // GapAnalysis
+    gap_step: 'Passo 3 di 3 · Risultati',
+    gap_kpis: 'KPI nel Profilo',
+    gap_new: '+ Nuova azienda',
+    gap_score: 'ESRS Readiness Score',
+    gap_covered: '✓ Dati disponibili',
+    gap_missing_label: '✗ Dati mancanti',
+    gap_none_covered: 'Nessun KPI coperto ancora.',
+    gap_none_missing: 'Tutti i KPI sono coperti.',
+    gap_upload: 'CARICA DOC',
+    gap_ai_hint: 'Suggerimento AI',
+    gap_prev: 'Puoi tornare al passo precedente e aggiungere altri documenti.',
+    gap_report: 'Genera Report CSRD →',
+    gap_excel: 'Esporta Excel',
+    gap_loading: 'Calcolo gap analysis...',
+    gap_error: 'Errore nel caricamento dei dati.',
+    gap_good: 'Buona copertura',
+    gap_partial: 'Copertura parziale',
+    gap_low: 'Dati insufficienti',
+
+    // FormCompiler
+    fc_who: 'Chi ti ha inviato il form?',
+    fc_who_sub: 'Cerchiamo il cliente nel nostro storico per capire il contesto e gli standard richiesti.',
+    fc_search: "Scrivi il nome dell'impresa (es. Stellantis, Enel...)",
+    fc_upload_title: 'Carica il form del cliente',
+    fc_upload_sub: "Carica il PDF o l'Excel ricevuto. L'AI lo mapperà istantaneamente sul tuo Profilo.",
+    fc_analyzing: "L'AI sta analizzando il form...",
+    fc_drop: 'Trascina qui il form o clicca per sfogliare',
+    fc_formats: 'Supporta PDF, XLSX, XLSM',
+    fc_prefilled: 'Form Pre-compilato',
+    fc_excel_active: 'Excel Mapping Attivo',
+    fc_match_rate: 'Match del Profilo',
+    fc_match100: 'MATCH 100%',
+    fc_gap: 'GAP RILEVATO',
+    fc_source: 'Fonte Evidence',
+    fc_missing_data: 'Questo dato non è presente nel tuo Profilo. Carica un documento correlato per completarlo.',
+    fc_change: '← Cambia Form',
+    fc_download_excel: 'Scarica Excel Compilato ↓',
+    fc_download_pdf: 'Scarica Form Compilato (.pdf)',
+    fc_back: '← TORNA AL CENTRO DI COMANDO',
+    fc_select: 'Seleziona',
+
+    // QuestionnaireWizard
+    qw_exit: 'Esci e torna alla Home ✕',
+    qw_support: 'Supporto Real-Time',
+    qw_analyzing: 'Analizzando il settore per massimizzare il tuo punteggio.',
+    qw_config_title: 'Configuriamo la tua Strategia ESG',
+    qw_config_sub: 'Seleziona i tuoi partner chiave per mappare i requisiti.',
+    qw_partners: 'Partner & Clienti Strategici',
+    qw_search: 'Cerca cliente (es. Stellantis, Enel...)',
+    qw_start: 'Inizia Assessment →',
+    qw_baseline: 'Baseline Operativa',
+    qw_baseline_hint: "Questo dato è fondamentale per calcolare l'intensità delle tue emissioni.",
+    qw_back: 'Indietro',
+    qw_continue: 'Continua →',
+    qw_evidence: 'Evidence Profilo',
+    qw_no_evidence: 'Nessun dato senza prova.',
+    qw_ai_analyzing: 'Analisi AI in corso...',
+    qw_upload_doc: 'Carica una bolletta o certificato',
+    qw_analyze: 'Analizza Profilo →',
+    qw_done: 'Analisi Completata.',
+    qw_readiness: 'Compliance Readiness',
+    qw_partners_mapped: 'partner mappati',
+    qw_baseline_done: 'Baseline VSME generata',
+    qw_dashboard: 'Dashboard Strategica →',
+
+    // PrivateDashboard
+    dash_private: 'Profilo Privato',
+    dash_title: 'Centro di Comando ESG',
+    dash_sub: 'Gestisci le richieste dei tuoi clienti e mantieni aggiornato il tuo Profilo certificato.',
+    dash_export_excel: 'Esporta Excel',
+    dash_report_pdf: 'Genera Report PDF',
+    dash_reply: 'Rispondi a un Cliente',
+    dash_reply_sub: 'Sappiamo già cosa ti chiederanno. Seleziona Stellantis, Enel o IKEA e genera il report pre-compilato.',
+    dash_feed: 'Alimenta il Profilo',
+    dash_feed_sub: "Carica bollette, certificati e registri. L'AI estrarrà i dati in pochi secondi mappandoli su standard ESRS.",
+    dash_ghg: 'Le tue Emissioni GHG',
+    dash_certified: 'ESG Profilo — Dati Certificati',
+    dash_records: 'record',
+    dash_gap_analysis: 'Gap Analysis ESRS',
+    dash_gap_sub: 'Scopri quali KPI mancano ancora nel tuo Profilo rispetto agli standard richiesti dai tuoi clienti.',
+
+    // QuestionnaireWizard nav
+    qw_nav_market: 'Market Context',
+    qw_nav_baseline: 'Baseline Operativa',
+    qw_nav_evidence: 'Evidence Profilo',
+    qw_nav_readiness: 'Readiness Score',
+    qw_error: 'Errore nel salvataggio. Riprova.',
+
+    // VSME questions by ID
+    vsme_q_v1: 'Numero di dipendenti (FTE)',
+    vsme_q_v2: 'Fatturato annuo (€)',
+    vsme_q_v3: 'Totale Attivo Stato Patrimoniale (€)',
+    vsme_q_prefix: 'Possiedi dati su:',
+
+    // Sector names
+    sector_manifatturiero: 'Manifatturiero',
+    sector_logistica: 'Logistica e Trasporti',
+    sector_alimentare: 'Alimentare',
+    sector_tessile: 'Tessile e Moda',
+    sector_edilizia: 'Edilizia',
+    sector_chimico: 'Chimico e Farmaceutico',
+    sector_metalmeccanico: 'Metalmeccanico',
+    sector_altro: 'Altro',
+
+    // Doc types (Upload)
+    doc_energy: 'Bolletta energetica',
+    doc_energy_hint: 'Consumi elettricità e gas',
+    doc_fleet: 'Registro flotta',
+    doc_fleet_hint: 'Km percorsi, carburante',
+    doc_waste: 'Registro rifiuti',
+    doc_waste_hint: 'MUD, formulari smaltimento',
+    doc_water: 'Bolletta idrica',
+    doc_water_hint: 'Consumi acqua',
+    doc_iso: 'Certificato ISO',
+    doc_iso_hint: 'ISO 14001, 50001, 9001',
+    doc_other: 'Altro documento ESG',
+    doc_other_hint: 'Qualsiasi documento rilevante',
+  },
+  en: {
+    // Navbar
+    nav_about: 'About Us',
+    nav_login: 'Login',
+    nav_register: 'Register Now',
+    nav_home: 'Home',
+    
+    // Hero
+    hero_title: 'Fill it in once.',
+    hero_title_span: 'Reply to everyone.',
+    hero_sub: 'The ESG auto-compiler for European SMEs.',
+    hero_cta: 'Start your VSME Onboarding →',
+    
+    // How it works
+    how_title: 'Three steps to total compliance',
+    how_sub: 'Forget manual compilation and endless Excel sheets.',
+    how_step1_title: 'Build your Profile',
+    how_step1_desc: 'Upload energy bills, certifications, and financial statements. Our Discovery Engine extracts and validates ESG data automatically.',
+    how_step2_title: 'Universal AI Mapping',
+    how_step2_desc: 'The AI maps your data to European standards (VSME, ESRS) and the specific requirements of every Big Corp in your sector.',
+    how_step3_title: 'Reply with a Click',
+    how_step3_desc: 'Export pre-filled data to EcoVadis, CDP, Synesgy, or directly into your enterprise clients\' custom portals.',
+    
+    // Market Intelligence
+    market_title: 'Live Market Intelligence',
+    market_sub: 'Real-time analysis of Big Corp requests and industry benchmarks.',
+    market_pressure_title: 'Under Pressure',
+    market_pressure_sub: 'Italian supplier SMEs that have already received direct ESG requests from their clients.',
+    market_quest_title: 'Questionnaires/Year',
+    market_quest_sub: 'Average number of different questionnaire models received by each SME (Rating, Excel, PDF).',
+    market_cost_title: 'Inefficiency Cost',
+    market_cost_sub: 'Estimated cost in man-hours for manual and unstructured data compilation.',
+    market_chart_title: 'Environmental Footprint by Sector',
+    market_graph_title: 'Corporate Ecosystem',
+    market_graph_sub: 'ESG relationships between analyzed sectors and Big Corps',
+    market_graph_search: 'Search for a client...',
+
+    // About Page
+    about_mission_title: 'Simplifying Sustainability',
+    about_mission_span: 'for those who build value.',
+    about_mission_desc: 'ESGlab turns operational data into strategic assets, eliminating bureaucracy for SMEs driving the real economy.',
+    about_why_title: 'Why ESGlab?',
+    about_why_p1: 'The market is changing. Large Corporations are asking their suppliers for increasingly precise data. Often, for an SME, responding to these requests means hours of manual work and regulatory confusion.',
+    about_why_p2: 'We have built an artificial intelligence engine that "reads" your documents and translates your daily operations into the language of ESRS and CSRD standards.',
+    about_why_p3: 'We are not just reporting software; we are the bridge between your company and the future of sustainable industry.',
+    about_made_in_italy: 'Developed with love for the Italian industrial fabric, respecting the unique characteristics of our enterprises.',
+    about_team_title: 'The Heart of ESGlab',
+    about_team_sub: 'A multidisciplinary team combining expertise in artificial intelligence, environmental regulation, and software development.',
+    about_values_title: 'Our Values',
+    value_transparency_title: 'Transparency',
+    value_transparency_desc: 'Every data point in our system is linked to real and verifiable evidence.',
+    value_innovation_title: 'Innovation',
+    value_innovation_desc: 'We use the most advanced AI technologies to reduce the bureaucratic burden.',
+    value_impact_title: 'Impact',
+    value_impact_desc: 'We believe that true sustainability comes from actionable data, not just spreadsheets.',
+
+    // Footer
+    footer_desc: 'Democratizing sustainability for Italian SMEs through artificial intelligence and data automation.',
+    footer_prod: 'Product',
+    footer_company: 'Company',
+    footer_support: 'Support',
+    footer_legal: '© 2026 ESGlab Intelligence S.r.l. · VAT 12345678901 · Registered Office: Milan, Italy',
+    
+    // Login
+    login_welcome: 'Welcome back to ESGlab',
+    login_sub: 'Access your certified Profile.',
+    login_email: 'Corporate Email',
+    login_pass: 'Password',
+    login_cta: 'Access Profile →',
+    login_no_account: 'Don\'t have an account yet?',
+    login_back: '← Back to Home',
+    dash_profile_completeness: 'Profile Completeness',
+    dash_form_coverage: 'Client Form Coverage',
+    dash_ready_at: 'Ready at',
+    dash_profile_hint: 'Your profile can already auto-fill most standard ESG requests.',
+    dash_increase_coverage: 'Increase Coverage',
+
+    // Onboarding
+    onb_back: '← Back to Home',
+    onb_step: 'Step 1 of 3: Company Identity',
+    onb_title: 'Start your Transformation',
+    onb_sub: 'Create your certified account to access your ESG Profile.',
+    onb_name: 'Company Name',
+    onb_email: 'Corporate Email',
+    onb_password: 'Password',
+    onb_vat: 'VAT Number',
+    onb_sector: 'Sector',
+    onb_select: 'Select...',
+    onb_error: 'Registration error.',
+    onb_error_conn: 'Connection error. Make sure the backend is running.',
+    onb_loading: 'Creating account...',
+    onb_cta: 'Create Account & Continue →',
+
+    // VsmeOnboarding
+    vsme_step: 'Step 2 of 3',
+    vsme_title: 'Setting up your Profile',
+    vsme_sector_label: 'Sector Intelligence',
+    vsme_placeholder: 'Enter value...',
+    vsme_opt_yes: 'Yes, I have the data ready',
+    vsme_opt_maybe: 'I should retrieve it',
+    vsme_opt_no: "No, we don't track this KPI",
+    vsme_back: 'Back',
+    vsme_loading: 'Preparing Profile...',
+    vsme_finalize: 'Finalize Profile →',
+    vsme_continue: 'Continue →',
+
+    // Upload
+    up_step: 'Step 2 of 3',
+    up_title: 'Upload your documents',
+    up_sub: 'The AI extracts data and asks for confirmation before saving to your Profile.',
+    up_drop: 'Drop PDFs here',
+    up_browse: 'or click to browse',
+    up_min_doc: 'Add at least one document.',
+    up_analyze: 'Analyze',
+    up_analyzing: '⏳ Gemini is analyzing...',
+    up_done: '✓ Analysis complete — review extracted data and confirm the correct ones.',
+    up_no_data: 'No data found',
+    up_remove: 'Remove',
+    up_provider: 'Provider',
+    up_quantity: 'Quantity',
+    up_period: 'Period',
+    up_co2: 'Calculated CO₂',
+    up_confirm: '✓ Confirm & Save to Profile',
+    up_discard: 'Discard',
+    up_confirm_all: '✓ Confirm all & save to Profile',
+    up_saved: 'saved to Profile',
+    up_audit: 'Data is now in the ESG Profile with full audit trail.',
+    up_gap: 'Go to Gap Analysis →',
+
+    // GapAnalysis
+    gap_step: 'Step 3 of 3 · Results',
+    gap_kpis: 'KPIs in Profile',
+    gap_new: '+ New company',
+    gap_score: 'ESRS Readiness Score',
+    gap_covered: '✓ Available Data',
+    gap_missing_label: '✗ Missing Data',
+    gap_none_covered: 'No KPIs covered yet.',
+    gap_none_missing: 'All KPIs are covered.',
+    gap_upload: 'UPLOAD DOC',
+    gap_ai_hint: 'AI Suggestion',
+    gap_prev: 'You can go back to the previous step and add more documents.',
+    gap_report: 'Generate CSRD Report →',
+    gap_excel: 'Export Excel',
+    gap_loading: 'Calculating gap analysis...',
+    gap_error: 'Error loading data.',
+    gap_good: 'Good coverage',
+    gap_partial: 'Partial coverage',
+    gap_low: 'Insufficient data',
+
+    // FormCompiler
+    fc_who: 'Who sent you the form?',
+    fc_who_sub: 'We search our database to understand the context and required standards.',
+    fc_search: 'Enter company name (e.g. Stellantis, Enel...)',
+    fc_upload_title: 'Upload client form',
+    fc_upload_sub: 'Upload the PDF or Excel received. The AI will instantly map it to your Profile.',
+    fc_analyzing: 'The AI is analyzing the form...',
+    fc_drop: 'Drop the form here or click to browse',
+    fc_formats: 'Supports PDF, XLSX, XLSM',
+    fc_prefilled: 'Pre-filled Form',
+    fc_excel_active: 'Excel Mapping Active',
+    fc_match_rate: 'Profile Match',
+    fc_match100: 'MATCH 100%',
+    fc_gap: 'GAP DETECTED',
+    fc_source: 'Evidence Source',
+    fc_missing_data: 'This data is not in your Profile. Upload a related document to complete it.',
+    fc_change: '← Change Form',
+    fc_download_excel: 'Download Compiled Excel ↓',
+    fc_download_pdf: 'Download Compiled Form (.pdf)',
+    fc_back: '← BACK TO COMMAND CENTER',
+    fc_select: 'Select',
+
+    // QuestionnaireWizard
+    qw_exit: 'Exit and return to Home ✕',
+    qw_support: 'Real-Time Support',
+    qw_analyzing: 'Analyzing sector to maximize your score.',
+    qw_config_title: 'Setting up your ESG Strategy',
+    qw_config_sub: 'Select your key partners to map requirements.',
+    qw_partners: 'Strategic Partners & Clients',
+    qw_search: 'Search client (e.g. Stellantis, Enel...)',
+    qw_start: 'Start Assessment →',
+    qw_baseline: 'Operational Baseline',
+    qw_baseline_hint: 'This data is essential to calculate your emissions intensity.',
+    qw_back: 'Back',
+    qw_continue: 'Continue →',
+    qw_evidence: 'Profile Evidence',
+    qw_no_evidence: 'No data without proof.',
+    qw_ai_analyzing: 'AI analysis in progress...',
+    qw_upload_doc: 'Upload a bill or certificate',
+    qw_analyze: 'Analyze Profile →',
+    qw_done: 'Analysis Complete.',
+    qw_readiness: 'Compliance Readiness',
+    qw_partners_mapped: 'partners mapped',
+    qw_baseline_done: 'VSME Baseline generated',
+    qw_dashboard: 'Strategic Dashboard →',
+
+    // PrivateDashboard
+    dash_private: 'Private Profile',
+    dash_title: 'ESG Command Center',
+    dash_sub: 'Manage your client requests and keep your certified Profile updated.',
+    dash_export_excel: 'Export Excel',
+    dash_report_pdf: 'Generate PDF Report',
+    dash_reply: 'Reply to a Client',
+    dash_reply_sub: "We already know what they'll ask. Select Stellantis, Enel or IKEA and generate the pre-filled report.",
+    dash_feed: 'Feed the Profile',
+    dash_feed_sub: 'Upload bills, certificates and registers. The AI will extract data in seconds, mapping to ESRS standards.',
+    dash_ghg: 'Your GHG Emissions',
+    dash_certified: 'ESG Profile — Certified Data',
+    dash_records: 'records',
+    dash_gap_analysis: 'ESRS Gap Analysis',
+    dash_gap_sub: 'Discover which KPIs are still missing from your Profile compared to the standards required by your clients.',
+
+    // QuestionnaireWizard nav
+    qw_nav_market: 'Market Context',
+    qw_nav_baseline: 'Operational Baseline',
+    qw_nav_evidence: 'Profile Evidence',
+    qw_nav_readiness: 'Readiness Score',
+    qw_error: 'Save error. Please try again.',
+
+    // VSME questions by ID
+    vsme_q_v1: 'Number of employees (FTE)',
+    vsme_q_v2: 'Annual revenue (€)',
+    vsme_q_v3: 'Total assets — Balance Sheet (€)',
+    vsme_q_prefix: 'Do you have data on:',
+
+    // Sector names
+    sector_manifatturiero: 'Manufacturing',
+    sector_logistica: 'Logistics & Transport',
+    sector_alimentare: 'Food & Beverage',
+    sector_tessile: 'Textile & Fashion',
+    sector_edilizia: 'Construction',
+    sector_chimico: 'Chemical & Pharmaceutical',
+    sector_metalmeccanico: 'Metalworking',
+    sector_altro: 'Other',
+
+    // Doc types (Upload)
+    doc_energy: 'Energy bill',
+    doc_energy_hint: 'Electricity and gas consumption',
+    doc_fleet: 'Fleet register',
+    doc_fleet_hint: 'Km travelled, fuel',
+    doc_waste: 'Waste register',
+    doc_waste_hint: 'MUD, disposal forms',
+    doc_water: 'Water bill',
+    doc_water_hint: 'Water consumption',
+    doc_iso: 'ISO Certificate',
+    doc_iso_hint: 'ISO 14001, 50001, 9001',
+    doc_other: 'Other ESG document',
+    doc_other_hint: 'Any relevant document',
+  }
+};
+
+export function LanguageProvider({ children }) {
+  const [lang, setLang] = useState(() => {
+    try {
+      return localStorage.getItem('lang') || 'it';
+    } catch (e) {
+      return 'it';
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('lang', lang);
+    } catch (e) {
+      console.error("Language sync error", e);
+    }
+  }, [lang]);
+
+  const t = (key) => {
+    return translations[lang] && translations[lang][key] ? translations[lang][key] : key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ lang, setLang, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
