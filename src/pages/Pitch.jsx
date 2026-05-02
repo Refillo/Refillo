@@ -5,8 +5,6 @@ export default function Pitch() {
   const navigate = useNavigate();
   const { lang, t } = useLanguage();
 
-  const handleComingSoon = () => alert(t('coming_soon'));
-
   const startDemo = async () => {
     try {
       localStorage.setItem('esg_token', 'mock-token-123');
@@ -42,8 +40,8 @@ export default function Pitch() {
         <div>
           <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_legal')}</h4>
           <ul className="space-y-5 text-base font-bold text-slate-400">
-            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_privacy')}</li>
-            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_terms')}</li>
+            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => alert(t('coming_soon'))}>{t('footer_privacy')}</li>
+            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => alert(t('coming_soon'))}>{t('footer_terms')}</li>
           </ul>
         </div>
       </div>
@@ -67,31 +65,15 @@ export default function Pitch() {
         </div>
       </nav>
 
-      <div className="flex-1 flex flex-col items-center justify-center p-12">
-        <div className="max-w-5xl w-full aspect-video bg-slate-800 rounded-[2.5rem] border border-slate-700 shadow-2xl flex flex-col items-center justify-center text-center p-20 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-            <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-emerald-500 rounded-full blur-[120px]"></div>
-          </div>
-          
-          <h2 className="text-5xl font-black mb-6">ESGlab Pitch Deck</h2>
-          <p className="text-slate-400 text-xl mb-12 max-w-2xl mx-auto">
-            {lang === 'it' 
-              ? "Visualizza la presentazione ufficiale di ESGlab direttamente nel browser."
-              : "View the official ESGlab presentation directly in your browser."}
-          </p>
-          
-          <div className="flex gap-4">
-             <a 
-               href="https://ESG-lab-project.github.io/ESG-lab/esg-lab-pitch/index.html" 
-               target="_blank" 
-               rel="noopener noreferrer"
-               className="px-10 py-5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl font-black text-xl shadow-xl shadow-emerald-900/20 transition-all active:scale-95"
-             >
-               {lang === 'it' ? 'Apri Presentazione →' : 'Open Presentation →'}
-             </a>
-          </div>
-        </div>
+      <div className="flex-1 flex flex-col items-center bg-black overflow-hidden relative" style={{ height: 'calc(100vh - 80px)' }}>
+        <iframe 
+          src="pitch-content/index.html" 
+          title="ESGlab Pitch Deck"
+          className="w-full h-full border-none"
+          allowFullScreen
+        />
       </div>
+
       <Footer />
     </div>
   );
