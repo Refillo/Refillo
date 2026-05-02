@@ -13,7 +13,7 @@ export default function About() {
       {/* Navbar Pubblica (Riutilizzata) */}
       <nav className="flex justify-between items-center px-12 py-6 bg-white border-b border-slate-100 sticky top-0 z-50">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
-          <img src="/logo.png" alt="ESGlab Logo" className="h-10 w-auto" />
+          <img src="logo.png" alt="ESGlab Logo" className="h-10 w-auto" />
           <span className="text-2xl font-black text-slate-900 tracking-tighter">ESG<span className="text-emerald-600">lab</span></span>
         </div>
         <div className="flex gap-8 items-center">
