@@ -1,4 +1,4 @@
-import { callApi } from '../apiClient';
+import { callApi } from './apiClient';
 import { createContext, useContext } from 'react';
 
 export const LanguageContext = createContext(undefined);

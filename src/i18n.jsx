@@ -1,4 +1,4 @@
-import { callApi } from '../apiClient';
+import { callApi } from './apiClient';
 import React, { useState, useEffect } from 'react';
 import { LanguageContext } from './LanguageContext';
 
