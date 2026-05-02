@@ -1,5 +1,4 @@
 import { callApi } from './apiClient';
-const API = ''; // Mock API constant
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -7,8 +6,6 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import MarketGraph from './components/MarketGraph.jsx';
 import AutoCompilerDemo from './components/AutoCompilerDemo.jsx';
 import { useLanguage } from './LanguageContext';
-
-
 
 const IntelligenceCard = ({ title, value, sub, icon }) => (
   <motion.div 
@@ -22,26 +19,34 @@ const IntelligenceCard = ({ title, value, sub, icon }) => (
   </motion.div>
 );
 
-export default function App() {
-  const [intel, setIntel] = useState(null);
-  const [loading, setLoading] = useState(true);
+function App() {
   const navigate = useNavigate();
   const { lang, setLang, t } = useLanguage();
-  const [isRecording] = useState(false);
+  const [intel, setIntel] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [isRecording, setIsRecording] = useState(true);
 
   useEffect(() => {
-    sessionStorage.removeItem('recording_active');
-  }, []);
-
-  useEffect(() => {
-    callApi(`/market-intelligence`)
-      .then(r => r.json())
+    callApi('/market-intelligence')
+      .then(res => res.json())
       .then(data => {
         setIntel(data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, []);
+
+  const handleComingSoon = () => {
+    alert(t('coming_soon'));
+  };
+
+  const startDemo = async () => {
+    const res = await callApi('/auth/login', { method: 'POST' });
+    const data = await res.json();
+    localStorage.setItem('user', JSON.stringify(data.user));
+    localStorage.setItem('token', data.token);
+    navigate('/pmi/dashboard');
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
@@ -59,9 +64,12 @@ export default function App() {
             {lang}
           </button>
           <button onClick={() => navigate('/about')} className="text-sm font-bold text-slate-600 hover:text-emerald-600 transition-colors">{t('nav_about')}</button>
-          <button onClick={() => navigate('/login')} className="px-6 py-2 text-sm font-bold text-slate-600 hover:text-emerald-600 transition-colors">{t('nav_login')}</button>
-          <button onClick={() => navigate('/pmi')} className="bg-emerald-600 text-white px-8 py-2 rounded-xl text-sm font-black shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition-all">
+          <button onClick={handleComingSoon} className="px-6 py-2 text-sm font-bold text-slate-400 opacity-50 cursor-not-allowed transition-colors">{t('nav_login')}</button>
+          <button onClick={handleComingSoon} className="bg-slate-200 text-slate-400 px-8 py-2 rounded-xl text-sm font-black cursor-not-allowed opacity-60">
             {t('nav_register')}
+          </button>
+          <button onClick={startDemo} className="bg-emerald-600 text-white px-8 py-2 rounded-xl text-sm font-black shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition-all active:scale-95">
+            {t('demo_cta')}
           </button>
         </div>
       </nav>
@@ -80,8 +88,11 @@ export default function App() {
           <p className="text-2xl text-slate-500 font-medium leading-relaxed mb-12">
             {t('hero_sub')}
           </p>
-          <div className="flex justify-center gap-4">
-            <button onClick={() => navigate('/pmi')} className="bg-slate-900 text-white px-12 py-5 rounded-2xl font-bold text-xl hover:bg-slate-800 transition-all shadow-2xl active:scale-95">
+          <div className="flex flex-col items-center gap-4">
+            <button onClick={startDemo} className="bg-emerald-600 text-white px-12 py-5 rounded-2xl font-bold text-xl hover:bg-emerald-700 transition-all shadow-2xl active:scale-95">
+              {t('demo_cta')}
+            </button>
+            <button onClick={handleComingSoon} className="text-slate-400 font-bold text-sm opacity-50 cursor-not-allowed hover:underline">
               {t('hero_cta')}
             </button>
           </div>
@@ -148,163 +159,117 @@ export default function App() {
         </motion.div>
       </section>
 
-      {/* Market Intelligence Section */}
-      <section className="px-12 py-24 max-w-7xl mx-auto">
-        <div className="flex items-baseline justify-between mb-16">
-          <div>
-            <h2 className="text-4xl font-black text-slate-900">{t('market_title')}</h2>
-            <p className="text-slate-500 mt-4 font-medium text-xl">{t('market_sub')}</p>
-          </div>
-          <div className="flex items-center gap-2 bg-emerald-50 text-emerald-700 px-5 py-3 rounded-2xl text-xs font-black uppercase tracking-widest border border-emerald-100 animate-pulse">
-            <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full"></span> Live Analysis
-          </div>
-        </div>
-
-        {loading ? (
-          <div className="text-center py-40 bg-white rounded-3xl border border-dashed border-slate-200">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-emerald-600 border-t-transparent mb-4"></div>
-            <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">Scansione report ESRS in corso...</p>
-          </div>
-        ) : (
-          <>
-            <div className="grid grid-cols-3 gap-10 mb-20">
-              <IntelligenceCard 
-                icon="🚨"
-                title={t('market_pressure_title')}
-                value={intel?.market_pressure_stats?.pmi_under_active_pressure?.toLocaleString() || "20.000"}
-                sub={t('market_pressure_sub')}
-              />
-              <IntelligenceCard 
-                icon="📝"
-                title={t('market_quest_title')}
-                value={intel?.market_pressure_stats?.avg_questionnaires_2026 || "6.5"}
-                sub={t('market_quest_sub')}
-              />
-              <IntelligenceCard 
-                icon="💸"
-                title={t('market_cost_title')}
-                value={`€${((intel?.market_pressure_stats?.avg_cost_manual_compilation || 18000) / 1000).toFixed(0)}k`}
-                sub={t('market_cost_sub')}
-              />
-            </div>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm overflow-hidden relative"
-            >
-              <div className="flex justify-between items-center mb-10">
-                <h3 className="text-2xl font-black text-slate-900">{t('market_chart_title')}</h3>
-                <div className="flex gap-8">
-                  {[
-                    { label: 'Scope 1', sub: 'Emissioni Dirette', color: 'bg-emerald-600' },
-                    { label: 'Scope 2', sub: 'Energia Consumata', color: 'bg-emerald-400' },
-                    { label: 'Scope 3', sub: 'Impatto Fornitori', color: 'bg-emerald-200' },
-                  ].map((legend, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <div className={`w-4 h-4 ${legend.color} rounded-md`}></div>
-                      <div>
-                        <p className="text-xs font-black text-slate-600 uppercase leading-none">{legend.label}</p>
-                        <p className="text-[10px] text-slate-400 font-bold mt-1">{legend.sub}</p>
-                      </div>
-                    </div>
-                  ))}
+      {/* Market Intelligence Intro */}
+      <section className="px-12 py-24 bg-slate-900 text-white overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-emerald-600/10 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+            <div>
+              <h2 className="text-5xl font-black mb-8 leading-tight">
+                {t('market_title')}
+              </h2>
+              <p className="text-slate-400 text-xl font-medium leading-relaxed mb-12">
+                {t('market_sub')}
+              </p>
+              
+              <div className="grid grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-emerald-500 text-4xl font-black mb-2">94%</h4>
+                  <p className="text-slate-300 font-bold text-sm uppercase tracking-widest leading-tight">
+                    {t('market_pressure_title')}
+                  </p>
+                  <p className="text-slate-500 text-xs mt-2 font-medium">
+                    {t('market_pressure_sub')}
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-emerald-500 text-4xl font-black mb-2">12</h4>
+                  <p className="text-slate-300 font-bold text-sm uppercase tracking-widest leading-tight">
+                    {t('market_quest_title')}
+                  </p>
+                  <p className="text-slate-500 text-xs mt-2 font-medium">
+                    {t('market_quest_sub')}
+                  </p>
                 </div>
               </div>
-              <ResponsiveContainer width="100%" height={400}>
-                <BarChart 
-                  data={Object.entries(intel?.sectors || {}).map(([name, data]) => ({ name, ...data }))}
-                  margin={{ top: 0, right: 0, left: -20, bottom: 0 }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                  <XAxis 
-                    dataKey="name" 
-                    axisLine={false} 
-                    tickLine={false} 
-                    tick={{ fontSize: 13, fontWeight: 800, fill: '#64748b' }} 
-                  />
-                  <YAxis 
-                    axisLine={false} 
-                    tickLine={false} 
-                    tick={{ fontSize: 11, fontWeight: 600, fill: '#cbd5e1' }} 
-                  />
-                  <Tooltip 
-                    cursor={{ fill: '#f8fafc' }} 
-                    contentStyle={{ 
-                      borderRadius: '1.5rem', 
-                      border: 'none', 
-                      boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)',
-                      padding: '1.25rem'
-                    }} 
-                  />
-                  <Bar dataKey="scope1" fill="#059669" radius={[6, 6, 0, 0]} name="Scope 1" barSize={40} />
-                  <Bar dataKey="scope2" fill="#34d399" radius={[6, 6, 0, 0]} name="Scope 2" barSize={40} />
-                  <Bar dataKey="scope3" fill="#a7f3d0" radius={[6, 6, 0, 0]} name="Scope 3" barSize={40} />
-                </BarChart>
-              </ResponsiveContainer>
-            </motion.div>
-          </>
-        )}
+            </div>
+            
+            <div className="bg-slate-800/50 p-1 rounded-3xl border border-slate-700 backdrop-blur-xl">
+               <div className="bg-slate-900 p-8 rounded-[22px]">
+                  <h3 className="text-xl font-black mb-6 flex items-center gap-3">
+                    <span className="w-2 h-8 bg-emerald-500 rounded-full"></span>
+                    {t('market_chart_title')}
+                  </h3>
+                  <div className="h-[300px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={intel?.stats || []}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
+                        <XAxis dataKey="name" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
+                        <YAxis stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
+                        <Tooltip 
+                          contentStyle={{ backgroundColor: '#0f172a', border: 'none', borderRadius: '12px', color: '#fff' }}
+                          cursor={{ fill: 'rgba(16, 185, 129, 0.1)' }}
+                        />
+                        <Bar dataKey="emissions" fill="#10b981" radius={[6, 6, 0, 0]} barSize={40} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+               </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 pt-24 pb-12 px-12 text-white mt-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
-          <div className="col-span-1">
+      <footer className="px-12 py-24 bg-white border-t border-slate-100 text-slate-900">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
+          <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-2 mb-8">
-              <div className="bg-emerald-600 text-white font-black px-3 py-1.5 rounded-xl text-xl">ESG</div>
-              <span className="text-2xl font-black tracking-tight">lab</span>
+              <img src="logo.png" alt="ESGlab Logo" className="h-8 w-auto" />
+              <span className="text-xl font-black tracking-tighter">ESG<span className="text-emerald-600">lab</span></span>
             </div>
-            <p className="text-slate-400 text-base leading-relaxed mb-8 font-medium">
+            <p className="text-slate-500 text-lg font-medium leading-relaxed max-w-sm mb-12">
               {t('footer_desc')}
             </p>
-            <div className="flex gap-5">
-              <div className="w-10 h-10 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white cursor-pointer transition-colors text-lg">in</div>
-              <div className="w-10 h-10 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white cursor-pointer transition-colors text-lg">𝕏</div>
+            <div className="flex gap-4">
+              {['Twitter', 'LinkedIn', 'GitHub'].map(social => (
+                <div key={social} className="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:text-emerald-600 cursor-pointer transition-colors">
+                  <span className="text-[10px] font-black uppercase tracking-tighter">{social[0]}</span>
+                </div>
+              ))}
             </div>
           </div>
-
+          
           <div>
-            <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_prod')}</h4>
-            <ul className="space-y-5 text-base font-bold text-slate-400">
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/pmi')}>{t('how_step1_title')}</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">{t('market_title')}</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">ESG Brain AI</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">Report Export</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_company')}</h4>
-            <ul className="space-y-5 text-base font-bold text-slate-400">
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">Mission</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">Contact</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">Careers</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_support')}</h4>
-            <ul className="space-y-5 text-base font-bold text-slate-400">
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">Help Center</li>
+            <h4 className="font-black text-sm uppercase tracking-widest text-slate-400 mb-8">{t('footer_prod')}</h4>
+            <ul className="space-y-4 font-bold text-slate-600">
+              <li className="hover:text-emerald-600 cursor-pointer transition-colors">Platform</li>
+              <li className="hover:text-emerald-600 cursor-pointer transition-colors">Discovery Engine</li>
+              <li className="hover:text-emerald-600 cursor-pointer transition-colors">Integrations</li>
               <li className="hover:text-emerald-500 cursor-pointer transition-colors">API Docs</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">Privacy Policy</li>
-              <li className="hover:text-emerald-500 cursor-pointer transition-colors">Cookie Policy</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="font-black text-sm uppercase tracking-widest text-slate-400 mb-8">{t('footer_support')}</h4>
+            <ul className="space-y-4 font-bold text-slate-600">
+              <li className="hover:text-emerald-600 cursor-pointer transition-colors">Documentation</li>
+              <li className="hover:text-emerald-600 cursor-pointer transition-colors">Security</li>
+              <li className="hover:text-emerald-600 cursor-pointer transition-colors">Contact</li>
             </ul>
           </div>
         </div>
-
-        <div className="max-w-7xl mx-auto pt-16 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-slate-500 text-sm font-bold">
-            {t('footer_legal')}
-          </p>
-          <p className="text-slate-600 text-xs font-black uppercase tracking-[0.3em]">
-            Built for the Next Industrial Era
-          </p>
+        
+        <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-slate-100 flex justify-between items-center text-xs font-bold text-slate-400 uppercase tracking-widest">
+          <p>{t('footer_legal')}</p>
+          <div className="flex gap-8">
+            <span className="hover:text-slate-600 cursor-pointer">Privacy</span>
+            <span className="hover:text-slate-600 cursor-pointer">Terms</span>
+          </div>
         </div>
       </footer>
     </div>
   );
 }
+
+export default App;

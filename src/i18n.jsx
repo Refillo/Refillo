@@ -10,6 +10,10 @@ const translations = {
     nav_login: 'Accedi',
     nav_register: 'Registrati Ora',
     nav_home: 'Home',
+    coming_soon: 'Coming Soon',
+    demo_cta: 'Try Live Demo →',
+    coming_soon: 'Prossimamente Disponibile',
+    demo_cta: 'Prova la Demo Live →',
     
     // Hero
     hero_title: 'Compilalo una volta.',
@@ -257,6 +261,10 @@ const translations = {
     nav_login: 'Login',
     nav_register: 'Register Now',
     nav_home: 'Home',
+    coming_soon: 'Coming Soon',
+    demo_cta: 'Try Live Demo →',
+    coming_soon: 'Prossimamente Disponibile',
+    demo_cta: 'Prova la Demo Live →',
     
     // Hero
     hero_title: 'Fill it in once.',
