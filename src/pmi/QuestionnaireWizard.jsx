@@ -6,8 +6,8 @@ import { useLanguage } from '../LanguageContext';
 
 
 
-export default function QuestionnaireWizard({ org, onComplete }) {
-  const [phase, setPhase] = useState('welcome'); 
+export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'welcome' }) {
+  const [phase, setPhase] = useState(initialPhase); 
   const [loading, setLoading] = useState(true);
   const [context, setContext] = useState(null);
   const [bigCorps, setBigCorps] = useState([]);

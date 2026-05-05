@@ -12,6 +12,7 @@ import FormCompiler from './FormCompiler.jsx';
 export default function PmiFlow() {
   const [step, setStep] = useState(1);
   const [org, setOrg] = useState(null);
+  const [initialPhase, setInitialPhase] = useState('welcome');
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -19,10 +20,13 @@ export default function PmiFlow() {
     if (location.state?.org) {
       setOrg(location.state.org);
     }
+    if (location.state?.phase) {
+      setInitialPhase(location.state.phase);
+    }
 
     const path = location.pathname;
-    if (path === '/pmi/questionnaire') setStep(6);
-    else if (path === '/pmi/upload') setStep(4);
+    if (path === '/pmi/questionnaire') setStep(2);
+    else if (path === '/pmi/upload') setStep(2); // Entrambi usano ora il wizard rifattorizzato
     else if (path === '/pmi/setup') setStep(2);
     else if (path === '/pmi/dashboard') setStep(3);
   }, [location]);
@@ -30,6 +34,7 @@ export default function PmiFlow() {
   const completeRegistration = orgData => { 
     setOrg(orgData); 
     setStep(2); 
+    setInitialPhase('welcome');
     navigate('/pmi/setup');
   };
   
@@ -42,8 +47,7 @@ export default function PmiFlow() {
   const backToDash = () => navigate('/pmi/dashboard');
 
   if (step === 1) return <Onboarding onComplete={completeRegistration} />;
-  // Il Wizard gestisce ora internamente VSME + Caricamento iniziale
-  if (step === 2) return <QuestionnaireWizard org={org} onComplete={completeSetup} />;
+  if (step === 2) return <QuestionnaireWizard org={org} onComplete={completeSetup} initialPhase={initialPhase} />;
   if (step === 3) return <PrivateDashboard org={org} />;
   if (step === 4) return <Upload org={org} onComplete={backToDash} />;
   if (step === 6) return <FormCompiler org={org} onBack={backToDash} />;

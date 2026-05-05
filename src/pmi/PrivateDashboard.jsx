@@ -217,20 +217,44 @@ export default function PrivateDashboard({ org }) {
           </div>
         </header>
 
-        {/* Quick Actions */}
-        <div className="grid grid-cols-2 gap-8 mb-16">
+        {/* Three-Level Onboarding Badges */}
+        <div className="grid grid-cols-3 gap-6 mb-12">
+          <button 
+            onClick={() => navigate('/pmi/upload', { state: { org, phase: 'upload' } })}
+            className="flex flex-col items-center p-6 bg-white border border-slate-100 rounded-3xl hover:border-emerald-500 hover:shadow-xl transition-all group"
+          >
+            <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">🛡️</div>
+            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Livello 1</span>
+            <span className="text-sm font-black text-slate-900">{t('qw_nav_upload')}</span>
+          </button>
+          
+          <button 
+            onClick={() => navigate('/pmi/setup', { state: { org, phase: 'vsme' } })}
+            className="flex flex-col items-center p-6 bg-white border border-slate-100 rounded-3xl hover:border-emerald-500 hover:shadow-xl transition-all group"
+          >
+            <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">📊</div>
+            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Livello 2</span>
+            <span className="text-sm font-black text-slate-900">{t('qw_nav_vsme')}</span>
+          </button>
+
+          <button 
+            onClick={() => navigate('/pmi/setup', { state: { org, phase: 'predictive' } })}
+            className="flex flex-col items-center p-6 bg-white border border-slate-100 rounded-3xl hover:border-emerald-500 hover:shadow-xl transition-all group"
+          >
+            <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">🔮</div>
+            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Livello 3</span>
+            <span className="text-sm font-black text-slate-900">{t('qw_nav_predictive')}</span>
+          </button>
+        </div>
+
+        {/* Existing Reply Card (Simplified) */}
+        <div className="mb-16">
           <ActionCard
             primary
             icon="📋"
             title={t('dash_reply')}
             sub={t('dash_reply_sub')}
             onClick={() => navigate('/pmi/questionnaire')}
-          />
-          <ActionCard
-            icon="⚡"
-            title={t('dash_feed')}
-            sub={t('dash_feed_sub')}
-            onClick={() => navigate('/pmi/upload')}
           />
         </div>
 
