@@ -20,7 +20,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef();
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
 
   useEffect(() => {
     if (!org) return;
