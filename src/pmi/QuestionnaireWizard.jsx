@@ -24,18 +24,27 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
 
   useEffect(() => {
     if (!org) return;
-    callApi(`/pmi/sector-context?sector=${encodeURIComponent(org.sector)}`)
-      .then(r => r.json())
-      .then(data => setContext(data))
-      .catch(() => {});
 
-    callApi(`/organizations`)
-      .then(r => r.json())
-      .then(data => {
-        setBigCorps(data.filter(o => o.id !== org.id));
+    const loadData = async () => {
+      try {
+        const [contextRes, orgsRes] = await Promise.all([
+          callApi(`/pmi/sector-context?sector=${encodeURIComponent(org.sector)}`),
+          callApi(`/organizations`)
+        ]);
+        
+        const contextData = await contextRes.json();
+        const orgsData = await orgsRes.json();
+
+        setContext(contextData);
+        setBigCorps(orgsData.filter(o => o.id !== org.id));
+      } catch (err) {
+        console.error("Failed to load wizard data", err);
+      } finally {
         setLoading(false);
-      })
-      .catch(() => setLoading(false));
+      }
+    };
+
+    loadData();
   }, [org]);
 
   const handleAnalyzeClient = async (name) => {
@@ -230,7 +239,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
           )}
 
           {/* PHASE: VSME (Step 3: Level 2 Baseline) */}
-          {phase === 'vsme' && (
+          {phase === 'vsme' && context?.vsme_standard?.[vsmeStep] && (
             <div className="animate-in fade-in slide-in-from-right-4 duration-500">
               <header className="mb-12">
                 <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">{t('qw_nav_vsme')}</span>
