@@ -274,20 +274,40 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                       </div>
                       <p className="text-xs text-slate-500 mb-4 leading-relaxed font-medium">{q.description}</p>
                       <div className="relative">
-                        <input 
-                          type="number"
-                          className={`w-full px-5 py-3 rounded-2xl border-2 focus:outline-none focus:ring-4 transition-all text-xl font-black ${
-                            isPreFilled 
-                              ? 'bg-white border-emerald-200 focus:border-emerald-500 focus:ring-emerald-500/10 text-emerald-700' 
-                              : 'bg-slate-50 border-slate-50 focus:border-emerald-600 focus:ring-emerald-500/10 text-slate-900'
-                          }`}
-                          placeholder="0.00"
-                          value={responses[q.id] || (isPreFilled ? '5837' : '')}
-                          onChange={(e) => setResponses({ ...responses, [q.id]: e.target.value })}
-                        />
-                        <span className="absolute right-5 top-1/2 -translate-y-1/2 text-xs font-black text-slate-400 uppercase tracking-widest">
-                          {q.question.match(/\((.*?)\)/)?.[1] || ''}
-                        </span>
+                        {q.type === 'number' ? (
+                          <div className="relative">
+                            <input 
+                              type="number"
+                              className={`w-full px-5 py-3 rounded-2xl border-2 focus:outline-none focus:ring-4 transition-all text-xl font-black ${
+                                isPreFilled 
+                                  ? 'bg-white border-emerald-200 focus:border-emerald-500 focus:ring-emerald-500/10 text-emerald-700' 
+                                  : 'bg-slate-50 border-slate-50 focus:border-emerald-600 focus:ring-emerald-500/10 text-slate-900'
+                              }`}
+                              placeholder="0.00"
+                              value={responses[q.id] || (isPreFilled ? '5837' : '')}
+                              onChange={(e) => setResponses({ ...responses, [q.id]: e.target.value })}
+                            />
+                            <span className="absolute right-5 top-1/2 -translate-y-1/2 text-xs font-black text-slate-400 uppercase tracking-widest">
+                              {q.question.match(/\((.*?)\)/)?.[1] || ''}
+                            </span>
+                          </div>
+                        ) : (
+                          <div className="flex flex-wrap gap-2">
+                            {q.options.map(opt => (
+                              <button 
+                                key={opt}
+                                onClick={() => setResponses({ ...responses, [q.id]: opt })}
+                                className={`flex-1 min-w-[120px] py-3 px-4 rounded-xl font-bold border-2 transition-all text-sm ${
+                                  responses[q.id] === opt 
+                                    ? 'border-emerald-500 bg-emerald-50 text-emerald-700' 
+                                    : 'border-slate-100 bg-white text-slate-400 hover:border-slate-200'
+                                }`}
+                              >
+                                {opt}
+                              </button>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
                   );

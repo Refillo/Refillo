@@ -63,6 +63,9 @@ const MOCK_DATA = {
     vsme_standard: [
       { id: 'vsme_1', question: "Consumo totale di energia elettrica (kWh)", type: 'number', kpi: 'ESRS E1-5', description: "Somma di tutti i prelievi da rete e auto-consumo da fonti rinnovabili." },
       { id: 'vsme_2', question: "Consumo di gas naturale (Smc)", type: 'number', kpi: 'ESRS E1-5', description: "Consumo per riscaldamento o processi industriali." },
+      { id: 'vsme_pol_1', question: "L'azienda ha adottato una politica ambientale formale?", type: 'choice', options: ['Sì', 'In fase di approvazione', 'No'], kpi: 'ESRS E1-1', description: "Documento firmato dalla direzione che definisce l'impegno verso la sostenibilità." },
+      { id: 'vsme_pol_2', question: "È presente un Codice Etico o di Condotta?", type: 'choice', options: ['Sì', 'In fase di stesura', 'No'], kpi: 'ESRS G1-1', description: "Regole di comportamento per dipendenti e fornitori riguardo corruzione e diritti umani." },
+      { id: 'vsme_soc_1', question: "Esistono procedure per la salute e sicurezza sul lavoro?", type: 'choice', options: ['Sì (Certificate)', 'Sì (Interne)', 'No'], kpi: 'ESRS S1-1', description: "Oltre agli obblighi di legge, l'azienda monitora proattivamente i rischi?" },
       { id: 'vsme_3', question: "Consumo idrico totale (m3)", type: 'number', kpi: 'ESRS E3-1', description: "Prelievi da acquedotto o pozzi certificati." },
       { id: 'vsme_4', question: "Produzione totale di rifiuti (kg)", type: 'number', kpi: 'ESRS E5-5', description: "Totale dei rifiuti pericolosi e non pericolosi prodotti nel periodo." }
     ],
