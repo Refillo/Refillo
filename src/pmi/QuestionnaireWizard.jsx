@@ -92,6 +92,11 @@ export default function QuestionnaireWizard({ org, onComplete }) {
     </div>
   );
 
+  const predictiveQuestions = selectedClients.length > 0 ? [
+    { id: 'extra_1', question: lang === 'it' ? "Avete una policy di riciclo degli imballaggi specifica per Stellantis?" : "Do you have a specific packaging recycling policy for Stellantis?", type: 'choice', options: [t('vsme_opt_yes'), t('vsme_opt_no')] },
+    { id: 'extra_2', question: lang === 'it' ? "Percentuale di energia rinnovabile certificata GO (Garanzia d'Origine)?" : "Percentage of GO (Guarantee of Origin) certified renewable energy?", type: 'number' }
+  ] : [];
+
   return (
     <div className="min-h-screen bg-[#FDFDFC] flex font-sans text-slate-900 relative">
       <button 
@@ -111,9 +116,10 @@ export default function QuestionnaireWizard({ org, onComplete }) {
 
           <nav className="space-y-8">
             {[
-              { id: 'welcome', label: t('qw_nav_market'), icon: '🌍' },
-              { id: 'vsme', label: t('qw_nav_baseline'), icon: '📊' },
-              { id: 'upload', label: t('qw_nav_evidence'), icon: '🛡️' },
+              { id: 'welcome', label: t('qw_nav_clients'), icon: '🤝' },
+              { id: 'upload', label: t('qw_nav_upload'), icon: '🛡️' },
+              { id: 'vsme', label: t('qw_nav_vsme'), icon: '📊' },
+              { id: 'predictive', label: t('qw_nav_predictive'), icon: '🔮' },
               { id: 'summary', label: t('qw_nav_readiness'), icon: '✨' }
             ].map((s, idx) => (
               <div key={s.id} className="flex items-center gap-4 group">
@@ -123,7 +129,7 @@ export default function QuestionnaireWizard({ org, onComplete }) {
                   {idx + 1}
                 </div>
                 <div>
-                  <p className={`text-xs font-black uppercase tracking-widest ${phase === s.id ? 'text-slate-900' : 'text-slate-300'}`}>{s.label}</p>
+                  <p className={`text-[10px] font-black uppercase tracking-widest ${phase === s.id ? 'text-slate-900' : 'text-slate-300'}`}>{s.label}</p>
                 </div>
               </div>
             ))}
@@ -140,7 +146,7 @@ export default function QuestionnaireWizard({ org, onComplete }) {
       <main className="flex-1 overflow-y-auto px-8 lg:px-24 py-16 lg:py-24 flex justify-center">
         <div className="w-full max-w-2xl">
           
-          {/* PHASE: WELCOME */}
+          {/* PHASE: WELCOME (Step 1: Clients) */}
           {phase === 'welcome' && (
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
               <header className="mb-12">
@@ -175,57 +181,18 @@ export default function QuestionnaireWizard({ org, onComplete }) {
                 </div>
               </div>
 
-              <button onClick={() => setPhase('vsme')} className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-lg hover:bg-slate-800 transition-all shadow-xl shadow-slate-200 active:scale-95">
-                {t('qw_start')}
+              <button onClick={() => setPhase('upload')} className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-lg hover:bg-slate-800 transition-all shadow-xl shadow-slate-200 active:scale-95">
+                {t('qw_continue')}
               </button>
             </div>
           )}
 
-          {/* PHASE: VSME */}
-          {phase === 'vsme' && (
-            <div className="animate-in fade-in slide-in-from-right-4 duration-500">
-              <header className="mb-12">
-                <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">{t('qw_baseline')}</span>
-                <h2 className="text-3xl font-black text-slate-900 mt-4 mb-4">{t('vsme_q_' + context.vsme_standard[vsmeStep].id) || context.vsme_standard[vsmeStep].question}</h2>
-                <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-start gap-3">
-                  <span className="text-lg">💡</span>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">
-                    {t('qw_baseline_hint')}
-                  </p>
-                </div>
-              </header>
-
-              <div className="mb-12">
-                <input 
-                  type="number"
-                  autoFocus
-                  className="w-full px-8 py-10 bg-white border-b-2 border-slate-100 focus:border-emerald-600 focus:outline-none text-5xl font-black text-slate-900 transition-all"
-                  placeholder="0.00"
-                  value={responses[context.vsme_standard[vsmeStep].id] || ''}
-                  onChange={(e) => setResponses({ ...responses, [context.vsme_standard[vsmeStep].id]: e.target.value })}
-                />
-              </div>
-
-              <div className="flex gap-4">
-                {vsmeStep > 0 && (
-                  <button onClick={() => setVsmeStep(s => s - 1)} className="px-8 py-5 rounded-2xl font-black text-slate-400">{t('qw_back')}</button>
-                )}
-                <button 
-                  onClick={() => vsmeStep < context.vsme_standard.length - 1 ? setVsmeStep(s => s + 1) : setPhase('upload')}
-                  disabled={!responses[context.vsme_standard[vsmeStep].id]}
-                  className="flex-1 bg-emerald-600 text-white py-5 rounded-2xl font-black text-lg shadow-lg shadow-emerald-100 disabled:opacity-30"
-                >
-                  {t('qw_continue')}
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* PHASE: UPLOAD */}
+          {/* PHASE: UPLOAD (Step 2: Level 1 Evidence) */}
           {phase === 'upload' && (
             <div className="animate-in fade-in slide-in-from-right-4 duration-500">
               <header className="mb-12">
-                <h2 className="text-3xl font-black text-slate-900 mb-4">{t('qw_evidence')}</h2>
+                <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">{t('qw_nav_upload')}</span>
+                <h2 className="text-3xl font-black text-slate-900 mt-4 mb-4">{t('qw_evidence')}</h2>
                 <p className="text-lg text-slate-500 font-medium italic">"{t('qw_no_evidence')}"</p>
               </header>
 
@@ -258,11 +225,108 @@ export default function QuestionnaireWizard({ org, onComplete }) {
                 </div>
               </div>
 
-              <button onClick={() => setPhase('summary')} className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-lg">{t('qw_analyze')}</button>
+              <button onClick={() => setPhase('vsme')} className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-lg">{t('qw_continue')}</button>
             </div>
           )}
 
-          {/* PHASE: SUMMARY */}
+          {/* PHASE: VSME (Step 3: Level 2 Baseline) */}
+          {phase === 'vsme' && (
+            <div className="animate-in fade-in slide-in-from-right-4 duration-500">
+              <header className="mb-12">
+                <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">{t('qw_nav_vsme')}</span>
+                <h2 className="text-3xl font-black text-slate-900 mt-4 mb-4">{t('vsme_q_' + context.vsme_standard[vsmeStep].id) || context.vsme_standard[vsmeStep].question}</h2>
+                {uploads.length > 0 && vsmeStep === 0 ? (
+                  <div className="p-4 bg-emerald-900 text-white rounded-2xl border border-emerald-800 flex items-start gap-3 shadow-lg mb-8">
+                    <span className="text-lg">✨</span>
+                    <p className="text-xs font-medium leading-relaxed">
+                      {lang === 'it' 
+                        ? "Abbiamo pre-compilato alcuni campi dai tuoi documenti. Controlla e conferma i valori." 
+                        : "We've pre-filled some fields from your documents. Please review and confirm the values."}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-start gap-3">
+                    <span className="text-lg">💡</span>
+                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                      {t('qw_baseline_hint')}
+                    </p>
+                  </div>
+                )}
+              </header>
+
+              <div className="mb-12">
+                <input 
+                  type="number"
+                  autoFocus
+                  className="w-full px-8 py-10 bg-white border-b-2 border-slate-100 focus:border-emerald-600 focus:outline-none text-5xl font-black text-slate-900 transition-all"
+                  placeholder="0.00"
+                  value={responses[context.vsme_standard[vsmeStep].id] || (uploads.length > 0 && vsmeStep === 0 ? '5837' : '')}
+                  onChange={(e) => setResponses({ ...responses, [context.vsme_standard[vsmeStep].id]: e.target.value })}
+                />
+              </div>
+
+              <div className="flex gap-4">
+                {vsmeStep > 0 && (
+                  <button onClick={() => setVsmeStep(s => s - 1)} className="px-8 py-5 rounded-2xl font-black text-slate-400">{t('qw_back')}</button>
+                )}
+                <button 
+                  onClick={() => vsmeStep < context.vsme_standard.length - 1 ? setVsmeStep(s => s + 1) : setPhase('predictive')}
+                  className="flex-1 bg-emerald-600 text-white py-5 rounded-2xl font-black text-lg shadow-lg shadow-emerald-100"
+                >
+                  {t('qw_continue')}
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* PHASE: PREDICTIVE (Step 4: Level 3 Client Specific) */}
+          {phase === 'predictive' && (
+            <div className="animate-in fade-in slide-in-from-right-4 duration-500">
+              <header className="mb-12">
+                <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">{t('qw_nav_predictive')}</span>
+                <h2 className="text-3xl font-black text-slate-900 mt-4 mb-4">{t('qw_predictive_title')}</h2>
+                <p className="text-lg text-slate-500 font-medium">{t('qw_predictive_sub')}</p>
+              </header>
+
+              <div className="space-y-8 mb-12">
+                {predictiveQuestions.map(q => (
+                  <div key={q.id} className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                    <p className="text-sm font-black text-slate-900 mb-4">{q.question}</p>
+                    {q.type === 'choice' ? (
+                      <div className="flex gap-3">
+                        {q.options.map(opt => (
+                          <button 
+                            key={opt}
+                            onClick={() => setResponses({ ...responses, [q.id]: opt })}
+                            className={`flex-1 py-3 rounded-xl font-bold border-2 transition-all ${responses[q.id] === opt ? 'border-emerald-500 bg-emerald-50 text-emerald-700' : 'border-slate-50 bg-slate-50 text-slate-400'}`}
+                          >
+                            {opt}
+                          </button>
+                        ))}
+                      </div>
+                    ) : (
+                      <input 
+                        type="number"
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 font-bold"
+                        placeholder="0 %"
+                        value={responses[q.id] || ''}
+                        onChange={(e) => setResponses({ ...responses, [q.id]: e.target.value })}
+                      />
+                    )}
+                  </div>
+                ))}
+                {predictiveQuestions.length === 0 && (
+                  <div className="p-8 text-center bg-slate-50 rounded-3xl border border-dashed border-slate-200">
+                    <p className="text-slate-400 font-bold">{lang === 'it' ? "Nessun requisito extra rilevato per i partner selezionati." : "No extra requirements detected for selected partners."}</p>
+                  </div>
+                )}
+              </div>
+
+              <button onClick={() => setPhase('summary')} className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-lg">{t('qw_continue')}</button>
+            </div>
+          )}
+
+          {/* PHASE: SUMMARY (Step 5: Readiness) */}
           {phase === 'summary' && (
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 text-center">
               <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center text-4xl mx-auto mb-12">✨</div>
@@ -270,11 +334,11 @@ export default function QuestionnaireWizard({ org, onComplete }) {
 
               <div className="bg-white rounded-3xl border border-slate-100 p-8 text-left mb-12 shadow-sm">
                 <div className="flex justify-between items-baseline mb-6">
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{t('qw_readiness')}</p>
-                  <span className="text-3xl font-black text-emerald-600">{uploads.length > 0 ? '45%' : '20%'}</span>
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{t('qw_nav_readiness')}</p>
+                  <span className="text-3xl font-black text-emerald-600">{uploads.length > 0 ? '75%' : '40%'}</span>
                 </div>
                 <div className="h-2 bg-slate-50 rounded-full overflow-hidden mb-8">
-                  <div className="h-full bg-emerald-500 transition-all duration-1000" style={{ width: uploads.length > 0 ? '45%' : '20%' }}></div>
+                  <div className="h-full bg-emerald-500 transition-all duration-1000" style={{ width: uploads.length > 0 ? '75%' : '40%' }}></div>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 text-sm font-bold text-slate-600">
@@ -285,6 +349,12 @@ export default function QuestionnaireWizard({ org, onComplete }) {
                     <span className="w-5 h-5 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center text-[10px]">✓</span>
                     {t('qw_baseline_done')}
                   </div>
+                  {uploads.length > 0 && (
+                    <div className="flex items-center gap-3 text-sm font-bold text-slate-600">
+                      <span className="w-5 h-5 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center text-[10px]">✓</span>
+                      {uploads.length} {t('qw_evidence')} (Level 1)
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -299,3 +369,4 @@ export default function QuestionnaireWizard({ org, onComplete }) {
     </div>
   );
 }
+
