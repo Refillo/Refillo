@@ -57,7 +57,20 @@ const MOCK_DATA = {
   ],
   'organizations': [
      { id: 'org-123', name: 'Azienda Demo SPA', sector: 'Manufacturing' }
-  ]
+  ],
+  'sector-context': {
+    sector_insight: "Il settore Manifatturiero in Italia è sotto forte pressione per il reporting Scope 3. I contractor automotive richiedono dati granulari sui consumi energetici e sull'origine delle materie prime.",
+    vsme_standard: [
+      { id: 'vsme_1', question: "Consumo totale di energia elettrica (kWh)", type: 'number', kpi: 'ESRS E1-5', description: "Somma di tutti i prelievi da rete e auto-consumo da fonti rinnovabili." },
+      { id: 'vsme_2', question: "Consumo di gas naturale (Smc)", type: 'number', kpi: 'ESRS E1-5', description: "Consumo per riscaldamento o processi industriali." },
+      { id: 'vsme_3', question: "Consumo idrico totale (m3)", type: 'number', kpi: 'ESRS E3-1', description: "Prelievi da acquedotto o pozzi certificati." },
+      { id: 'vsme_4', question: "Produzione totale di rifiuti (kg)", type: 'number', kpi: 'ESRS E5-5', description: "Totale dei rifiuti pericolosi e non pericolosi prodotti nel periodo." }
+    ],
+    corporate_extras: [
+      { code: 'ext_1', kpi: 'Packaging Recycling', description: "Richiesto da Stellantis per i fornitori di componenti plastici." },
+      { code: 'ext_2', kpi: 'Social Policy', description: "Richiesto da Eni per la qualifica vendor." }
+    ]
+  }
 };
 
 export const apiFetch = async (path, options = {}) => {

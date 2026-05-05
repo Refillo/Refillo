@@ -239,47 +239,65 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
           )}
 
           {/* PHASE: VSME (Step 3: Level 2 Baseline) */}
-          {phase === 'vsme' && context?.vsme_standard?.[vsmeStep] && (
+          {phase === 'vsme' && context?.vsme_standard && (
             <div className="animate-in fade-in slide-in-from-right-4 duration-500">
               <header className="mb-12">
-                <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">{t('qw_nav_vsme')}</span>
-                <h2 className="text-3xl font-black text-slate-900 mt-4 mb-4">{t('vsme_q_' + context.vsme_standard[vsmeStep].id) || context.vsme_standard[vsmeStep].question}</h2>
-                {uploads.length > 0 && vsmeStep === 0 ? (
-                  <div className="p-4 bg-emerald-900 text-white rounded-2xl border border-emerald-800 flex items-start gap-3 shadow-lg mb-8">
-                    <span className="text-lg">✨</span>
-                    <p className="text-xs font-medium leading-relaxed">
-                      {lang === 'it' 
-                        ? "Abbiamo pre-compilato alcuni campi dai tuoi documenti. Controlla e conferma i valori." 
-                        : "We've pre-filled some fields from your documents. Please review and confirm the values."}
-                    </p>
-                  </div>
-                ) : (
-                  <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-start gap-3">
-                    <span className="text-lg">💡</span>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
-                      {t('qw_baseline_hint')}
-                    </p>
-                  </div>
-                )}
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">{t('qw_nav_vsme')}</span>
+                  <span className="text-xs font-bold text-slate-400 italic">Standard: VSME (Voluntary SME)</span>
+                </div>
+                <h2 className="text-3xl font-black text-slate-900 mb-6">{t('vsme_title')}</h2>
+                
+                {/* Sector Insight Card */}
+                <div className="p-6 bg-slate-900 rounded-[2rem] relative overflow-hidden mb-8 shadow-2xl shadow-emerald-900/10">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+                  <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest mb-2">{t('vsme_sector_label')}</p>
+                  <p className="text-sm text-slate-300 leading-relaxed font-medium">
+                    {context.sector_insight}
+                  </p>
+                </div>
               </header>
 
-              <div className="mb-12">
-                <input 
-                  type="number"
-                  autoFocus
-                  className="w-full px-8 py-10 bg-white border-b-2 border-slate-100 focus:border-emerald-600 focus:outline-none text-5xl font-black text-slate-900 transition-all"
-                  placeholder="0.00"
-                  value={responses[context.vsme_standard[vsmeStep].id] || (uploads.length > 0 && vsmeStep === 0 ? '5837' : '')}
-                  onChange={(e) => setResponses({ ...responses, [context.vsme_standard[vsmeStep].id]: e.target.value })}
-                />
+              <div className="space-y-6 mb-12 max-h-[500px] overflow-y-auto pr-4 custom-scrollbar">
+                {context.vsme_standard.map((q, idx) => {
+                  const isPreFilled = uploads.length > 0 && q.id === 'vsme_1';
+                  return (
+                    <div key={q.id} className={`p-6 rounded-3xl border transition-all ${isPreFilled ? 'bg-emerald-50/30 border-emerald-100' : 'bg-white border-slate-100'}`}>
+                      <div className="flex justify-between items-start mb-3">
+                        <div>
+                          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{q.kpi}</p>
+                          <h4 className="text-sm font-black text-slate-800 leading-snug">{q.question}</h4>
+                        </div>
+                        {isPreFilled && (
+                          <span className="text-[9px] font-black bg-emerald-600 text-white px-2 py-0.5 rounded-full animate-pulse shadow-sm shadow-emerald-200">AI PRE-FILLED</span>
+                        )}
+                      </div>
+                      <p className="text-xs text-slate-500 mb-4 leading-relaxed font-medium">{q.description}</p>
+                      <div className="relative">
+                        <input 
+                          type="number"
+                          className={`w-full px-5 py-3 rounded-2xl border-2 focus:outline-none focus:ring-4 transition-all text-xl font-black ${
+                            isPreFilled 
+                              ? 'bg-white border-emerald-200 focus:border-emerald-500 focus:ring-emerald-500/10 text-emerald-700' 
+                              : 'bg-slate-50 border-slate-50 focus:border-emerald-600 focus:ring-emerald-500/10 text-slate-900'
+                          }`}
+                          placeholder="0.00"
+                          value={responses[q.id] || (isPreFilled ? '5837' : '')}
+                          onChange={(e) => setResponses({ ...responses, [q.id]: e.target.value })}
+                        />
+                        <span className="absolute right-5 top-1/2 -translate-y-1/2 text-xs font-black text-slate-400 uppercase tracking-widest">
+                          {q.question.match(/\((.*?)\)/)?.[1] || ''}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
 
               <div className="flex gap-4">
-                {vsmeStep > 0 && (
-                  <button onClick={() => setVsmeStep(s => s - 1)} className="px-8 py-5 rounded-2xl font-black text-slate-400">{t('qw_back')}</button>
-                )}
+                <button onClick={() => setPhase('upload')} className="px-8 py-5 rounded-2xl font-black text-slate-400">{t('qw_back')}</button>
                 <button 
-                  onClick={() => vsmeStep < context.vsme_standard.length - 1 ? setVsmeStep(s => s + 1) : setPhase('predictive')}
+                  onClick={() => setPhase('predictive')}
                   className="flex-1 bg-emerald-600 text-white py-5 rounded-2xl font-black text-lg shadow-lg shadow-emerald-100"
                 >
                   {t('qw_continue')}
