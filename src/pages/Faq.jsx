@@ -18,22 +18,28 @@ export default function Faq() {
 
   const faqs = [
     {
-      q: lang === 'it' ? "Qual è l'architettura tecnica alla base di ESGlab?" : "What is the technical architecture behind ESGlab?",
+      q: lang === 'it' ? "Come è strutturata tecnicamente la conoscenza nel Vault?" : "How is knowledge technically structured in the Vault?",
       a: lang === 'it' 
-        ? "ESGlab adotta un'architettura 'Brain-in-the-Middle' che centralizza l'intelligenza normativa. Il sistema si compone di un DiscoveryEngine per il monitoraggio dei requisiti di filiera, un PMIIngestor per l'estrazione dati da documenti vivi e un FormFiller semantico per la compilazione automatica dei questionari."
-        : "ESGlab adopts a 'Brain-in-the-Middle' architecture that centralizes regulatory intelligence. The system consists of a DiscoveryEngine for monitoring supply chain requirements, a PMIIngestor for data extraction from live documents, and a semantic FormFiller for automatic questionnaire compilation."
+        ? "Non usiamo semplice testo. Ogni dato è un'entità JSON arricchita da metadati rigidi (KPI Code ESRS/VSME, periodo fiscale, unità di misura, confidence score). Questo 'Structured RAG' permette all'IA di non limitarsi alla ricerca di parole chiave, ma di eseguire query logiche precise sui dati aziendali, garantendo coerenza tra form diversi."
+        : "We don't use simple text. Every data point is a JSON entity enriched with rigid metadata (ESRS/VSME KPI codes, fiscal period, units of measure, confidence score). This 'Structured RAG' allows the AI to go beyond keyword searches, executing precise logical queries on company data, ensuring consistency across different forms."
     },
     {
-      q: lang === 'it' ? "Come funziona l'estrazione dei dati dai PDF?" : "How does data extraction from PDFs work?",
+      q: lang === 'it' ? "Cos'è il 'Global Mapping' e come aiuta le PMI?" : "What is 'Global Mapping' and how does it help SMEs?",
       a: lang === 'it' 
-        ? "Utilizziamo una pipeline ibrida: Gemini 1.5 Pro analizza la struttura spaziale complessa, mentre modelli specializzati (fine-tuned su dataset Hugging Face come esg-ner-sb253) eseguono il Named Entity Recognition (NER) per estrarre quantità, unità di misura e codici standard ESRS con precisione superiore ai modelli generalisti."
-        : "We use a hybrid pipeline: Gemini 1.5 Pro analyzes complex spatial structures, while specialized models (fine-tuned on Hugging Face datasets like esg-ner-sb253) perform Named Entity Recognition (NER) to extract quantities, units of measure, and ESRS standard codes with precision superior to general-purpose models."
+        ? "Il Global Mapping è la nostra 'Stele di Rosetta': un database condiviso che mappa le domande caotiche dei vari contractor (es. Stellantis, Eni, Volkswagen) su standard universali. Grazie a questo, se abbiamo già mappato il form di un cliente, tutte le altre PMI beneficiano di un'auto-compilazione istantanea per quel template, dovendo solo validare il dato finale."
+        : "Global Mapping is our 'Rosetta Stone': a shared database that maps chaotic questions from various contractors (e.g., Stellantis, Eni, Volkswagen) to universal standards. Thanks to this, if we have already mapped a customer's form, all other SMEs benefit from instant auto-filling for that template, only needing to validate the final data."
     },
     {
-      q: lang === 'it' ? "Come riuscite a mappare i dati sugli standard corretti?" : "How do you map data to the correct standards?",
-      a: lang === 'it'
-        ? "Il sistema non effettua una ricerca per parole chiave, ma per concetti semantici. Utilizziamo modelli ESGBERT per la classificazione ambientale che identificano se un dato appartiene allo standard ESRS-E1 (Clima) o ESRS-E3 (Acqua), mappandoli automaticamente sui requisiti specifici richiesti dai grandi contractor (es. Stellantis, Eni)."
-        : "The system doesn't perform keyword searches, but semantic concept searches. We use ESGBERT models for environmental classification that identify whether data belongs to the ESRS-E1 (Climate) or ESRS-E3 (Water) standard, automatically mapping them to specific requirements requested by major contractors (e.g., Stellantis, Eni)."
+      q: lang === 'it' ? "Come gestite le conversioni e la coerenza dei dati?" : "How do you handle conversions and data consistency?",
+      a: lang === 'it' 
+        ? "L'IA opera su un sistema a due livelli (SQL + Vector DB). Se il Vault contiene dati in kWh ma il form richiede MWh, il sistema esegue la conversione matematica automatica citando la fonte originale. Questo crea una 'Single Source of Truth' aziendale, evitando che lo stesso dato venga riportato in modo diverso in questionari differenti."
+        : "The AI operates on a two-tier system (SQL + Vector DB). If the Vault contains data in kWh but the form requires MWh, the system performs an automatic mathematical conversion citing the original source. This creates a corporate 'Single Source of Truth', preventing the same data from being reported differently in different questionnaires."
+    },
+    {
+      q: lang === 'it' ? "Come funziona l'estrazione intelligente dai PDF?" : "How does intelligent PDF extraction work?",
+      a: lang === 'it' 
+        ? "Utilizziamo una pipeline ibrida: Gemini 1.5 Pro analizza la struttura spaziale complessa, mentre modelli NER specializzati (fine-tuned su dataset Hugging Face come esg-ner-sb253) estraggono quantità e unità di misura. Questi dati vengono poi 'taggati' con standard ESRS/GRI e salvati permanentemente nel tuo Vault."
+        : "We use a hybrid pipeline: Gemini 1.5 Pro analyzes complex spatial structures, while specialized NER models (fine-tuned on Hugging Face datasets like esg-ner-sb253) extract quantities and units of measure. This data is then 'tagged' with ESRS/GRI standards and permanently saved in your Vault."
     },
     {
       q: lang === 'it' ? "I dati estratti sono verificabili?" : "Is the extracted data verifiable?",
