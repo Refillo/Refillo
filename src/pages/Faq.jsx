@@ -18,28 +18,40 @@ export default function Faq() {
 
   const faqs = [
     {
-      q: lang === 'it' ? "Come funziona l'estrazione dei dati dai PDF?" : "How does data extraction from PDFs work?",
+      q: lang === 'it' ? "Qual è l'architettura tecnica alla base di ESGlab?" : "What is the technical architecture behind ESGlab?",
       a: lang === 'it' 
-        ? "Utilizziamo modelli OCR (Optical Character Recognition) avanzati integrati con Vision-Language Models (Gemini 1.5 Pro) per analizzare la struttura spaziale di bollette e certificati. L'AI mappa i valori estratti direttamente sugli standard ESRS/VSME con precisione chirurgica."
-        : "We use advanced OCR (Optical Character Recognition) models integrated with Vision-Language Models (Gemini 1.5 Pro) to analyze the spatial structure of bills and certificates. The AI maps extracted values directly onto ESRS/VSME standards with surgical precision."
+        ? "ESGlab adotta un'architettura 'Brain-in-the-Middle' che centralizza l'intelligenza normativa. Il sistema si compone di un DiscoveryEngine per il monitoraggio dei requisiti di filiera, un PMIIngestor per l'estrazione dati da documenti vivi e un FormFiller semantico per la compilazione automatica dei questionari."
+        : "ESGlab adopts a 'Brain-in-the-Middle' architecture that centralizes regulatory intelligence. The system consists of a DiscoveryEngine for monitoring supply chain requirements, a PMIIngestor for data extraction from live documents, and a semantic FormFiller for automatic questionnaire compilation."
     },
     {
-      q: lang === 'it' ? "Quali standard ESG sono supportati?" : "Which ESG standards are supported?",
+      q: lang === 'it' ? "Come funziona l'estrazione dei dati dai PDF?" : "How does data extraction from PDFs work?",
+      a: lang === 'it' 
+        ? "Utilizziamo una pipeline ibrida: Gemini 1.5 Pro analizza la struttura spaziale complessa, mentre modelli specializzati (fine-tuned su dataset Hugging Face come esg-ner-sb253) eseguono il Named Entity Recognition (NER) per estrarre quantità, unità di misura e codici standard ESRS con precisione superiore ai modelli generalisti."
+        : "We use a hybrid pipeline: Gemini 1.5 Pro analyzes complex spatial structures, while specialized models (fine-tuned on Hugging Face datasets like esg-ner-sb253) perform Named Entity Recognition (NER) to extract quantities, units of measure, and ESRS standard codes with precision superior to general-purpose models."
+    },
+    {
+      q: lang === 'it' ? "Come riuscite a mappare i dati sugli standard corretti?" : "How do you map data to the correct standards?",
       a: lang === 'it'
-        ? "Attualmente supportiamo nativamente lo standard VSME (Voluntary SME) e i core requirements degli ESRS (CSRD). Il nostro motore può mappare i dati estratti su framework specifici come EcoVadis, CDP e GRI."
-        : "We currently natively support the VSME (Voluntary SME) standard and core ESRS (CSRD) requirements. Our engine can map extracted data to specific frameworks like EcoVadis, CDP, and GRI."
+        ? "Il sistema non effettua una ricerca per parole chiave, ma per concetti semantici. Utilizziamo modelli ESGBERT per la classificazione ambientale che identificano se un dato appartiene allo standard ESRS-E1 (Clima) o ESRS-E3 (Acqua), mappandoli automaticamente sui requisiti specifici richiesti dai grandi contractor (es. Stellantis, Eni)."
+        : "The system doesn't perform keyword searches, but semantic concept searches. We use ESGBERT models for environmental classification that identify whether data belongs to the ESRS-E1 (Climate) or ESRS-E3 (Water) standard, automatically mapping them to specific requirements requested by major contractors (e.g., Stellantis, Eni)."
     },
     {
       q: lang === 'it' ? "I dati estratti sono verificabili?" : "Is the extracted data verifiable?",
       a: lang === 'it'
-        ? "Sì. Ogni dato salvato nel profilo mantiene un 'Audit Trail' che include il link al documento originale, lo snippet di testo grezzo estratto e il punteggio di confidenza dell'IA. Questo facilita enormemente il processo di Limited Assurance da parte di revisori esterni."
-        : "Yes. Every data point saved in the profile maintains an 'Audit Trail' including the link to the original document, the raw text snippet extracted, and the AI confidence score. This greatly facilitates the Limited Assurance process by external auditors."
+        ? "Assolutamente. Ogni KPI generato mantiene un 'Audit Trail' completo: un drawer dedicato mostra il documento sorgente, lo snippet di testo grezzo estratto, la pagina esatta e un AI Confidence Score. Questo riduce i tempi di Limited Assurance da parte dei revisori esterni fino al 50%."
+        : "Absolutely. Every generated KPI maintains a complete 'Audit Trail': a dedicated drawer shows the source document, the raw text snippet extracted, the exact page, and an AI Confidence Score. This reduces Limited Assurance times by external auditors by up to 50%."
     },
     {
-      q: lang === 'it' ? "Come gestite la privacy dei documenti aziendali?" : "How do you handle document privacy?",
+      q: lang === 'it' ? "Il sistema impara dalle correzioni degli utenti?" : "Does the system learn from user corrections?",
       a: lang === 'it'
-        ? "I documenti vengono elaborati in istanze isolate. Nella versione Enterprise, utilizziamo un approccio RAG (Retrieval-Augmented Generation) con database vettoriali crittografati, garantendo che i dati di un'azienda non vengano mai usati per addestrare modelli pubblici."
-        : "Documents are processed in isolated instances. In the Enterprise version, we use a RAG (Retrieval-Augmented Generation) approach with encrypted vector databases, ensuring company data is never used to train public models."
+        ? "Sì, implementiamo un Continuous Learning Loop. Le correzioni umane vengono anonimizzate e utilizzate per il fine-tuning notturno dei nostri Small Language Models locali, garantendo un miglioramento costante dell'accuratezza specifica per i documenti di ogni settore merceologico."
+        : "Yes, we implement a Continuous Learning Loop. Human corrections are anonymized and used for nightly fine-tuning of our local Small Language Models, ensuring constant improvement in accuracy specific to documents in each product sector."
+    },
+    {
+      q: lang === 'it' ? "Come gestite la privacy e i costi dell'IA?" : "How do you handle privacy and AI costs?",
+      a: lang === 'it'
+        ? "Utilizziamo istanze isolate e tecniche di RAG (Retrieval-Augmented Generation). Per l'efficienza economica, adottiamo il Context Caching e il Batch Processing di Gemini 1.5 Flash, riducendo i costi di elaborazione a pochi centesimi per azienda, pur mantenendo performance di livello Enterprise."
+        : "We use isolated instances and RAG (Retrieval-Augmented Generation) techniques. For economic efficiency, we adopt Context Caching and Batch Processing of Gemini 1.5 Flash, reducing processing costs to a few cents per company while maintaining Enterprise-level performance."
     }
   ];
 
