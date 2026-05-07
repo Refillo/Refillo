@@ -144,7 +144,10 @@ export default function About() {
                   </a>
                 </div>
                 <h3 className="text-2xl font-black text-slate-900 mb-2">{member.name}</h3>
-                <p className="text-emerald-600 font-bold text-sm mb-6 uppercase tracking-widest">{member.role}</p>
+                <div className="mb-6">
+                  <p className="text-emerald-600 font-bold text-sm uppercase tracking-widest">{member.role}</p>
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter mt-1">Bsc management engineering, Engineering/Industrial Management</p>
+                </div>
                 <p className="text-slate-500 text-base leading-relaxed font-medium">{member.desc}</p>
               </motion.div>
             ))}
