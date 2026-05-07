@@ -67,18 +67,19 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
     });
   };
 
-  const handleFileUpload = async (e) => {
+  const handleFileUpload = async (e, slot = 'other') => {
     const file = e.target.files[0];
     if (!file) return;
     setIsUploading(true);
     const formData = new FormData();
     formData.append('org_id', org.id);
     formData.append('file', file);
+    formData.append('type', slot);
     try {
       const res = await callApi(`/pmi/ingest`, { method: 'POST', body: formData });
       const data = await res.json();
       if (data.status === 'preview') {
-        setUploads(prev => [...prev, { name: file.name, type: data.data.type }]);
+        setUploads(prev => [...prev, { name: file.name, type: data.data.type, slot }]);
       }
     } finally {
       setIsUploading(false);
@@ -208,34 +209,50 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                 <p className="text-lg text-slate-500 font-medium italic">"{t('qw_no_evidence')}"</p>
               </header>
 
-              <div className="space-y-4 mb-12">
-                {uploads.map((up, i) => (
-                  <div key={i} className="p-4 bg-white border border-slate-100 rounded-2xl flex items-center justify-between shadow-sm">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600">✓</div>
-                      <div>
-                        <p className="text-sm font-black text-slate-800">{up.name}</p>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase">{up.type}</p>
-                      </div>
+              <div className="grid grid-cols-2 gap-4 mb-12">
+                {[
+                  { id: 'bill', label: t('qw_type_bill'), icon: '⚡' },
+                  { id: 'iso', label: t('qw_type_iso'), icon: '📜' },
+                  { id: 'policy', label: t('qw_type_policy'), icon: '🌿' },
+                  { id: 'other', label: t('qw_upload_doc'), icon: '📁' }
+                ].map(slot => (
+                  <div 
+                    key={slot.id}
+                    onClick={() => {
+                      if (!isUploading) {
+                        fileInputRef.current.setAttribute('data-slot', slot.id);
+                        fileInputRef.current.click();
+                      }
+                    }}
+                    className="p-6 bg-white border border-slate-100 rounded-3xl hover:border-emerald-500 hover:shadow-xl transition-all cursor-pointer group relative overflow-hidden"
+                  >
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="text-3xl group-hover:scale-110 transition-transform">{slot.icon}</div>
+                      {uploads.find(u => u.slot === slot.id) && (
+                        <span className="text-[9px] font-black bg-emerald-600 text-white px-2 py-0.5 rounded-full">UPLOADED</span>
+                      )}
                     </div>
+                    <p className="text-sm font-black text-slate-800 mb-1">{slot.label}</p>
+                    <p className="text-[10px] font-bold text-slate-400 uppercase">{t('qw_upload_hint')}</p>
+                    
+                    {isUploading && fileInputRef.current?.getAttribute('data-slot') === slot.id && (
+                      <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center">
+                        <div className="w-6 h-6 border-3 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+                      </div>
+                    )}
                   </div>
                 ))}
-
-                <div onClick={() => fileInputRef.current.click()} className="border-2 border-dashed border-slate-200 rounded-3xl py-12 text-center hover:bg-slate-50 cursor-pointer transition-all group">
-                  <input type="file" ref={fileInputRef} className="hidden" onChange={handleFileUpload} />
-                  {isUploading ? (
-                    <div className="flex flex-col items-center gap-4">
-                      <div className="w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
-                      <p className="text-sm font-black text-slate-400">{t('qw_ai_analyzing')}</p>
-                    </div>
-                  ) : (
-                    <>
-                      <div className="text-4xl mb-4 opacity-50 group-hover:scale-110 transition-transform">📄</div>
-                      <p className="font-black text-slate-400 group-hover:text-emerald-600">{t('qw_upload_doc')}</p>
-                    </>
-                  )}
-                </div>
               </div>
+
+              <input 
+                type="file" 
+                ref={fileInputRef} 
+                className="hidden" 
+                onChange={async (e) => {
+                  const slot = e.target.getAttribute('data-slot');
+                  await handleFileUpload(e, slot);
+                }} 
+              />
 
               <div className="flex gap-4">
                 <button onClick={() => setPhase('vsme')} className="px-8 py-5 rounded-2xl font-black text-slate-400">{t('qw_back')}</button>
