@@ -34,7 +34,7 @@ export default function About() {
     { name: "Edoardo Poletti", role: "Head of Sales", photo: "team/edoardo-poletti.jpeg", linkedin: "https://www.linkedin.com/in/edoardo-poletti-9747a9399/" },
     { name: "Riccardo Vismara", role: "Co-CTO", photo: "team/riccardo-vismara.jpeg", linkedin: "https://www.linkedin.com/in/riccardo-vismara-7443a9254/" },
     { name: "Pepe Rimoldi", role: "Head of Growth", photo: "team/pepe-rimoldi.jpeg", linkedin: "https://www.linkedin.com/in/pepe-rimoldi/" },
-    { name: "Alessio Vaghi", role: "Chief Risk Officer", photo: "team/alessio-vagi.jpeg", linkedin: "https://www.linkedin.com/in/alessio-vaghi-701284280/" }
+    { name: "Alessio Vaghi", role: "Chief Risk Officer", photo: "team/alessio-vaghi.jpeg", linkedin: "https://www.linkedin.com/in/alessio-vaghi-701284280/" }
   ];
 
   const Footer = () => (
@@ -147,7 +147,7 @@ export default function About() {
                 <p className="text-emerald-600 font-bold text-sm mb-6 uppercase tracking-widest">{member.role}</p>
                 
                 <div className="space-y-1">
-                  <p className="text-[11px] font-bold text-slate-400 uppercase tracking-tighter">Bsc management engineering,</p>
+                  <p className="text-[11px] font-bold text-slate-400 uppercase tracking-tighter">Bsc management engineering</p>
                   <p className="text-slate-500 text-base leading-relaxed font-medium">Engineering/Industrial Management</p>
                 </div>
               </motion.div>
