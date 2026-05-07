@@ -29,12 +29,12 @@ export default function About() {
   };
 
   const team = [
-    { name: "Davide Santaniello", role: "Co-CTO", desc: lang === 'it' ? "Sviluppatore di database e algoritmi IA." : "Database and AI algorithm developer.", photo: "team/davide-santaniello.jpeg" },
-    { name: "Edoardo Riva", role: "Head of Product", desc: lang === 'it' ? "Strategia di prodotto e UX design." : "UX and product strategy.", photo: "team/edoardo-riva.jpeg" },
-    { name: "Edoardo Poletti", role: "Head of Sales", desc: lang === 'it' ? "Partnership strategiche e normative." : "Partnerships and regulations.", photo: "team/edoardo-poletti.jpeg" },
-    { name: "Riccardo Vismara", role: "Co-CTO", desc: lang === 'it' ? "Sviluppatore software Full-stack." : "Software developer.", photo: "team/riccardo-vismara.jpeg" },
-    { name: "Pepe Rimoldi", role: "Head of Growth", desc: lang === 'it' ? "Acquisizione clienti e digital marketing." : "Clients acquisition and digital marketing.", photo: "team/pepe-rimoldi.jpeg" },
-    { name: "Alessio Vaghi", role: "Chief Risk Officer", desc: lang === 'it' ? "Analisi dei rischi e conformità." : "Analysis of the main risks and problems.", photo: "team/alessio-vaghi.jpeg" }
+    { name: "Davide Santaniello", role: "Co-CTO", desc: lang === 'it' ? "Sviluppatore di database e algoritmi IA." : "Database and AI algorithm developer.", photo: "team/davide-santaniello.jpeg", linkedin: "https://www.linkedin.com/in/davide--santaniello/" },
+    { name: "Edoardo Riva", role: "Head of Product", desc: lang === 'it' ? "Strategia di prodotto e UX design." : "UX and product strategy.", photo: "team/edoardo-riva.jpeg", linkedin: "https://www.linkedin.com/in/edoardo-rinaldo-riva-98967b3b7/" },
+    { name: "Edoardo Poletti", role: "Head of Sales", desc: lang === 'it' ? "Partnership strategiche e normative." : "Partnerships and regulations.", photo: "team/edoardo-poletti.jpeg", linkedin: "https://www.linkedin.com/in/edoardo-poletti-9747a9399/" },
+    { name: "Riccardo Vismara", role: "Co-CTO", desc: lang === 'it' ? "Sviluppatore software Full-stack." : "Software developer.", photo: "team/riccardo-vismara.jpeg", linkedin: "https://www.linkedin.com/in/riccardo-vismara-7443a9254/" },
+    { name: "Pepe Rimoldi", role: "Head of Growth", desc: lang === 'it' ? "Acquisizione clienti e digital marketing." : "Clients acquisition and digital marketing.", photo: "team/pepe-rimoldi.jpeg", linkedin: "https://www.linkedin.com/in/pepe-rimoldi/" },
+    { name: "Alessio Vaghi", role: "Chief Risk Officer", desc: lang === 'it' ? "Analisi dei rischi e conformità." : "Analysis of the main risks and problems.", photo: "team/alessio-vaghi.jpeg", linkedin: "https://www.linkedin.com/in/alessio-vaghi-701284280/" }
   ];
 
   const Footer = () => (
@@ -134,9 +134,14 @@ export default function About() {
                   <div className="w-32 h-32 rounded-3xl overflow-hidden shadow-xl shadow-emerald-100 ring-4 ring-emerald-50 transform group-hover:scale-105 transition-transform duration-500">
                     <img src={member.photo} alt={member.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
                   </div>
-                  <div className="absolute -bottom-2 -right-2 bg-emerald-600 text-white p-2 rounded-xl shadow-lg transform scale-0 group-hover:scale-100 transition-transform duration-300">
+                  <a 
+                    href={member.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="absolute -bottom-2 -right-2 bg-emerald-600 text-white p-2 rounded-xl shadow-lg transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-emerald-700 z-10"
+                  >
                     <span className="text-xs font-black">in</span>
-                  </div>
+                  </a>
                 </div>
                 <h3 className="text-2xl font-black text-slate-900 mb-2">{member.name}</h3>
                 <p className="text-emerald-600 font-bold text-sm mb-6 uppercase tracking-widest">{member.role}</p>
