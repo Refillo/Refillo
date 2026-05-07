@@ -29,12 +29,12 @@ export default function About() {
   };
 
   const team = [
-    { name: "Davide Santaniello", role: "Co-CTO", desc: lang === 'it' ? "Sviluppatore di database e algoritmi IA." : "Database and AI algorithm developer.", photo: "team/davide-santaniello.jpeg", linkedin: "https://www.linkedin.com/in/davide--santaniello/" },
-    { name: "Edoardo Riva", role: "Head of Product", desc: lang === 'it' ? "Strategia di prodotto e UX design." : "UX and product strategy.", photo: "team/edoardo-riva.jpeg", linkedin: "https://www.linkedin.com/in/edoardo-rinaldo-riva-98967b3b7/" },
-    { name: "Edoardo Poletti", role: "Head of Sales", desc: lang === 'it' ? "Partnership strategiche e normative." : "Partnerships and regulations.", photo: "team/edoardo-poletti.jpeg", linkedin: "https://www.linkedin.com/in/edoardo-poletti-9747a9399/" },
-    { name: "Riccardo Vismara", role: "Co-CTO", desc: lang === 'it' ? "Sviluppatore software Full-stack." : "Software developer.", photo: "team/riccardo-vismara.jpeg", linkedin: "https://www.linkedin.com/in/riccardo-vismara-7443a9254/" },
-    { name: "Pepe Rimoldi", role: "Head of Growth", desc: lang === 'it' ? "Acquisizione clienti e digital marketing." : "Clients acquisition and digital marketing.", photo: "team/pepe-rimoldi.jpeg", linkedin: "https://www.linkedin.com/in/pepe-rimoldi/" },
-    { name: "Alessio Vaghi", role: "Chief Risk Officer", desc: lang === 'it' ? "Analisi dei rischi e conformità." : "Analysis of the main risks and problems.", photo: "team/alessio-vaghi.jpeg", linkedin: "https://www.linkedin.com/in/alessio-vaghi-701284280/" }
+    { name: "Davide Santaniello", role: "Co-CTO", photo: "team/davide-santaniello.jpeg", linkedin: "https://www.linkedin.com/in/davide--santaniello/" },
+    { name: "Edoardo Riva", role: "Head of Product", photo: "team/edoardo-riva.jpeg", linkedin: "https://www.linkedin.com/in/edoardo-rinaldo-riva-98967b3b7/" },
+    { name: "Edoardo Poletti", role: "Head of Sales", photo: "team/edoardo-poletti.jpeg", linkedin: "https://www.linkedin.com/in/edoardo-poletti-9747a9399/" },
+    { name: "Riccardo Vismara", role: "Co-CTO", photo: "team/riccardo-vismara.jpeg", linkedin: "https://www.linkedin.com/in/riccardo-vismara-7443a9254/" },
+    { name: "Pepe Rimoldi", role: "Head of Growth", photo: "team/pepe-rimoldi.jpeg", linkedin: "https://www.linkedin.com/in/pepe-rimoldi/" },
+    { name: "Alessio Vaghi", role: "Chief Risk Officer", photo: "team/alessio-vagi.jpeg", linkedin: "https://www.linkedin.com/in/alessio-vaghi-701284280/" }
   ];
 
   const Footer = () => (
@@ -144,11 +144,12 @@ export default function About() {
                   </a>
                 </div>
                 <h3 className="text-2xl font-black text-slate-900 mb-2">{member.name}</h3>
-                <div className="mb-6">
-                  <p className="text-emerald-600 font-bold text-sm uppercase tracking-widest">{member.role}</p>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter mt-1">Bsc management engineering, Engineering/Industrial Management</p>
+                <p className="text-emerald-600 font-bold text-sm mb-6 uppercase tracking-widest">{member.role}</p>
+                
+                <div className="space-y-1">
+                  <p className="text-[11px] font-bold text-slate-400 uppercase tracking-tighter">Bsc management engineering,</p>
+                  <p className="text-slate-500 text-base leading-relaxed font-medium">Engineering/Industrial Management</p>
                 </div>
-                <p className="text-slate-500 text-base leading-relaxed font-medium">{member.desc}</p>
               </motion.div>
             ))}
           </div>
