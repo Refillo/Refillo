@@ -125,9 +125,9 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
 
           <nav className="space-y-8">
             {[
-              { id: 'welcome', label: t('qw_nav_clients'), icon: '🤝' },
-              { id: 'upload', label: t('qw_nav_upload'), icon: '🛡️' },
               { id: 'vsme', label: t('qw_nav_vsme'), icon: '📊' },
+              { id: 'upload', label: t('qw_nav_upload'), icon: '🛡️' },
+              { id: 'welcome', label: t('qw_nav_clients'), icon: '🤝' },
               { id: 'predictive', label: t('qw_nav_predictive'), icon: '🔮' },
               { id: 'summary', label: t('qw_nav_readiness'), icon: '✨' }
             ].map((s, idx) => (
@@ -190,9 +190,12 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                 </div>
               </div>
 
-              <button onClick={() => setPhase('upload')} className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-lg hover:bg-slate-800 transition-all shadow-xl shadow-slate-200 active:scale-95">
-                {t('qw_continue')}
-              </button>
+              <div className="flex gap-4">
+                <button onClick={() => setPhase('upload')} className="px-8 py-5 rounded-2xl font-black text-slate-400">{t('qw_back')}</button>
+                <button onClick={() => setPhase('predictive')} className="flex-1 bg-slate-900 text-white py-5 rounded-2xl font-black text-lg hover:bg-slate-800 transition-all shadow-xl shadow-slate-200 active:scale-95">
+                  {t('qw_continue')}
+                </button>
+              </div>
             </div>
           )}
 
@@ -234,7 +237,15 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                 </div>
               </div>
 
-              <button onClick={() => setPhase('vsme')} className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-lg">{t('qw_continue')}</button>
+              <div className="flex gap-4">
+                <button onClick={() => setPhase('vsme')} className="px-8 py-5 rounded-2xl font-black text-slate-400">{t('qw_back')}</button>
+                <button 
+                  onClick={() => setPhase('welcome')}
+                  className="flex-1 bg-emerald-600 text-white py-5 rounded-2xl font-black text-lg shadow-lg shadow-emerald-100"
+                >
+                  {t('qw_continue')}
+                </button>
+              </div>
             </div>
           )}
 
@@ -315,9 +326,9 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
               </div>
 
               <div className="flex gap-4">
-                <button onClick={() => setPhase('upload')} className="px-8 py-5 rounded-2xl font-black text-slate-400">{t('qw_back')}</button>
+                <button onClick={() => setPhase('welcome')} className="px-8 py-5 rounded-2xl font-black text-slate-400">{t('qw_back')}</button>
                 <button 
-                  onClick={() => setPhase('predictive')}
+                  onClick={() => setPhase('upload')}
                   className="flex-1 bg-emerald-600 text-white py-5 rounded-2xl font-black text-lg shadow-lg shadow-emerald-100"
                 >
                   {t('qw_continue')}

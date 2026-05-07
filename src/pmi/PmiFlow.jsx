@@ -12,7 +12,7 @@ import FormCompiler from './FormCompiler.jsx';
 export default function PmiFlow() {
   const [step, setStep] = useState(1);
   const [org, setOrg] = useState(null);
-  const [initialPhase, setInitialPhase] = useState('welcome');
+  const [initialPhase, setInitialPhase] = useState('vsme');
   const location = useLocation();
   const navigate = useNavigate();
 
