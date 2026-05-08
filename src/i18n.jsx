@@ -34,7 +34,7 @@ const translations = {
     market_sub: 'Analisi in tempo reale delle richieste Big Corp e benchmark di settore.',
     market_pressure_title: 'Sotto Pressione',
     market_pressure_sub: 'PMI fornitrici italiane che hanno già ricevuto richieste ESG dirette dai propri clienti.',
-    market_quest_title: 'Questionari/Anno (3.5 avg)',
+    market_quest_title: 'Questionari/Anno',
     market_quest_sub: 'Media dei diversi modelli di questionari ricevuti da ogni PMI (Rating, Excel, PDF).',
     market_cost_title: 'Costo Inefficienza',
     market_cost_sub: 'Costo stimato in ore uomo per la compilazione manuale e non strutturata dei dati.',
