@@ -191,7 +191,7 @@ function App() {
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-emerald-500 text-3xl md:text-4xl font-black mb-2">12</h4>
+                  <h4 className="text-emerald-500 text-3xl md:text-4xl font-black mb-2">3.5</h4>
                   <p className="text-slate-300 font-bold text-[10px] md:text-sm uppercase tracking-widest leading-tight">
                     {t('market_quest_title')}
                   </p>

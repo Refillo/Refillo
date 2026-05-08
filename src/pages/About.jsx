@@ -157,24 +157,49 @@ export default function About() {
         </div>
       </section>
 
-      <section className="px-6 md:px-12 py-20 md:py-32 max-w-7xl mx-auto">
-        <div className="text-center mb-16 md:mb-24">
-          <h2 className="text-3xl md:text-4xl font-black text-slate-900">{t('about_values_title')}</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-          {[
-            { title: t("value_transparency_title"), desc: t("value_transparency_desc"), icon: "🔍" },
-            { title: t("value_innovation_title"), desc: t("value_innovation_desc"), icon: "🚀" },
-            { title: t("value_impact_title"), desc: t("value_impact_desc"), icon: "🌱" }
-          ].map((v, i) => (
-            <motion.div key={i} whileHover={{ scale: 1.05 }} className="bg-white p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] border border-slate-100 shadow-sm">
-              <div className="text-4xl md:text-5xl mb-6 md:mb-8">{v.icon}</div>
-              <h3 className="text-xl md:text-2xl font-black text-slate-900 mb-4">{v.title}</h3>
-              <p className="text-slate-500 text-sm md:text-base leading-relaxed font-medium">{v.desc}</p>
+      <section className="px-6 md:px-12 py-20 md:py-32 bg-white border-t border-slate-100">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }} 
+              whileInView={{ opacity: 1, x: 0 }} 
+              viewport={{ once: true }} 
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-8 leading-tight">
+                {t('about_story_title')}
+              </h2>
+              <div className="space-y-6 text-slate-600 leading-relaxed font-medium text-lg md:text-xl">
+                <p>{t('about_story_desc')}</p>
+                <div className="pt-4 flex flex-wrap gap-4">
+                  <span className="bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full text-sm font-black uppercase tracking-wider border border-emerald-100">
+                    Politecnico di Milano
+                  </span>
+                  <span className="bg-slate-50 text-slate-600 px-4 py-2 rounded-full text-sm font-black uppercase tracking-wider border border-slate-200">
+                    Startup Challenge 2026
+                  </span>
+                </div>
+              </div>
             </motion.div>
-          ))}
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }} 
+              whileInView={{ opacity: 1, scale: 1 }} 
+              viewport={{ once: true }} 
+              transition={{ duration: 0.8 }}
+              className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden bg-slate-100 border-8 border-white shadow-2xl"
+            >
+              {/* Photo Placeholder */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 bg-slate-50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="mb-4 opacity-20"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                <p className="text-sm font-black uppercase tracking-[0.2em] opacity-30">Event Photo Coming Soon</p>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent"></div>
+            </motion.div>
+          </div>
         </div>
       </section>
+
       <Footer />
     </div>
   );

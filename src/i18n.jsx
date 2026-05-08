@@ -276,7 +276,7 @@ const translations = {
     market_sub: 'Real-time analysis of Big Corp requests and industry benchmarks.',
     market_pressure_title: 'Under Pressure',
     market_pressure_sub: 'Italian supplier SMEs that have already received direct ESG requests from their clients.',
-    market_quest_title: 'Questionnaires/Year (3.5 avg)',
+    market_quest_title: 'Questionnaires/Year',
     market_quest_sub: 'Average number of different questionnaire models received by each SME (Rating, Excel, PDF).',
     market_cost_title: 'Inefficiency Cost',
     market_cost_sub: 'Estimated cost in man-hours for manual and unstructured data compilation.',
@@ -307,6 +307,8 @@ const translations = {
     about_made_in_italy: 'Developed with love for the Italian industrial fabric, respecting the unique characteristics of our enterprises.',
     about_team_title: 'The Heart of ESGlab',
     about_team_sub: 'A multidisciplinary team combining expertise in artificial intelligence, environmental regulation, and software development.',
+    about_story_title: 'How It Started',
+    about_story_desc: 'ESGlab was born from the idea of 6 students from Politecnico di Milano during the University Startup Challenge 2026. What began as an academic challenge transformed into a mission: to democratize access to sustainability for the SMEs that form the heart of the real economy.',
     about_values_title: 'Our Values',
     value_transparency_title: 'Transparency',
     value_transparency_desc: 'Every data point in our system is linked to real and verifiable evidence.',
@@ -515,5 +517,8 @@ export function LanguageProvider({ children }) {
     <LanguageContext.Provider value={{ lang, setLang, t }}>
       {children}
     </LanguageContext.Provider>
+  );
+}
+/LanguageContext.Provider>
   );
 }
