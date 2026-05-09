@@ -519,6 +519,3 @@ export function LanguageProvider({ children }) {
     </LanguageContext.Provider>
   );
 }
-/LanguageContext.Provider>
-  );
-}
