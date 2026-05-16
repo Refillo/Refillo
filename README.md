@@ -1,4 +1,4 @@
-# ESGlab Static Demo
+# Refillo Static Demo
 
 Questa è una versione demo statica di ESGlab, configurata per funzionare senza un backend attivo.
 Ideale per il deployment su **GitHub Pages**.
