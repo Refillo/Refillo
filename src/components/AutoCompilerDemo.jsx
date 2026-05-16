@@ -1,3 +1,16 @@
+import { callApi } from '../apiClient';
+const API = ''; // Mock API constant
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
+
+const DATA_POINTS = [
+  { id: 1, label: 'CO2 Scope 1: 125t', color: 'bg-emerald-500' },
+  { id: 2, label: 'ISO 14001: Valid', color: 'bg-emerald-500' },
+  { id: 3, label: 'Energy: 450MWh', color: 'bg-amber-500' },
+  { id: 4, label: 'Waste: 12t recycled', color: 'bg-purple-500' },
+  { id: 5, label: 'Gender Pay Gap: 2%', color: 'bg-rose-500' },
+];
+
 export default function AutoCompilerDemo() {
   const [activePoint, setActivePoint] = useState(0);
 
@@ -74,7 +87,7 @@ export default function AutoCompilerDemo() {
             transition={{ duration: 3, ease: "anticipate" }}
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-6 py-3 rounded-2xl bg-white border border-slate-100 text-slate-900 text-[12px] font-black shadow-xl flex items-center gap-4 whitespace-nowrap z-30"
           >
-            <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"></div>
+            <div className={`w-2 h-2 rounded-full ${point.color} shadow-[0_0_8px_rgba(16,185,129,0.6)]`}></div>
             {point.label}
           </motion.div>
         ))}
