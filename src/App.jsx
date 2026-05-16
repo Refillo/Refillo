@@ -1,11 +1,72 @@
 import { callApi } from './apiClient';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import MarketGraph from './components/MarketGraph.jsx';
 import AutoCompilerDemo from './components/AutoCompilerDemo.jsx';
 import { useLanguage } from './LanguageContext';
+
+const AnimatedNumber = ({ value, suffix = "" }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (isInView) {
+      let start = 0;
+      const end = parseFloat(value);
+      const duration = 2000;
+      const startTime = performance.now();
+
+      const animate = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOutExpo = 1 - Math.pow(2, -10 * progress);
+        
+        const current = start + (end - start) * easeOutExpo;
+        setDisplayValue(current);
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          setDisplayValue(end);
+        }
+      };
+
+      requestAnimationFrame(animate);
+    }
+  }, [isInView, value]);
+
+  return (
+    <span ref={ref}>
+      {Number.isInteger(parseFloat(value)) 
+        ? Math.floor(displayValue) 
+        : displayValue.toFixed(1)}
+      {suffix}
+    </span>
+  );
+};
+
+const FloatingElement = ({ delay = 0, x = "0%", y = "0%", size = "w-20" }) => (
+  <motion.div 
+    initial={{ opacity: 0, scale: 0 }}
+    animate={{ 
+      opacity: [0, 0.4, 0.2], 
+      scale: [0.8, 1.1, 1],
+      y: [0, -20, 0],
+      rotate: [0, 5, -5, 0]
+    }}
+    transition={{ 
+      duration: 6, 
+      repeat: Infinity, 
+      delay,
+      ease: "easeInOut"
+    }}
+    className={`absolute ${size} aspect-square bg-emerald-500/5 rounded-3xl blur-xl -z-10`}
+    style={{ left: x, top: y }}
+  />
+);
 
 function App() {
   const navigate = useNavigate();
@@ -68,9 +129,14 @@ function App() {
 
       {/* Hero Section - The "ctrl.xyz" Entrance in Light */}
       <header className="px-6 md:px-12 pt-32 pb-24 md:pt-48 md:pb-40 text-center max-w-7xl mx-auto relative">
-        {/* Subtle Light Glow */}
+        {/* Subtle Light Glow & Floating Elements */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] aspect-video bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
         
+        <FloatingElement x="10%" y="20%" size="w-32" delay={0} />
+        <FloatingElement x="80%" y="15%" size="w-24" delay={1} />
+        <FloatingElement x="15%" y="60%" size="w-40" delay={2} />
+        <FloatingElement x="75%" y="70%" size="w-28" delay={1.5} />
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -101,7 +167,7 @@ function App() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="rounded-[3rem] overflow-hidden border border-slate-100 bg-white shadow-2xl shadow-slate-200/50"
+          className="rounded-[3rem] overflow-hidden border border-slate-100 bg-white shadow-2xl shadow-slate-200/50 group hover:border-emerald-500/30 transition-colors"
         >
           <AutoCompilerDemo />
         </motion.div>
@@ -117,21 +183,22 @@ function App() {
               className="md:col-span-8 bg-white p-10 md:p-16 rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-2xl transition-all group relative overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -5 }}
               viewport={{ once: true }}
             >
               <div className="relative z-10">
-                <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-3xl mb-10 border border-emerald-100">📄</div>
+                <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-3xl mb-10 border border-emerald-100 group-hover:scale-110 transition-transform">📄</div>
                 <h3 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tighter">{t('feat_formats_title')}</h3>
                 <p className="text-slate-500 text-lg md:text-xl font-medium leading-relaxed max-w-xl">
                   {t('feat_formats_desc')}
                 </p>
                 <div className="mt-12 flex flex-wrap gap-4">
                   {['.xlsx', '.pdf', '.csv', '.json', '.xlsm'].map(ext => (
-                    <span key={ext} className="px-5 py-2 bg-slate-50 rounded-xl text-xs font-black text-slate-400 uppercase tracking-widest border border-slate-100">{ext}</span>
+                    <span key={ext} className="px-5 py-2 bg-slate-50 rounded-xl text-xs font-black text-slate-400 uppercase tracking-widest border border-slate-100 group-hover:border-emerald-200 transition-colors">{ext}</span>
                   ))}
                 </div>
               </div>
-              <div className="absolute top-0 right-0 w-1/2 h-full bg-emerald-500/[0.02] blur-[100px] rounded-full pointer-events-none"></div>
+              <div className="absolute top-0 right-0 w-1/2 h-full bg-emerald-500/[0.02] blur-[100px] rounded-full pointer-events-none group-hover:bg-emerald-500/[0.05] transition-colors"></div>
             </motion.div>
 
             {/* Extension Card (Tall Bento) */}
@@ -143,7 +210,7 @@ function App() {
               transition={{ delay: 0.1 }}
             >
               <div className="relative z-10">
-                <div className="w-16 h-16 bg-white/10 text-white rounded-2xl flex items-center justify-center text-3xl mb-10 border border-white/10">🧩</div>
+                <div className="w-16 h-16 bg-white/10 text-white rounded-2xl flex items-center justify-center text-3xl mb-10 border border-white/10 group-hover:rotate-12 transition-transform">🧩</div>
                 <h3 className="text-3xl font-black mb-6 tracking-tighter">{t('feat_extension_title')}</h3>
                 <p className="text-slate-400 text-base font-bold leading-relaxed">
                   {t('feat_extension_desc')}
@@ -166,14 +233,15 @@ function App() {
             ].map((step, idx) => (
               <motion.div 
                 key={step.id}
-                className="md:col-span-4 bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all group"
+                className="md:col-span-4 bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all group hover:border-emerald-500/20"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -8 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 + (idx * 0.1) }}
               >
                 <div className="text-sm font-black text-emerald-600 mb-8 uppercase tracking-[0.3em] flex items-center gap-3">
-                  <span className="w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center text-[11px] font-black border border-emerald-100">{step.id}</span>
+                  <span className="w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center text-[11px] font-black border border-emerald-100 group-hover:bg-emerald-500 group-hover:text-white transition-colors">{step.id}</span>
                   {step.icon}
                 </div>
                 <h3 className="text-2xl font-black text-slate-900 mb-5 tracking-tight">{step.title}</h3>
@@ -200,13 +268,17 @@ function App() {
               
               <div className="grid grid-cols-2 gap-16">
                 <div>
-                  <h4 className="text-emerald-600 text-6xl font-black mb-3 tracking-tighter">94%</h4>
+                  <h4 className="text-emerald-500 text-6xl font-black mb-3 tracking-tighter">
+                    <AnimatedNumber value="94" suffix="%" />
+                  </h4>
                   <p className="text-slate-900 font-black text-[11px] uppercase tracking-[0.2em] leading-tight">
                     {t('market_pressure_title')}
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-emerald-600 text-6xl font-black mb-3 tracking-tighter">3.5</h4>
+                  <h4 className="text-emerald-500 text-6xl font-black mb-3 tracking-tighter">
+                    <AnimatedNumber value="3.5" />
+                  </h4>
                   <p className="text-slate-900 font-black text-[11px] uppercase tracking-[0.2em] leading-tight">
                     {t('market_quest_title')}
                   </p>
@@ -216,7 +288,7 @@ function App() {
             
             <div className="bg-slate-50 p-10 md:p-16 rounded-[4rem] border border-slate-200 relative overflow-hidden shadow-sm">
                <h3 className="text-xl font-black text-slate-900 mb-12 flex items-center gap-4 uppercase tracking-widest text-sm">
-                 <div className="w-1.5 h-6 bg-emerald-500 rounded-full"></div>
+                 <div className="w-1.5 h-6 bg-emerald-500 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.5)]"></div>
                  {t('market_chart_title')}
                </h3>
                <div className="h-[350px] w-full">
@@ -254,9 +326,9 @@ function App() {
           <div>
             <h4 className="font-black uppercase tracking-[0.3em] text-[10px] text-emerald-600 mb-12">{t('footer_prod')}</h4>
             <ul className="space-y-5 text-sm font-black text-slate-400">
-              <li className="hover:text-emerald-600 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
-              <li className="hover:text-emerald-600 cursor-pointer transition-colors" onClick={() => navigate('/faq')}>{t('footer_faq')}</li>
-              <li className="hover:text-emerald-600 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
+              <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
+              <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/news')}>{t('footer_faq')}</li>
+              <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
             </ul>
           </div>
 
