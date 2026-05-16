@@ -155,6 +155,48 @@ function App() {
         </div>
       </section>
 
+      {/* Advanced Features Section */}
+      <section className="px-6 md:px-12 py-16 md:py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white p-8 md:p-12 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all"
+            >
+              <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center text-3xl mb-8">📄</div>
+              <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-4">{t('feat_formats_title')}</h3>
+              <p className="text-slate-500 text-lg leading-relaxed font-medium mb-6">
+                {t('feat_formats_desc')}
+              </p>
+              <div className="flex gap-3">
+                {['.xlsx', '.pdf', '.csv', '.json'].map(ext => (
+                  <span key={ext} className="px-3 py-1 bg-slate-100 rounded-lg text-xs font-bold text-slate-500 uppercase">{ext}</span>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white p-8 md:p-12 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all"
+            >
+              <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center text-3xl mb-8">🧩</div>
+              <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-4">{t('feat_extension_title')}</h3>
+              <p className="text-slate-500 text-lg leading-relaxed font-medium mb-6">
+                {t('feat_extension_desc')}
+              </p>
+              <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 px-4 py-2 rounded-xl text-sm font-bold">
+                <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                Disponibile per Chrome & Edge
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Auto-Compiler Interactive Demo */}
       <section className="px-6 md:px-12 max-w-6xl mx-auto my-16 md:my-24">
         <motion.div

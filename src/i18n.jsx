@@ -29,6 +29,12 @@ const translations = {
     how_step3_title: 'Rispondi con un Click',
     how_step3_desc: 'Esporta i dati pre-compilati verso EcoVadis, CDP, Synesgy o direttamente nei portali custom dei tuoi clienti enterprise.',
 
+    // Features
+    feat_formats_title: 'Flessibilità Totale nei Formati',
+    feat_formats_desc: 'Compiliamo automaticamente i tuoi questionari ESG in formato Excel, PDF, CSV o JSON, mantenendo la formattazione originale.',
+    feat_extension_title: 'Refillo Browser Extension',
+    feat_extension_desc: 'Compila i portali ESG dei tuoi clienti direttamente dal browser. Risparmia ore di copy-paste con un solo click.',
+
     // Market Intelligence
     market_title: 'Market Intelligence Live',
     market_sub: 'Analisi in tempo reale delle richieste Big Corp e benchmark di settore.',
@@ -231,6 +237,7 @@ const translations = {
     dash_records: 'record',
     dash_gap_analysis: 'Gap Analysis ESRS',
     dash_gap_sub: 'Scopri quali KPI mancano ancora nel tuo Profilo rispetto agli standard richiesti dai tuoi clienti.',
+    dash_extension_hint: 'Novità: Usa la nostra Browser Extension per compilare i portali Stellantis e Enel in un click!',
 
     // Doc types (Upload)
     doc_energy: 'Bolletta energetica',
@@ -270,6 +277,12 @@ const translations = {
     how_step2_desc: 'The AI maps your data to European standards (VSME, ESRS) and the specific requirements of every Big Corp in your sector.',
     how_step3_title: 'Reply with a Click',
     how_step3_desc: 'Export pre-filled data to EcoVadis, CDP, Synesgy, or directly into your enterprise clients\' custom portals.',
+
+    // Features
+    feat_formats_title: 'Total Format Flexibility',
+    feat_formats_desc: 'We automatically fill your ESG questionnaires in Excel, PDF, CSV, or JSON format, maintaining the original formatting.',
+    feat_extension_title: 'Refillo Browser Extension',
+    feat_extension_desc: 'Fill in your clients\' ESG portals directly from your browser. Save hours of copy-pasting with a single click.',
 
     // Market Intelligence
     market_title: 'Live Market Intelligence',
@@ -475,6 +488,7 @@ const translations = {
     dash_records: 'records',
     dash_gap_analysis: 'ESRS Gap Analysis',
     dash_gap_sub: 'Discover which KPIs are still missing from your Profile compared to the standards required by your clients.',
+    dash_extension_hint: 'New: Use our Browser Extension to fill Stellantis and Enel portals in one click!',
 
     // Doc types (Upload)
     doc_energy: 'Energy bill',

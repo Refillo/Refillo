@@ -217,6 +217,19 @@ export default function PrivateDashboard({ org }) {
           </div>
         </header>
 
+        {/* Browser Extension Hint */}
+        <div className="mb-8 p-4 bg-indigo-600 rounded-2xl flex items-center justify-between text-white shadow-xl shadow-indigo-100">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-xl">🧩</div>
+            <p className="font-bold text-sm md:text-base">
+              {t('dash_extension_hint')}
+            </p>
+          </div>
+          <button className="bg-white text-indigo-600 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-indigo-50 transition-colors">
+            Install Extension
+          </button>
+        </div>
+
         {/* Three-Level Onboarding Badges */}
         <div className="grid grid-cols-3 gap-6 mb-12">
           <button 
