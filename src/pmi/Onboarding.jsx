@@ -61,7 +61,7 @@ export default function Onboarding({ onComplete }) {
       </button>
 
       <div className="bg-white rounded-3xl p-10 w-full max-w-xl shadow-xl shadow-slate-200/50 border border-slate-100">
-        <div className="inline-block bg-blue-50 text-blue-700 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-6 border border-blue-100">
+        <div className="inline-block bg-emerald-50 text-emerald-700 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-6 border border-emerald-100">
           {t('onb_step')}
         </div>
         <h2 className="text-3xl font-black text-slate-900 mb-2">{t('onb_title')}</h2>
@@ -91,7 +91,7 @@ export default function Onboarding({ onComplete }) {
               value={form.sector}
               onChange={handle}
               required
-              className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-slate-900 font-medium appearance-none"
+              className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-slate-900 font-medium appearance-none"
             >
               <option value="">{t('onb_select')}</option>
               {SECTORS.map(s => <option key={s.value} value={s.value}>{t(s.key)}</option>)}
@@ -106,7 +106,7 @@ export default function Onboarding({ onComplete }) {
             className={`col-span-2 py-5 rounded-2xl font-black text-white text-lg shadow-lg transition-all ${
               loading
                 ? 'bg-slate-400 cursor-not-allowed'
-                : 'bg-blue-600 hover:bg-blue-700 shadow-blue-100 hover:shadow-blue-200 active:scale-[0.98]'
+                : 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-100 hover:shadow-emerald-200 active:scale-[0.98]'
             }`}
           >
             {loading ? t('onb_loading') : t('onb_cta')}
@@ -128,7 +128,7 @@ function Field({ label, name, value, onChange, placeholder, type = "text" }) {
         value={value} 
         onChange={onChange} 
         placeholder={placeholder} 
-        className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-slate-900 font-medium placeholder:text-slate-300" 
+        className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-slate-900 font-medium placeholder:text-slate-300" 
       />
     </div>
   );

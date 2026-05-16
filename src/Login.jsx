@@ -51,8 +51,8 @@ export default function Login() {
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6 font-sans relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500 rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500 rounded-full blur-[120px]"></div>
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-emerald-500 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-500 rounded-full blur-[120px]"></div>
       </div>
 
       <div className="absolute top-8 left-8 flex items-center gap-4 z-50">
@@ -64,7 +64,7 @@ export default function Login() {
         </button>
         <button 
           onClick={() => setLang(lang === 'it' ? 'en' : 'it')}
-          className="w-10 h-10 flex items-center justify-center bg-white rounded-xl border border-slate-100 text-xs font-black text-slate-400 hover:text-blue-600 transition-colors uppercase shadow-sm"
+          className="w-10 h-10 flex items-center justify-center bg-white rounded-xl border border-slate-100 text-xs font-black text-slate-400 hover:text-emerald-600 transition-colors uppercase shadow-sm"
         >
           {lang}
         </button>
@@ -81,7 +81,7 @@ export default function Login() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: 'spring', damping: 12, delay: 0.2 }}
-            className="inline-block bg-blue-600 text-white font-black px-5 py-2.5 rounded-2xl text-2xl mb-6 shadow-xl shadow-blue-100"
+            className="inline-block bg-emerald-600 text-white font-black px-5 py-2.5 rounded-2xl text-2xl mb-6 shadow-xl shadow-emerald-100"
           >
             ESG
           </motion.div>
@@ -101,7 +101,7 @@ export default function Login() {
               value={form.email}
               onChange={handleInput}
               placeholder="admin@azienda.it"
-              className="w-full px-6 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-slate-900 font-bold placeholder:text-slate-300"
+              className="w-full px-6 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-slate-900 font-bold placeholder:text-slate-300"
             />
           </div>
 
@@ -116,7 +116,7 @@ export default function Login() {
               value={form.password}
               onChange={handleInput}
               placeholder="••••••••"
-              className="w-full px-6 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-slate-900 font-bold placeholder:text-slate-300"
+              className="w-full px-6 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-slate-900 font-bold placeholder:text-slate-300"
             />
           </div>
 
@@ -136,7 +136,7 @@ export default function Login() {
             className={`w-full py-5 rounded-2xl font-black text-white shadow-xl transition-all ${
               loading 
                 ? 'bg-slate-400 cursor-not-allowed' 
-                : 'bg-blue-600 hover:bg-blue-700 shadow-blue-100 hover:shadow-blue-200 active:scale-[0.98]'
+                : 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-100 hover:shadow-emerald-200 active:scale-[0.98]'
             }`}
           >
             {loading ? '...' : t('login_cta')}
@@ -148,7 +148,7 @@ export default function Login() {
             {t('login_no_account')}{' '}
             <button 
               onClick={() => navigate('/pmi')}
-              className="text-blue-600 font-black hover:underline ml-1"
+              className="text-emerald-600 font-black hover:underline ml-1"
             >
               {t('nav_register')}
             </button>

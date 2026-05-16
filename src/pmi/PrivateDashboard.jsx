@@ -17,7 +17,7 @@ function AuditDrawer({ kpi, onClose }) {
         <div style={{ padding: '1.5rem', borderBottom: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
-              <span style={{ fontSize: '0.65rem', fontWeight: 800, background: '#f0fdf4', color: '#16a34a', padding: '0.15rem 0.6rem', borderRadius: '9999px', border: '1px solid #bbf7d0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Audit Trail</span>
+              <span style={{ fontSize: '0.65rem', fontWeight: 800, background: '#ecfdf5', color: '#059669', padding: '0.15rem 0.6rem', borderRadius: '9999px', border: '1px solid #a7f3d0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Audit Trail</span>
             </div>
             <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 800, color: '#0f172a' }}>{kpi.data_type}</h3>
             <p style={{ margin: '0.2rem 0 0', fontSize: '0.8rem', color: '#94a3b8' }}>{kpi.period}</p>
@@ -30,7 +30,7 @@ function AuditDrawer({ kpi, onClose }) {
           <div style={{ background: '#f8fafc', borderRadius: '0.75rem', padding: '1rem' }}>
             <p style={label}>Valore registrato</p>
             <p style={{ margin: 0, fontSize: '1.5rem', fontWeight: 900, color: '#0f172a' }}>{kpi.quantity?.toLocaleString()} <span style={{ fontSize: '0.9rem', color: '#64748b', fontWeight: 500 }}>{kpi.unit}</span></p>
-            {kpi.co2e_kg > 0 && <p style={{ margin: '0.25rem 0 0', fontSize: '0.8rem', color: '#16a34a', fontWeight: 600 }}>≈ {kpi.co2e_kg?.toLocaleString()} kg CO₂e</p>}
+            {kpi.co2e_kg > 0 && <p style={{ margin: '0.25rem 0 0', fontSize: '0.8rem', color: '#059669', fontWeight: 600 }}>≈ {kpi.co2e_kg?.toLocaleString()} kg CO₂e</p>}
           </div>
 
           {/* Source */}
@@ -46,7 +46,7 @@ function AuditDrawer({ kpi, onClose }) {
             <p style={label}>Standard di riferimento</p>
             <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
               {(kpi.tags || []).map(t => (
-                <span key={t} style={{ fontSize: '0.72rem', fontWeight: 700, background: '#eef2ff', color: '#4f46e5', padding: '0.2rem 0.6rem', borderRadius: '9999px' }}>{t}</span>
+                <span key={t} style={{ fontSize: '0.72rem', fontWeight: 700, background: '#ecfdf5', color: '#059669', padding: '0.2rem 0.6rem', borderRadius: '9999px' }}>{t}</span>
               ))}
               {(!kpi.tags || kpi.tags.length === 0) && <span style={{ color: '#94a3b8', fontSize: '0.8rem' }}>—</span>}
             </div>
@@ -57,9 +57,9 @@ function AuditDrawer({ kpi, onClose }) {
             <p style={label}>AI Confidence Score</p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <div style={{ flex: 1, height: '6px', background: '#f1f5f9', borderRadius: '9999px', overflow: 'hidden' }}>
-                <div style={{ height: '100%', width: `${(kpi.confidence || 0) * 100}%`, background: (kpi.confidence || 0) >= 0.9 ? '#16a34a' : '#f59e0b', borderRadius: '9999px' }} />
+                <div style={{ height: '100%', width: `${(kpi.confidence || 0) * 100}%`, background: (kpi.confidence || 0) >= 0.9 ? '#059669' : '#f59e0b', borderRadius: '9999px' }} />
               </div>
-              <span style={{ fontSize: '0.85rem', fontWeight: 800, color: (kpi.confidence || 0) >= 0.9 ? '#16a34a' : '#d97706' }}>
+              <span style={{ fontSize: '0.85rem', fontWeight: 800, color: (kpi.confidence || 0) >= 0.9 ? '#059669' : '#d97706' }}>
                 {Math.round((kpi.confidence || 0) * 100)}%
               </span>
             </div>
@@ -102,14 +102,14 @@ const ActionCard = ({ title, sub, icon, onClick, primary }) => (
     onClick={onClick}
     className={`p-8 rounded-3xl cursor-pointer transition-all hover:-translate-y-2 shadow-sm hover:shadow-2xl group border ${
       primary 
-        ? 'bg-blue-600 text-white shadow-blue-100 border-blue-500' 
-        : 'bg-white text-slate-900 border-slate-100 hover:border-blue-200'
+        ? 'bg-emerald-600 text-white shadow-emerald-100 border-emerald-500' 
+        : 'bg-white text-slate-900 border-slate-100 hover:border-emerald-200'
     }`}
   >
     <div className={`text-4xl mb-6 transform transition-transform group-hover:scale-110 ${primary ? 'opacity-100' : 'opacity-80'}`}>{icon}</div>
     <h3 className="text-xl font-black mb-2 leading-tight">{title}</h3>
-    <p className={`text-sm leading-relaxed ${primary ? 'text-blue-50' : 'text-slate-500'}`}>{sub}</p>
-    <div className={`mt-6 flex items-center gap-2 text-sm font-black ${primary ? 'text-white' : 'text-blue-600'}`}>
+    <p className={`text-sm leading-relaxed ${primary ? 'text-emerald-50' : 'text-slate-500'}`}>{sub}</p>
+    <div className={`mt-6 flex items-center gap-2 text-sm font-black ${primary ? 'text-white' : 'text-emerald-600'}`}>
       Inizia ora <span className="text-lg transition-transform group-hover:translate-x-1">→</span>
     </div>
   </div>
@@ -163,8 +163,8 @@ export default function PrivateDashboard({ org }) {
 
   const chartData = [
     { name: 'Scope 1', value: Math.round(s1), unit: 'tCO₂e', color: '#0f172a' },
-    { name: 'Scope 2', value: Math.round(s2 < 10 ? s2 * 100 : s2), unit: 'tCO₂e', color: '#2563eb' },
-    { name: 'Intensità C.', value: carbonIntensity, unit: 'kg/€1k', color: '#60a5fa' },
+    { name: 'Scope 2', value: Math.round(s2 < 10 ? s2 * 100 : s2), unit: 'tCO₂e', color: '#059669' },
+    { name: 'Intensità C.', value: carbonIntensity, unit: 'kg/€1k', color: '#34d399' },
   ];
 
   const handleDownload = (format) => {
@@ -179,8 +179,8 @@ export default function PrivateDashboard({ org }) {
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
           <img src="logo.png" alt="Refillo Logo" className="h-9 w-auto" />
           <span className="text-2xl font-black text-slate-900 tracking-tighter">Refillo</span>
-          <div className="ml-4 flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-700 rounded-full border border-blue-100">
-            <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
+          <div className="ml-4 flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-100">
+            <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
             <span className="text-[10px] font-black uppercase tracking-widest">{t('dash_private')}</span>
           </div>
         </div>
@@ -204,7 +204,7 @@ export default function PrivateDashboard({ org }) {
           <div className="bg-slate-50 p-2 rounded-2xl border border-slate-100 flex gap-2">
             <button 
               onClick={handleComingSoon}
-              className="px-4 py-2 text-xs font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors"
+              className="px-4 py-2 text-xs font-black uppercase tracking-widest text-slate-400 hover:text-emerald-600 transition-colors"
             >
               {t('dash_export_excel')}
             </button>
@@ -217,15 +217,15 @@ export default function PrivateDashboard({ org }) {
           </div>
         </header>
 
-        {/* Browser Extension Hint - Blue Gradient */}
-        <div className="mb-8 p-6 bg-gradient-to-r from-blue-600 to-blue-700 rounded-[2rem] flex items-center justify-between text-white shadow-xl shadow-blue-100">
+        {/* Browser Extension Hint - Emerald Gradient */}
+        <div className="mb-8 p-6 bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-[2rem] flex items-center justify-between text-white shadow-xl shadow-emerald-100">
           <div className="flex items-center gap-6">
             <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-2xl">🧩</div>
             <p className="font-bold text-lg">
               {t('dash_extension_hint')}
             </p>
           </div>
-          <button className="bg-white text-blue-600 px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-blue-50 transition-all active:scale-95 shadow-lg">
+          <button className="bg-white text-emerald-600 px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-emerald-50 transition-all active:scale-95 shadow-lg">
             Install Extension
           </button>
         </div>
@@ -240,9 +240,9 @@ export default function PrivateDashboard({ org }) {
             <button 
               key={step.id}
               onClick={() => navigate(step.route, { state: { org, phase: step.phase } })}
-              className="flex flex-col items-center p-8 bg-white border border-slate-100 rounded-[2rem] hover:border-blue-500 hover:shadow-2xl transition-all group"
+              className="flex flex-col items-center p-8 bg-white border border-slate-100 rounded-[2rem] hover:border-emerald-500 hover:shadow-2xl transition-all group"
             >
-              <div className="w-14 h-14 bg-slate-50 text-slate-400 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
+              <div className="w-14 h-14 bg-slate-50 text-slate-400 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-emerald-50 group-hover:text-emerald-600 transition-colors">
                 {step.icon}
               </div>
               <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Level {step.id}</span>
@@ -251,17 +251,17 @@ export default function PrivateDashboard({ org }) {
           ))}
         </div>
 
-        {/* Existing Reply Card - Primary Blue */}
+        {/* Existing Reply Card - Primary Emerald */}
         <div className="mb-16">
           <div 
             onClick={() => navigate('/pmi/questionnaire')}
-            className="p-10 rounded-[2.5rem] cursor-pointer transition-all hover:-translate-y-2 shadow-sm hover:shadow-2xl group border bg-blue-600 text-white shadow-blue-100 border-blue-500 relative overflow-hidden"
+            className="p-10 rounded-[2.5rem] cursor-pointer transition-all hover:-translate-y-2 shadow-sm hover:shadow-2xl group border bg-emerald-600 text-white shadow-emerald-100 border-emerald-500 relative overflow-hidden"
           >
             <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
               <div className="flex-1">
                 <div className="text-4xl mb-6">📋</div>
                 <h3 className="text-3xl font-black mb-3 leading-tight">{t('dash_reply')}</h3>
-                <p className="text-blue-100 text-lg font-medium leading-relaxed max-w-xl">{t('dash_reply_sub')}</p>
+                <p className="text-emerald-100 text-lg font-medium leading-relaxed max-w-xl">{t('dash_reply_sub')}</p>
               </div>
               <div className="bg-white/10 p-6 rounded-[2rem] backdrop-blur-md border border-white/20">
                 <div className="flex items-center gap-4 text-sm font-black text-white">
@@ -281,7 +281,7 @@ export default function PrivateDashboard({ org }) {
               <div className="flex gap-6">
                 {[
                   { color: '#0f172a', label: 'Scope 1' },
-                  { color: '#2563eb', label: 'Scope 2' },
+                  { color: '#059669', label: 'Scope 2' },
                   { color: '#94a3b8', label: 'Intensity' },
                 ].map(l => (
                   <div key={l.label} className="flex items-center gap-2">
@@ -293,7 +293,7 @@ export default function PrivateDashboard({ org }) {
             </div>
             {loading ? (
               <div className="h-[280px] flex items-center justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-4 border-blue-600 border-t-transparent"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-4 border-emerald-600 border-t-transparent"></div>
               </div>
             ) : (
               <ResponsiveContainer width="100%" height={280}>
@@ -311,11 +311,11 @@ export default function PrivateDashboard({ org }) {
                   />
                   <Bar dataKey="value" radius={[8, 8, 0, 0]} barSize={48}
                     label={false}
-                    fill="#2563eb"
+                    fill="#059669"
                     shape={(props) => {
-                      const colors = ['#0f172a', '#2563eb', '#cbd5e1'];
+                      const colors = ['#0f172a', '#059669', '#cbd5e1'];
                       const idx = chartData.findIndex(d => d.name === props.name);
-                      return <rect {...props} fill={colors[idx] || '#2563eb'} rx={8} ry={8} />;
+                      return <rect {...props} fill={colors[idx] || '#059669'} rx={8} ry={8} />;
                     }}
                   />
                 </BarChart>
@@ -324,11 +324,11 @@ export default function PrivateDashboard({ org }) {
           </div>
 
           <div className="bg-slate-900 p-10 rounded-[2.5rem] text-white relative overflow-hidden flex flex-col justify-between shadow-2xl">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/20 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-600/20 rounded-full -mr-16 -mt-16 blur-2xl"></div>
             
             <div>
-              <p className="text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4">{t('dash_profile_completeness')}</p>
-              <h3 className="text-7xl font-black text-white tracking-tighter">75<span className="text-blue-500">%</span></h3>
+              <p className="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4">{t('dash_profile_completeness')}</p>
+              <h3 className="text-7xl font-black text-white tracking-tighter">75<span className="text-emerald-500">%</span></h3>
             </div>
             
             <div className="space-y-6">
@@ -337,7 +337,7 @@ export default function PrivateDashboard({ org }) {
                 <span className="text-xs font-black text-white">{t('dash_ready_at')} 75%</span>
               </div>
               <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
-                <div className="h-full bg-blue-500 w-[75%] rounded-full shadow-[0_0_15px_rgba(37,99,235,0.5)]"></div>
+                <div className="h-full bg-emerald-500 w-[75%] rounded-full shadow-[0_0_15px_rgba(5, 150, 105,0.5)]"></div>
               </div>
               <p className="text-xs text-slate-400 italic leading-relaxed font-medium">
                 "{t('dash_profile_hint')}"
@@ -346,7 +346,7 @@ export default function PrivateDashboard({ org }) {
 
             <button 
               onClick={() => navigate('/pmi/upload')}
-              className="w-full mt-10 py-4 bg-white text-slate-900 rounded-2xl font-black text-sm hover:bg-blue-50 transition-all active:scale-95 shadow-lg"
+              className="w-full mt-10 py-4 bg-white text-slate-900 rounded-2xl font-black text-sm hover:bg-emerald-50 transition-all active:scale-95 shadow-lg"
             >
               {t('dash_increase_coverage')}
             </button>

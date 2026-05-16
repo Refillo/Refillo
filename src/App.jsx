@@ -67,12 +67,12 @@ function App() {
         <div className="flex gap-4 md:gap-8 items-center">
           <button 
             onClick={() => setLang(lang === 'it' ? 'en' : 'it')}
-            className="text-[10px] font-black text-slate-400 hover:text-blue-600 transition-colors uppercase tracking-widest"
+            className="text-[10px] font-black text-slate-400 hover:text-emerald-600 transition-colors uppercase tracking-widest"
           >
             {lang}
           </button>
-          <button onClick={() => navigate('/about')} className="text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors uppercase tracking-wider">{t('nav_about')}</button>
-          <button onClick={startDemo} className="bg-slate-900 text-white px-5 md:px-7 py-2.5 rounded-full text-xs font-black hover:bg-blue-600 transition-all active:scale-95 shadow-lg shadow-slate-200">
+          <button onClick={() => navigate('/about')} className="text-xs font-bold text-slate-600 hover:text-emerald-600 transition-colors uppercase tracking-wider">{t('nav_about')}</button>
+          <button onClick={startDemo} className="bg-slate-900 text-white px-5 md:px-7 py-2.5 rounded-full text-xs font-black hover:bg-emerald-600 transition-all active:scale-95 shadow-lg shadow-slate-200">
             {t('demo_cta')}
           </button>
         </div>
@@ -81,7 +81,7 @@ function App() {
       {/* Hero Section - Bold & Minimal */}
       <header className="px-6 md:px-12 pt-24 pb-16 md:pt-32 md:pb-24 text-center max-w-5xl mx-auto relative overflow-hidden">
         {/* Background Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-from)_0%,_transparent_70%)] from-blue-50/50 to-transparent pointer-events-none -z-10"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-from)_0%,_transparent_70%)] from-emerald-50/50 to-transparent pointer-events-none -z-10"></div>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -90,13 +90,13 @@ function App() {
         >
           <h1 className="text-5xl md:text-8xl font-black text-slate-900 leading-[1.1] mb-8 tracking-tighter">
             {t('hero_title')} <br className="hidden md:block"/>
-            <span className="text-blue-600">{t('hero_title_span')}</span>
+            <span className="text-emerald-600">{t('hero_title_span')}</span>
           </h1>
           <p className="text-lg md:text-2xl text-slate-500 font-medium leading-relaxed mb-12 max-w-2xl mx-auto">
             {t('hero_sub')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button onClick={startDemo} className="w-full sm:w-auto bg-blue-600 text-white px-10 py-4 rounded-2xl font-black text-lg hover:bg-blue-700 transition-all shadow-xl shadow-blue-100 active:scale-95">
+            <button onClick={startDemo} className="w-full sm:w-auto bg-emerald-600 text-white px-10 py-4 rounded-2xl font-black text-lg hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-100 active:scale-95">
               {t('demo_cta')}
             </button>
             <button onClick={handleComingSoon} className="w-full sm:w-auto px-10 py-4 border border-slate-200 rounded-2xl font-black text-lg hover:bg-slate-50 transition-all text-slate-600">
@@ -131,7 +131,7 @@ function App() {
               viewport={{ once: true }}
             >
               <div className="relative z-10">
-                <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition-transform">📄</div>
+                <div className="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition-transform">📄</div>
                 <h3 className="text-3xl md:text-4xl font-black mb-4">{t('feat_formats_title')}</h3>
                 <p className="text-slate-500 text-lg md:text-xl font-medium leading-relaxed max-w-xl">
                   {t('feat_formats_desc')}
@@ -142,29 +142,29 @@ function App() {
                   ))}
                 </div>
               </div>
-              <div className="absolute top-1/2 right-0 -translate-y-1/2 w-1/3 h-full bg-gradient-to-l from-blue-50/50 to-transparent pointer-events-none hidden md:block"></div>
+              <div className="absolute top-1/2 right-0 -translate-y-1/2 w-1/3 h-full bg-gradient-to-l from-emerald-50/50 to-transparent pointer-events-none hidden md:block"></div>
             </motion.div>
 
             {/* Extension Card (Small Card) */}
             <motion.div 
-              className="md:col-span-4 bg-slate-900 text-white p-8 md:p-12 rounded-[2.5rem] border border-slate-800 shadow-2xl hover:shadow-blue-900/20 transition-all group relative overflow-hidden"
+              className="md:col-span-4 bg-slate-900 text-white p-8 md:p-12 rounded-[2.5rem] border border-slate-800 shadow-2xl hover:shadow-emerald-900/20 transition-all group relative overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
               <div className="relative z-10">
-                <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-8">🧩</div>
+                <div className="w-14 h-14 bg-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-8">🧩</div>
                 <h3 className="text-2xl font-black mb-4">{t('feat_extension_title')}</h3>
                 <p className="text-slate-400 text-sm font-medium leading-relaxed mb-8">
                   {t('feat_extension_desc')}
                 </p>
-                <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
+                <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest">
+                  <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
                   Live on Chrome Store
                 </div>
               </div>
-              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-blue-600/10 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-emerald-600/10 rounded-full blur-3xl"></div>
             </motion.div>
 
             {/* Steps - Row 2 */}
@@ -181,8 +181,8 @@ function App() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 + (idx * 0.1) }}
               >
-                <div className="text-sm font-black text-blue-600 mb-6 uppercase tracking-[0.2em] flex items-center gap-2">
-                  <span className="w-6 h-6 bg-blue-50 rounded-lg flex items-center justify-center text-[10px]">{step.id}</span>
+                <div className="text-sm font-black text-emerald-600 mb-6 uppercase tracking-[0.2em] flex items-center gap-2">
+                  <span className="w-6 h-6 bg-emerald-50 rounded-lg flex items-center justify-center text-[10px]">{step.id}</span>
                   {step.icon}
                 </div>
                 <h3 className="text-xl font-black mb-4">{step.title}</h3>
@@ -209,13 +209,13 @@ function App() {
               
               <div className="grid grid-cols-2 gap-12">
                 <div>
-                  <h4 className="text-blue-600 text-5xl font-black mb-2 tracking-tighter">94%</h4>
+                  <h4 className="text-emerald-600 text-5xl font-black mb-2 tracking-tighter">94%</h4>
                   <p className="text-slate-900 font-black text-[10px] uppercase tracking-widest leading-tight">
                     {t('market_pressure_title')}
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-blue-600 text-5xl font-black mb-2 tracking-tighter">3.5</h4>
+                  <h4 className="text-emerald-600 text-5xl font-black mb-2 tracking-tighter">3.5</h4>
                   <p className="text-slate-900 font-black text-[10px] uppercase tracking-widest leading-tight">
                     {t('market_quest_title')}
                   </p>
@@ -225,7 +225,7 @@ function App() {
             
             <div className="bg-slate-50 p-8 md:p-12 rounded-[3rem] border border-slate-100">
                <h3 className="text-xl font-black mb-8 flex items-center gap-3">
-                 <div className="w-1.5 h-6 bg-blue-600 rounded-full"></div>
+                 <div className="w-1.5 h-6 bg-emerald-600 rounded-full"></div>
                  {t('market_chart_title')}
                </h3>
                <div className="h-[300px] w-full">
@@ -236,9 +236,9 @@ function App() {
                      <YAxis stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
                      <Tooltip 
                        contentStyle={{ backgroundColor: '#fff', border: '1px solid #f1f5f9', borderRadius: '16px', color: '#0f172a', fontSize: '12px', fontWeight: 'bold', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }}
-                       cursor={{ fill: 'rgba(37, 99, 235, 0.05)' }}
+                       cursor={{ fill: 'rgba(5, 150, 105, 0.05)' }}
                      />
-                     <Bar dataKey="emissions" fill="#2563eb" radius={[4, 4, 0, 0]} barSize={32} />
+                     <Bar dataKey="emissions" fill="#059669" radius={[4, 4, 0, 0]} barSize={32} />
                    </BarChart>
                  </ResponsiveContainer>
                </div>
@@ -261,19 +261,19 @@ function App() {
           </div>
 
           <div>
-            <h4 className="font-black uppercase tracking-[0.2em] text-[10px] text-blue-600 mb-10">{t('footer_prod')}</h4>
+            <h4 className="font-black uppercase tracking-[0.2em] text-[10px] text-emerald-600 mb-10">{t('footer_prod')}</h4>
             <ul className="space-y-4 text-sm font-bold text-slate-400">
-              <li className="hover:text-blue-600 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
-              <li className="hover:text-blue-600 cursor-pointer transition-colors" onClick={() => navigate('/faq')}>{t('footer_faq')}</li>
-              <li className="hover:text-blue-600 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
+              <li className="hover:text-emerald-600 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
+              <li className="hover:text-emerald-600 cursor-pointer transition-colors" onClick={() => navigate('/faq')}>{t('footer_faq')}</li>
+              <li className="hover:text-emerald-600 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-black uppercase tracking-[0.2em] text-[10px] text-blue-600 mb-10">{t('footer_legal')}</h4>
+            <h4 className="font-black uppercase tracking-[0.2em] text-[10px] text-emerald-600 mb-10">{t('footer_legal')}</h4>
             <ul className="space-y-4 text-sm font-bold text-slate-400">
-              <li className="hover:text-blue-600 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_privacy')}</li>
-              <li className="hover:text-blue-600 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_terms')}</li>
+              <li className="hover:text-emerald-600 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_privacy')}</li>
+              <li className="hover:text-emerald-600 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_terms')}</li>
             </ul>
           </div>
         </div>

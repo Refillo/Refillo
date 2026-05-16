@@ -150,14 +150,14 @@ export default function Upload({ org, onComplete }) {
         {previews.length === 0 && !allDone && (
           <>
             <div
-              style={{ ...s.dropzone, background: dragging ? '#f0fdf4' : '#f8fafc', borderColor: dragging ? '#16a34a' : '#e2e8f0' }}
+              style={{ ...s.dropzone, background: dragging ? '#ecfdf5' : '#f8fafc', borderColor: dragging ? '#059669' : '#e2e8f0' }}
               onDragOver={e => { e.preventDefault(); setDragging(true); }}
               onDragLeave={() => setDragging(false)}
               onDrop={onDrop}
               onClick={() => inputRef.current.click()}
             >
               <div style={{ fontSize: '2.2rem', marginBottom: '0.5rem' }}>📂</div>
-              <p style={{ color: '#16a34a', fontWeight: 700, margin: 0, fontSize: '0.95rem' }}>{t('up_drop')}</p>
+              <p style={{ color: '#059669', fontWeight: 700, margin: 0, fontSize: '0.95rem' }}>{t('up_drop')}</p>
               <p style={{ color: '#94a3b8', fontSize: '0.78rem', margin: '0.25rem 0 0' }}>{t('up_browse')}</p>
               <input ref={inputRef} type="file" accept=".pdf" multiple hidden onChange={e => addFiles(e.target.files)} />
             </div>
@@ -207,7 +207,7 @@ export default function Upload({ org, onComplete }) {
         {/* ── PREVIEW CARDS ── */}
         {previews.length > 0 && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '0.75rem', padding: '0.75rem 1rem', fontSize: '0.85rem', color: '#15803d', fontWeight: 600 }}>
+            <div style={{ background: '#ecfdf5', border: '1px solid #a7f3d0', borderRadius: '0.75rem', padding: '0.75rem 1rem', fontSize: '0.85rem', color: '#047857', fontWeight: 600 }}>
               {t('up_done')}
             </div>
 
@@ -221,7 +221,7 @@ export default function Upload({ org, onComplete }) {
                       Gemini AI · {Math.round((p.data.confidence ?? 0.9) * 100)}% confidence
                     </p>
                   </div>
-                  <span style={{ fontSize: '0.68rem', fontWeight: 700, padding: '0.2rem 0.6rem', borderRadius: '9999px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0' }}>
+                  <span style={{ fontSize: '0.68rem', fontWeight: 700, padding: '0.2rem 0.6rem', borderRadius: '9999px', background: '#ecfdf5', color: '#059669', border: '1px solid #a7f3d0' }}>
                     {p.data.type}
                   </span>
                 </div>
@@ -252,7 +252,7 @@ export default function Upload({ org, onComplete }) {
             ))}
 
             {previews.filter(p => p.status === 'preview').length > 1 && (
-              <button onClick={confirmAll} style={{ ...s.btn, background: '#15803d' }}>
+              <button onClick={confirmAll} style={{ ...s.btn, background: '#047857' }}>
                 {t('up_confirm_all')}
               </button>
             )}
@@ -284,7 +284,7 @@ function DataRow({ label, value, highlight }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.35rem 0', borderBottom: '1px solid #f8fafc' }}>
       <span style={{ fontSize: '0.78rem', color: '#64748b' }}>{label}</span>
-      <span style={{ fontSize: '0.8rem', fontWeight: 700, color: highlight ? '#16a34a' : '#1e293b' }}>{value ?? '—'}</span>
+      <span style={{ fontSize: '0.8rem', fontWeight: 700, color: highlight ? '#059669' : '#1e293b' }}>{value ?? '—'}</span>
     </div>
   );
 }
@@ -292,7 +292,7 @@ function DataRow({ label, value, highlight }) {
 const s = {
   page:       { minHeight: '100vh', background: '#f8fafc', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', fontFamily: 'sans-serif' },
   card:       { background: 'white', borderRadius: '1.5rem', padding: '2.5rem', width: '100%', maxWidth: '560px', boxShadow: '0 4px 24px rgba(0,0,0,0.07)' },
-  badge:      { display: 'inline-block', background: '#f0fdf4', color: '#16a34a', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.7rem', borderRadius: '9999px', marginBottom: '1rem', border: '1px solid #bbf7d0' },
+  badge:      { display: 'inline-block', background: '#ecfdf5', color: '#059669', fontSize: '0.72rem', fontWeight: 700, padding: '0.2rem 0.7rem', borderRadius: '9999px', marginBottom: '1rem', border: '1px solid #a7f3d0' },
   title:      { fontSize: '1.5rem', fontWeight: 800, color: '#0f172a', margin: '0 0 0.4rem' },
   sub:        { color: '#64748b', fontSize: '0.88rem', marginBottom: '1.5rem', lineHeight: 1.6 },
   dropzone:   { border: '2px dashed', borderRadius: '1rem', padding: '2rem', textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s' },
@@ -300,9 +300,9 @@ const s = {
   docChip:    { display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#f8fafc', borderRadius: '0.5rem', padding: '0.5rem 0.6rem' },
   fileRow:    { display: 'flex', alignItems: 'center', background: '#f8fafc', borderRadius: '0.5rem', padding: '0.5rem 0.75rem' },
   removeBtn:  { background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', fontSize: '0.8rem' },
-  btn:        { width: '100%', background: '#16a34a', color: 'white', border: 'none', borderRadius: '0.75rem', padding: '0.85rem', fontSize: '0.95rem', fontWeight: 700, cursor: 'pointer' },
+  btn:        { width: '100%', background: '#059669', color: 'white', border: 'none', borderRadius: '0.75rem', padding: '0.85rem', fontSize: '0.95rem', fontWeight: 700, cursor: 'pointer' },
   previewCard:{ background: '#f8fafc', borderRadius: '1rem', padding: '1.15rem', border: '1px solid #e2e8f0' },
   dataGrid:   { display: 'flex', flexDirection: 'column' },
-  confirmBtn: { flex: 1, background: '#16a34a', color: 'white', border: 'none', borderRadius: '0.6rem', padding: '0.65rem', fontSize: '0.83rem', fontWeight: 700, cursor: 'pointer' },
+  confirmBtn: { flex: 1, background: '#059669', color: 'white', border: 'none', borderRadius: '0.6rem', padding: '0.65rem', fontSize: '0.83rem', fontWeight: 700, cursor: 'pointer' },
   discardBtn: { background: 'white', color: '#64748b', border: '1px solid #e2e8f0', borderRadius: '0.6rem', padding: '0.65rem 1rem', fontSize: '0.83rem', fontWeight: 600, cursor: 'pointer' },
 };

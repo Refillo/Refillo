@@ -50,18 +50,18 @@ export default function About() {
           </p>
         </div>
         <div>
-          <h4 className="font-black uppercase tracking-[0.2em] text-[10px] text-blue-600 mb-10">{t('footer_prod')}</h4>
+          <h4 className="font-black uppercase tracking-[0.2em] text-[10px] text-emerald-600 mb-10">{t('footer_prod')}</h4>
           <ul className="space-y-4 text-sm font-bold text-slate-400">
-            <li className="hover:text-blue-600 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
-            <li className="hover:text-blue-600 cursor-pointer transition-colors" onClick={() => navigate('/faq')}>{t('footer_faq')}</li>
-            <li className="hover:text-blue-600 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
+            <li className="hover:text-emerald-600 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
+            <li className="hover:text-emerald-600 cursor-pointer transition-colors" onClick={() => navigate('/faq')}>{t('footer_faq')}</li>
+            <li className="hover:text-emerald-600 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
           </ul>
         </div>
         <div>
-          <h4 className="font-black uppercase tracking-[0.2em] text-[10px] text-blue-600 mb-10">{t('footer_legal')}</h4>
+          <h4 className="font-black uppercase tracking-[0.2em] text-[10px] text-emerald-600 mb-10">{t('footer_legal')}</h4>
           <ul className="space-y-4 text-sm font-bold text-slate-400">
-            <li className="hover:text-blue-600 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_privacy')}</li>
-            <li className="hover:text-blue-600 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_terms')}</li>
+            <li className="hover:text-emerald-600 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_privacy')}</li>
+            <li className="hover:text-emerald-600 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_terms')}</li>
           </ul>
         </div>
       </div>
@@ -80,9 +80,9 @@ export default function About() {
           <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tighter">Refillo</span>
         </div>
         <div className="flex gap-4 md:gap-8 items-center">
-          <button onClick={() => setLang(lang === 'it' ? 'en' : 'it')} className="text-[10px] font-black text-slate-400 hover:text-blue-600 transition-colors uppercase tracking-widest">{lang}</button>
-          <button onClick={() => navigate('/')} className="text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors uppercase tracking-wider">{t('nav_home')}</button>
-          <button onClick={startDemo} className="bg-slate-900 text-white px-5 md:px-7 py-2.5 rounded-full text-xs font-black hover:bg-blue-600 transition-all active:scale-95 shadow-lg shadow-slate-200">{t('demo_cta')}</button>
+          <button onClick={() => setLang(lang === 'it' ? 'en' : 'it')} className="text-[10px] font-black text-slate-400 hover:text-emerald-600 transition-colors uppercase tracking-widest">{lang}</button>
+          <button onClick={() => navigate('/')} className="text-xs font-bold text-slate-600 hover:text-emerald-600 transition-colors uppercase tracking-wider">{t('nav_home')}</button>
+          <button onClick={startDemo} className="bg-slate-900 text-white px-5 md:px-7 py-2.5 rounded-full text-xs font-black hover:bg-emerald-600 transition-all active:scale-95 shadow-lg shadow-slate-200">{t('demo_cta')}</button>
         </div>
       </nav>
 
@@ -90,7 +90,7 @@ export default function About() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <h1 className="text-5xl md:text-8xl font-black text-slate-900 leading-[1.1] mb-8 tracking-tighter">
             {t('about_mission_title')} <br className="hidden md:block"/>
-            <span className="text-blue-600">{t('about_mission_span')}</span>
+            <span className="text-emerald-600">{t('about_mission_span')}</span>
           </h1>
           <p className="text-lg md:text-2xl text-slate-500 font-medium leading-relaxed max-w-2xl mx-auto">{t('about_mission_desc')}</p>
         </motion.div>
@@ -110,7 +110,7 @@ export default function About() {
              <div className="text-8xl mb-8">🇮🇹</div>
              <h3 className="text-3xl font-black text-slate-900 mb-4">Made in Italy</h3>
              <p className="text-slate-400 font-medium text-lg">{lang === 'it' ? 'Sviluppato con passione per le PMI italiane.' : 'Developed with passion for Italian SMEs.'}</p>
-             <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl"></div>
+             <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl"></div>
           </motion.div>
         </div>
       </section>
@@ -125,13 +125,13 @@ export default function About() {
             {team.map((member, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all group overflow-hidden relative">
                 <div className="relative mb-8 flex justify-center">
-                  <div className="w-32 h-32 rounded-3xl overflow-hidden shadow-2xl shadow-blue-100 ring-4 ring-slate-50 transform group-hover:scale-105 transition-transform duration-500">
+                  <div className="w-32 h-32 rounded-3xl overflow-hidden shadow-2xl shadow-emerald-100 ring-4 ring-slate-50 transform group-hover:scale-105 transition-transform duration-500">
                     <img src={member.photo} alt={member.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
                   </div>
                 </div>
                 <div className="text-center">
                   <h3 className="text-2xl font-black text-slate-900 mb-2">{member.name}</h3>
-                  <p className="text-blue-600 font-black text-[10px] mb-6 uppercase tracking-widest">{member.role}</p>
+                  <p className="text-emerald-600 font-black text-[10px] mb-6 uppercase tracking-widest">{member.role}</p>
                   
                   <div className="space-y-1 opacity-50">
                     <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Bsc management engineering</p>
@@ -142,7 +142,7 @@ export default function About() {
                   href={member.linkedin} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="absolute top-6 right-6 text-slate-300 hover:text-blue-600 transition-colors"
+                  className="absolute top-6 right-6 text-slate-300 hover:text-emerald-600 transition-colors"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
                 </a>

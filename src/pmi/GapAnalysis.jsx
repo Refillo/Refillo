@@ -28,7 +28,7 @@ export default function GapAnalysis({ org, onRestart }) {
     </div>
   );
 
-  const scoreColor = data.score >= 70 ? '#16a34a' : data.score >= 40 ? '#d97706' : '#dc2626';
+  const scoreColor = data.score >= 70 ? '#059669' : data.score >= 40 ? '#d97706' : '#dc2626';
   const scoreLabel = data.score >= 70 ? t('gap_good') : data.score >= 40 ? t('gap_partial') : t('gap_low');
 
   return (
@@ -60,7 +60,7 @@ export default function GapAnalysis({ org, onRestart }) {
         <div style={styles.grid}>
           {/* Coperti */}
           <div style={styles.panel}>
-            <h3 style={{ ...styles.panelTitle, color: '#16a34a' }}>{t('gap_covered')} ({data.covered.length})</h3>
+            <h3 style={{ ...styles.panelTitle, color: '#059669' }}>{t('gap_covered')} ({data.covered.length})</h3>
             {data.covered.length === 0
               ? <p style={styles.empty}>{t('gap_none_covered')}</p>
               : data.covered.map(k => (
@@ -74,7 +74,7 @@ export default function GapAnalysis({ org, onRestart }) {
                       {k.value?.toLocaleString()} <span style={{ color: '#94a3b8', fontFamily: 'sans-serif', fontWeight: 400 }}>{k.unit}</span>
                     </p>
                     {k.confidence && (
-                      <p style={{ margin: 0, fontSize: '0.7rem', color: '#16a34a' }}>
+                      <p style={{ margin: 0, fontSize: '0.7rem', color: '#059669' }}>
                         AI {(k.confidence * 100).toFixed(0)}% conf.
                       </p>
                     )}
@@ -102,8 +102,8 @@ export default function GapAnalysis({ org, onRestart }) {
 
             {data.missing.length > 0 && (
               <div style={styles.aiTip}>
-                <p style={{ margin: '0 0 0.4rem', fontSize: '0.75rem', fontWeight: 700, color: '#4338ca' }}>{t('gap_ai_hint')}</p>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#3730a3', lineHeight: 1.5 }}>
+                <p style={{ margin: '0 0 0.4rem', fontSize: '0.75rem', fontWeight: 700, color: '#047857' }}>{t('gap_ai_hint')}</p>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: '#065f46', lineHeight: 1.5 }}>
                   {data.missing.map(m => m.label).join(', ')}.{' '}
                   {t('gap_prev')}
                 </p>
@@ -144,7 +144,7 @@ const styles = {
   page: { minHeight: '100vh', background: '#f8fafc', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '2rem', fontFamily: 'sans-serif' },
   container: { width: '100%', maxWidth: '800px' },
   header: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' },
-  badge: { display: 'inline-block', background: '#eef2ff', color: '#4f46e5', fontSize: '0.75rem', fontWeight: 700, padding: '0.25rem 0.75rem', borderRadius: '9999px', marginBottom: '0.5rem' },
+  badge: { display: 'inline-block', background: '#ecfdf5', color: '#059669', fontSize: '0.75rem', fontWeight: 700, padding: '0.25rem 0.75rem', borderRadius: '9999px', marginBottom: '0.5rem' },
   title: { fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', margin: '0 0 0.25rem' },
   restartBtn: { background: 'white', border: '1px solid #e2e8f0', borderRadius: '0.75rem', padding: '0.6rem 1.2rem', fontSize: '0.875rem', fontWeight: 600, color: '#334155', cursor: 'pointer' },
   scoreCard: { background: 'white', borderRadius: '1.25rem', padding: '1.75rem 2rem', marginBottom: '1.5rem', border: '1px solid #f1f5f9', boxShadow: '0 2px 12px rgba(0,0,0,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
@@ -155,8 +155,8 @@ const styles = {
   kpiLabel: { margin: '0 0 0.15rem', fontSize: '0.85rem', fontWeight: 600, color: '#334155' },
   kpiTag: { margin: 0, fontSize: '0.7rem', color: '#94a3b8', fontFamily: 'monospace' },
   missingBadge: { fontSize: '0.65rem', fontWeight: 700, background: '#fee2e2', color: '#dc2626', padding: '0.2rem 0.5rem', borderRadius: '0.4rem', whiteSpace: 'nowrap' },
-  aiTip: { background: '#eef2ff', borderRadius: '0.75rem', padding: '0.875rem', marginTop: '1rem' },
+  aiTip: { background: '#ecfdf5', borderRadius: '0.75rem', padding: '0.875rem', marginTop: '1rem' },
   empty: { color: '#94a3b8', fontSize: '0.875rem', textAlign: 'center', padding: '1rem 0' },
-  btnPrimary: { flex: 1, background: '#4f46e5', color: 'white', border: 'none', borderRadius: '0.75rem', padding: '0.85rem', fontSize: '1rem', fontWeight: 700, cursor: 'pointer' },
+  btnPrimary: { flex: 1, background: '#059669', color: 'white', border: 'none', borderRadius: '0.75rem', padding: '0.85rem', fontSize: '1rem', fontWeight: 700, cursor: 'pointer' },
   btnSecondary: { background: 'white', color: '#334155', border: '1px solid #e2e8f0', borderRadius: '0.75rem', padding: '0.85rem 1.5rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' },
 };

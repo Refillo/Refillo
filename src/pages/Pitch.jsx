@@ -47,18 +47,18 @@ export default function Pitch() {
           </div>
         </div>
         <div>
-          <h4 className="font-black uppercase tracking-[0.2em] text-xs text-blue-500 mb-10">{t('footer_prod')}</h4>
+          <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_prod')}</h4>
           <ul className="space-y-5 text-base font-bold text-slate-400 text-center md:text-left">
-            <li className="hover:text-blue-500 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
-            <li className="hover:text-blue-500 cursor-pointer transition-colors" onClick={() => navigate('/faq')}>{t('footer_faq')}</li>
-            <li className="hover:text-blue-500 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
+            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
+            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/faq')}>{t('footer_faq')}</li>
+            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
           </ul>
         </div>
         <div>
-          <h4 className="font-black uppercase tracking-[0.2em] text-xs text-blue-500 mb-10 text-center md:text-left">{t('footer_legal')}</h4>
+          <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10 text-center md:text-left">{t('footer_legal')}</h4>
           <ul className="space-y-5 text-base font-bold text-slate-400 text-center md:text-left">
-            <li className="hover:text-blue-500 cursor-pointer transition-colors" onClick={() => alert(t('coming_soon'))}>{t('footer_privacy')}</li>
-            <li className="hover:text-blue-500 cursor-pointer transition-colors" onClick={() => alert(t('coming_soon'))}>{t('footer_terms')}</li>
+            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => alert(t('coming_soon'))}>{t('footer_privacy')}</li>
+            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => alert(t('coming_soon'))}>{t('footer_terms')}</li>
           </ul>
         </div>
       </div>
@@ -78,7 +78,7 @@ export default function Pitch() {
         </div>
         <div className="flex gap-4 md:gap-6">
           <button onClick={() => navigate('/')} className="text-xs md:text-sm font-bold text-slate-400 hover:text-white transition-colors">{t('nav_home')}</button>
-          <button onClick={startDemo} className="bg-blue-600 text-white px-4 md:px-8 py-2 rounded-xl text-xs md:text-sm font-black shadow-lg shadow-blue-100 hover:bg-blue-700 transition-all">{t('demo_cta')}</button>
+          <button onClick={startDemo} className="bg-emerald-600 text-white px-4 md:px-8 py-2 rounded-xl text-xs md:text-sm font-black shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition-all">{t('demo_cta')}</button>
         </div>
       </nav>
 

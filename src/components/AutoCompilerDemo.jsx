@@ -4,8 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 const DATA_POINTS = [
-  { id: 1, label: 'CO2 Scope 1: 125t', color: 'bg-blue-500' },
-  { id: 2, label: 'ISO 14001: Valid', color: 'bg-blue-500' },
+  { id: 1, label: 'CO2 Scope 1: 125t', color: 'bg-emerald-500' },
+  { id: 2, label: 'ISO 14001: Valid', color: 'bg-emerald-500' },
   { id: 3, label: 'Energy: 450MWh', color: 'bg-amber-500' },
   { id: 4, label: 'Waste: 12t recycled', color: 'bg-purple-500' },
   { id: 5, label: 'Gender Pay Gap: 2%', color: 'bg-rose-500' },
@@ -53,7 +53,7 @@ export default function AutoCompilerDemo() {
         </div>
         {/* Scanning line - Thin and elegant */}
         <motion.div 
-          className="absolute left-0 right-0 h-[1px] bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+          className="absolute left-0 right-0 h-[1px] bg-emerald-500 shadow-[0_0_8px_rgba(16, 185, 129,0.5)]"
           animate={{ top: ['10%', '90%', '10%'] }}
           transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
         />
@@ -66,7 +66,7 @@ export default function AutoCompilerDemo() {
           animate={{ scale: [1, 1.05, 1] }}
           transition={{ duration: 4, repeat: Infinity }}
         >
-          <span className="text-blue-400">✧</span>
+          <span className="text-emerald-400">✧</span>
         </motion.div>
         <div className="mt-4 text-slate-900 font-black text-[10px] uppercase tracking-[0.3em]">AI Engine</div>
       </div>
@@ -99,7 +99,7 @@ export default function AutoCompilerDemo() {
         <div className="relative w-48 h-64">
           {[
             { label: 'VSME', color: 'bg-slate-900', text: 'text-white', delay: 0 },
-            { label: 'EcoVadis', color: 'bg-blue-600', text: 'text-white', delay: 1 },
+            { label: 'EcoVadis', color: 'bg-emerald-600', text: 'text-white', delay: 1 },
             { label: 'Enel Portal', color: 'bg-teal-500', text: 'text-white', delay: 2 },
           ].map((form, i) => (
             <motion.div
@@ -151,7 +151,7 @@ export default function AutoCompilerDemo() {
       {[...Array(10)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-1 h-1 bg-blue-500 rounded-full"
+          className="absolute w-1 h-1 bg-emerald-500 rounded-full"
           initial={{ 
             x: Math.random() * 800, 
             y: Math.random() * 400,

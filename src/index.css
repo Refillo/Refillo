@@ -6,8 +6,8 @@
     --text-h: #0f172a; /* slate-900 */
     --bg: #ffffff;
     --border: #f1f5f9; /* slate-100 */
-    --accent: #2563eb; /* blue-600 - Electric Blue */
-    --accent-dark: #1e40af; /* blue-800 */
+    --accent: #10b981; /* emerald-500 - Primary Green */
+    --accent-dark: #059669; /* emerald-600 */
   }
 
   body {
