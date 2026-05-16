@@ -98,13 +98,13 @@ export default function AutoCompilerDemo() {
         
         <div className="relative w-56 h-72">
           {[
-            { label: 'Standard ESRS', color: 'bg-white', border: 'border-slate-100', delay: 0 },
-            { label: 'EcoVadis V3', color: 'bg-slate-50', border: 'border-emerald-100', delay: 1 },
-            { label: 'Enterprise Portal', color: 'bg-slate-900', border: 'border-slate-800', text: 'text-white', delay: 2 },
+            { label: 'Standard ESRS', color: 'bg-white', border: 'border-slate-100', text: 'text-slate-900', delay: 0 },
+            { label: 'EcoVadis V3', color: 'bg-emerald-50/50', border: 'border-emerald-100', text: 'text-emerald-900', delay: 1 },
+            { label: 'Enterprise Portal', color: 'bg-white', border: 'border-emerald-500/20', text: 'text-emerald-600', delay: 2 },
           ].map((form, i) => (
             <motion.div
               key={form.label}
-              className={`absolute inset-0 ${form.color} rounded-2xl p-6 shadow-2xl border ${form.border} flex flex-col gap-3`}
+              className={`absolute inset-0 ${form.color} rounded-2xl p-6 shadow-xl border ${form.border} flex flex-col gap-3 backdrop-blur-sm`}
               style={{ zIndex: 10 - i }}
               initial={{ x: 50, opacity: 0 }}
               animate={{ 
@@ -116,21 +116,21 @@ export default function AutoCompilerDemo() {
               transition={{ duration: 0.8, delay: form.delay * 0.2 }}
             >
               <div className="flex justify-between items-center mb-2">
-                <span className={`text-[10px] font-black ${form.text || 'text-slate-900'} uppercase tracking-widest`}>{form.label}</span>
-                <div className={`w-2 h-2 rounded-full ${form.text ? 'bg-emerald-500' : 'bg-slate-200'} animate-pulse`}></div>
+                <span className={`text-[10px] font-black ${form.text} uppercase tracking-widest`}>{form.label}</span>
+                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
               </div>
               
               <div className="space-y-3 mt-2">
-                <div className={`h-1 ${form.text ? 'bg-white/10' : 'bg-slate-100'} rounded-full overflow-hidden`}>
-                  <motion.div className={`h-full ${form.text ? 'bg-emerald-500/40' : 'bg-emerald-500/30'}`} animate={{ width: ['10%', '95%', '10%'] }} transition={{ duration: 5, repeat: Infinity, delay: i * 0.4 }} />
+                <div className="h-1 bg-slate-100 rounded-full overflow-hidden">
+                  <motion.div className="h-full bg-emerald-500/30" animate={{ width: ['10%', '95%', '10%'] }} transition={{ duration: 5, repeat: Infinity, delay: i * 0.4 }} />
                 </div>
-                <div className={`h-1 ${form.text ? 'bg-white/10' : 'bg-slate-100'} rounded-full overflow-hidden`}>
-                  <motion.div className={`h-full ${form.text ? 'bg-emerald-500/40' : 'bg-emerald-500/30'}`} animate={{ width: ['30%', '80%', '30%'] }} transition={{ duration: 5, repeat: Infinity, delay: i * 0.6 }} />
+                <div className="h-1 bg-slate-100 rounded-full overflow-hidden">
+                  <motion.div className="h-full bg-emerald-500/30" animate={{ width: ['30%', '80%', '30%'] }} transition={{ duration: 5, repeat: Infinity, delay: i * 0.6 }} />
                 </div>
               </div>
 
               <div className="mt-auto flex justify-end">
-                <div className={`px-3 py-1 rounded-lg ${form.text ? 'bg-white/5' : 'bg-slate-50'} text-[8px] font-black ${form.text ? 'text-emerald-500' : 'text-slate-400'} uppercase tracking-[0.2em]`}>Ready to Submit</div>
+                <div className="px-3 py-1 rounded-lg bg-emerald-50 text-[8px] font-black text-emerald-600 uppercase tracking-[0.2em] border border-emerald-100">Ready to Submit</div>
               </div>
             </motion.div>
           ))}
