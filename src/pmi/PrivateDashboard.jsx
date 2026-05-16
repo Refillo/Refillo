@@ -102,14 +102,14 @@ const ActionCard = ({ title, sub, icon, onClick, primary }) => (
     onClick={onClick}
     className={`p-8 rounded-3xl cursor-pointer transition-all hover:-translate-y-2 shadow-sm hover:shadow-2xl group border ${
       primary 
-        ? 'bg-emerald-600 text-white shadow-emerald-100 border-emerald-500' 
-        : 'bg-white text-slate-900 border-slate-100 hover:border-emerald-200'
+        ? 'bg-blue-600 text-white shadow-blue-100 border-blue-500' 
+        : 'bg-white text-slate-900 border-slate-100 hover:border-blue-200'
     }`}
   >
     <div className={`text-4xl mb-6 transform transition-transform group-hover:scale-110 ${primary ? 'opacity-100' : 'opacity-80'}`}>{icon}</div>
     <h3 className="text-xl font-black mb-2 leading-tight">{title}</h3>
-    <p className={`text-sm leading-relaxed ${primary ? 'text-emerald-50' : 'text-slate-500'}`}>{sub}</p>
-    <div className={`mt-6 flex items-center gap-2 text-sm font-black ${primary ? 'text-white' : 'text-emerald-600'}`}>
+    <p className={`text-sm leading-relaxed ${primary ? 'text-blue-50' : 'text-slate-500'}`}>{sub}</p>
+    <div className={`mt-6 flex items-center gap-2 text-sm font-black ${primary ? 'text-white' : 'text-blue-600'}`}>
       Inizia ora <span className="text-lg transition-transform group-hover:translate-x-1">→</span>
     </div>
   </div>
@@ -162,9 +162,9 @@ export default function PrivateDashboard({ org }) {
   const carbonIntensity = Math.round(totalCO2kg / revenue_k);
 
   const chartData = [
-    { name: 'Scope 1', value: Math.round(s1), unit: 'tCO₂e', color: '#059669' },
-    { name: 'Scope 2', value: Math.round(s2 < 10 ? s2 * 100 : s2), unit: 'tCO₂e', color: '#34d399' },
-    { name: 'Intensità C.', value: carbonIntensity, unit: 'kg/€1k', color: '#6ee7b7' },
+    { name: 'Scope 1', value: Math.round(s1), unit: 'tCO₂e', color: '#1d4ed8' },
+    { name: 'Scope 2', value: Math.round(s2 < 10 ? s2 * 100 : s2), unit: 'tCO₂e', color: '#3b82f6' },
+    { name: 'Intensità C.', value: carbonIntensity, unit: 'kg/€1k', color: '#60a5fa' },
   ];
 
   const handleDownload = (format) => {
@@ -173,14 +173,14 @@ export default function PrivateDashboard({ org }) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans">
+    <div className="min-h-screen bg-white font-sans text-slate-900">
       {/* Private Navbar */}
-      <nav className="flex justify-between items-center px-12 py-6 bg-white border-b border-slate-100 sticky top-0 z-50">
+      <nav className="flex justify-between items-center px-12 py-5 bg-white border-b border-slate-100 sticky top-0 z-50">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
-          <img src="logo.png" alt="Refillo Logo" className="h-10 w-auto" />
+          <img src="logo.png" alt="Refillo Logo" className="h-9 w-auto" />
           <span className="text-2xl font-black text-slate-900 tracking-tighter">Refillo</span>
-          <div className="ml-4 flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-100">
-            <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+          <div className="ml-4 flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-700 rounded-full border border-blue-100">
+            <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
             <span className="text-[10px] font-black uppercase tracking-widest">{t('dash_private')}</span>
           </div>
         </div>
@@ -189,7 +189,7 @@ export default function PrivateDashboard({ org }) {
             <p className="text-sm font-black text-slate-900">{org?.name}</p>
             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">{org?.sector}</p>
           </div>
-          <div className="w-10 h-10 bg-emerald-600 rounded-2xl flex items-center justify-center font-black text-white shadow-lg shadow-emerald-100 transform rotate-3">
+          <div className="w-10 h-10 bg-slate-900 rounded-2xl flex items-center justify-center font-black text-white shadow-xl transform rotate-3">
             {org?.name?.[0]}
           </div>
         </div>
@@ -201,10 +201,10 @@ export default function PrivateDashboard({ org }) {
             <h1 className="text-4xl font-black text-slate-900 tracking-tight">{t('dash_title')}</h1>
             <p className="text-slate-500 mt-2 font-medium">{t('dash_sub')}</p>
           </div>
-          <div className="bg-white p-2 rounded-2xl border border-slate-100 flex gap-2">
+          <div className="bg-slate-50 p-2 rounded-2xl border border-slate-100 flex gap-2">
             <button 
               onClick={handleComingSoon}
-              className="px-4 py-2 text-xs font-black uppercase tracking-widest text-slate-400 hover:text-emerald-600 transition-colors"
+              className="px-4 py-2 text-xs font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors"
             >
               {t('dash_export_excel')}
             </button>
@@ -217,103 +217,105 @@ export default function PrivateDashboard({ org }) {
           </div>
         </header>
 
-        {/* Browser Extension Hint */}
-        <div className="mb-8 p-4 bg-indigo-600 rounded-2xl flex items-center justify-between text-white shadow-xl shadow-indigo-100">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-xl">🧩</div>
-            <p className="font-bold text-sm md:text-base">
+        {/* Browser Extension Hint - Blue Gradient */}
+        <div className="mb-8 p-6 bg-gradient-to-r from-blue-600 to-blue-700 rounded-[2rem] flex items-center justify-between text-white shadow-xl shadow-blue-100">
+          <div className="flex items-center gap-6">
+            <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-2xl">🧩</div>
+            <p className="font-bold text-lg">
               {t('dash_extension_hint')}
             </p>
           </div>
-          <button className="bg-white text-indigo-600 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-indigo-50 transition-colors">
+          <button className="bg-white text-blue-600 px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-blue-50 transition-all active:scale-95 shadow-lg">
             Install Extension
           </button>
         </div>
 
-        {/* Three-Level Onboarding Badges */}
+        {/* Three-Level Onboarding Badges - Bento Style */}
         <div className="grid grid-cols-3 gap-6 mb-12">
-          <button 
-            onClick={() => navigate('/pmi/upload', { state: { org, phase: 'upload' } })}
-            className="flex flex-col items-center p-6 bg-white border border-slate-100 rounded-3xl hover:border-emerald-500 hover:shadow-xl transition-all group"
-          >
-            <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">🛡️</div>
-            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Livello 1</span>
-            <span className="text-sm font-black text-slate-900">{t('qw_nav_upload')}</span>
-          </button>
-          
-          <button 
-            onClick={() => navigate('/pmi/setup', { state: { org, phase: 'vsme' } })}
-            className="flex flex-col items-center p-6 bg-white border border-slate-100 rounded-3xl hover:border-emerald-500 hover:shadow-xl transition-all group"
-          >
-            <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">📊</div>
-            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Livello 2</span>
-            <span className="text-sm font-black text-slate-900">{t('qw_nav_vsme')}</span>
-          </button>
-
-          <button 
-            onClick={() => navigate('/pmi/setup', { state: { org, phase: 'predictive' } })}
-            className="flex flex-col items-center p-6 bg-white border border-slate-100 rounded-3xl hover:border-emerald-500 hover:shadow-xl transition-all group"
-          >
-            <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">🔮</div>
-            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Livello 3</span>
-            <span className="text-sm font-black text-slate-900">{t('qw_nav_predictive')}</span>
-          </button>
+          {[
+            { id: '1', title: t('qw_nav_upload'), icon: '🛡️', phase: 'upload', route: '/pmi/upload' },
+            { id: '2', title: t('qw_nav_vsme'), icon: '📊', phase: 'vsme', route: '/pmi/setup' },
+            { id: '3', title: t('qw_nav_predictive'), icon: '🔮', phase: 'predictive', route: '/pmi/setup' },
+          ].map((step) => (
+            <button 
+              key={step.id}
+              onClick={() => navigate(step.route, { state: { org, phase: step.phase } })}
+              className="flex flex-col items-center p-8 bg-white border border-slate-100 rounded-[2rem] hover:border-blue-500 hover:shadow-2xl transition-all group"
+            >
+              <div className="w-14 h-14 bg-slate-50 text-slate-400 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
+                {step.icon}
+              </div>
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Level {step.id}</span>
+              <span className="text-base font-black text-slate-900">{step.title}</span>
+            </button>
+          ))}
         </div>
 
-        {/* Existing Reply Card (Simplified) */}
+        {/* Existing Reply Card - Primary Blue */}
         <div className="mb-16">
-          <ActionCard
-            primary
-            icon="📋"
-            title={t('dash_reply')}
-            sub={t('dash_reply_sub')}
+          <div 
             onClick={() => navigate('/pmi/questionnaire')}
-          />
+            className="p-10 rounded-[2.5rem] cursor-pointer transition-all hover:-translate-y-2 shadow-sm hover:shadow-2xl group border bg-blue-600 text-white shadow-blue-100 border-blue-500 relative overflow-hidden"
+          >
+            <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
+              <div className="flex-1">
+                <div className="text-4xl mb-6">📋</div>
+                <h3 className="text-3xl font-black mb-3 leading-tight">{t('dash_reply')}</h3>
+                <p className="text-blue-100 text-lg font-medium leading-relaxed max-w-xl">{t('dash_reply_sub')}</p>
+              </div>
+              <div className="bg-white/10 p-6 rounded-[2rem] backdrop-blur-md border border-white/20">
+                <div className="flex items-center gap-4 text-sm font-black text-white">
+                  Start Analysis <span className="text-2xl transition-transform group-hover:translate-x-2">→</span>
+                </div>
+              </div>
+            </div>
+            <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+          </div>
         </div>
 
-        {/* Data Preview */}
+        {/* Data Preview - High Contrast */}
         <div className="grid grid-cols-3 gap-8">
-          <div className="col-span-2 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden">
-            <div className="flex justify-between items-center mb-8">
-              <h3 className="text-xl font-black text-slate-900">{t('dash_ghg')}</h3>
-              <div className="flex gap-4">
+          <div className="col-span-2 bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm relative overflow-hidden">
+            <div className="flex justify-between items-center mb-10">
+              <h3 className="text-2xl font-black text-slate-900">{t('dash_ghg')}</h3>
+              <div className="flex gap-6">
                 {[
-                  { color: '#059669', label: 'Scope 1' },
-                  { color: '#34d399', label: 'Scope 2' },
-                  { color: '#6ee7b7', label: 'Intensità C.' },
+                  { color: '#0f172a', label: 'Scope 1' },
+                  { color: '#2563eb', label: 'Scope 2' },
+                  { color: '#94a3b8', label: 'Intensity' },
                 ].map(l => (
-                  <div key={l.label} className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 rounded-full" style={{ background: l.color }}></div>
-                    <span className="text-[10px] font-black text-slate-400 uppercase">{l.label}</span>
+                  <div key={l.label} className="flex items-center gap-2">
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ background: l.color }}></div>
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{l.label}</span>
                   </div>
                 ))}
               </div>
             </div>
             {loading ? (
-              <div className="h-[250px] flex items-center justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-4 border-emerald-600 border-t-transparent"></div>
+              <div className="h-[280px] flex items-center justify-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-4 border-blue-600 border-t-transparent"></div>
               </div>
             ) : (
               <ResponsiveContainer width="100%" height={280}>
                 <BarChart data={chartData} margin={{ top: 0, right: 0, left: -25, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fontWeight: 800, fill: '#64748b' }} />
-                  <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fontWeight: 600, fill: '#cbd5e1' }} />
+                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fontWeight: 900, fill: '#0f172a' }} />
+                  <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fontWeight: 700, fill: '#94a3b8' }} />
                   <Tooltip
                     cursor={{ fill: '#f8fafc' }}
-                    contentStyle={{ borderRadius: '1.25rem', border: 'none', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)', padding: '1rem' }}
+                    contentStyle={{ borderRadius: '1.25rem', border: 'none', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)', padding: '1rem' }}
                     formatter={(value, name) => {
                       const entry = chartData.find(d => d.name === name);
                       return [`${value} ${entry?.unit || ''}`, name];
                     }}
                   />
-                  <Bar dataKey="value" radius={[6, 6, 0, 0]} barSize={40}
+                  <Bar dataKey="value" radius={[8, 8, 0, 0]} barSize={48}
                     label={false}
-                    fill="#059669"
+                    fill="#2563eb"
                     shape={(props) => {
-                      const colors = ['#059669', '#34d399', '#6ee7b7'];
+                      const colors = ['#0f172a', '#2563eb', '#cbd5e1'];
                       const idx = chartData.findIndex(d => d.name === props.name);
-                      return <rect {...props} fill={colors[idx] || '#059669'} rx={6} ry={6} />;
+                      return <rect {...props} fill={colors[idx] || '#2563eb'} rx={8} ry={8} />;
                     }}
                   />
                 </BarChart>
@@ -321,35 +323,40 @@ export default function PrivateDashboard({ org }) {
             )}
           </div>
 
-          <div className="bg-emerald-900 p-8 rounded-3xl text-white relative overflow-hidden flex flex-col justify-between shadow-2xl shadow-emerald-200/50">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/20 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+          <div className="bg-slate-900 p-10 rounded-[2.5rem] text-white relative overflow-hidden flex flex-col justify-between shadow-2xl">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/20 rounded-full -mr-16 -mt-16 blur-2xl"></div>
             
             <div>
-              <p className="text-emerald-400 text-xs font-black uppercase tracking-widest mb-2">{t('dash_profile_completeness')}</p>
-              <h3 className="text-6xl font-black text-white">75<span className="text-emerald-500">%</span></h3>
+              <p className="text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4">{t('dash_profile_completeness')}</p>
+              <h3 className="text-7xl font-black text-white tracking-tighter">75<span className="text-blue-500">%</span></h3>
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div className="flex justify-between items-end">
-                <span className="text-[10px] font-bold text-emerald-300 uppercase">{t('dash_form_coverage')}</span>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t('dash_form_coverage')}</span>
                 <span className="text-xs font-black text-white">{t('dash_ready_at')} 75%</span>
               </div>
-              <div className="h-2 bg-emerald-800 rounded-full overflow-hidden">
-                <div className="h-full bg-emerald-400 w-[75%] rounded-full shadow-[0_0_15px_rgba(52,211,153,0.5)]"></div>
+              <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div className="h-full bg-blue-500 w-[75%] rounded-full shadow-[0_0_15px_rgba(37,99,235,0.5)]"></div>
               </div>
-              <p className="text-xs text-emerald-200/70 italic leading-relaxed">
+              <p className="text-xs text-slate-400 italic leading-relaxed font-medium">
                 "{t('dash_profile_hint')}"
               </p>
             </div>
 
             <button 
               onClick={() => navigate('/pmi/upload')}
-              className="w-full mt-6 py-3 bg-white text-emerald-900 rounded-2xl font-black text-sm hover:bg-emerald-50 transition-colors shadow-lg shadow-black/20"
+              className="w-full mt-10 py-4 bg-white text-slate-900 rounded-2xl font-black text-sm hover:bg-blue-50 transition-all active:scale-95 shadow-lg"
             >
               {t('dash_increase_coverage')}
             </button>
           </div>
         </div>
+      </main>
+
+      <AuditDrawer kpi={auditKpi} onClose={() => setAuditKpi(null)} />
+    </div>
+  );
         {/* KPI Table with Audit — nascosto temporaneamente, vedi FUTURE_FEATURES.md */}
         {false && kpis.length > 0 && (
           <div className="mt-8 bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
@@ -388,7 +395,7 @@ export default function PrivateDashboard({ org }) {
                       <td className="px-6 py-3">
                         <button
                           onClick={() => setAuditKpi(k)}
-                          className="flex items-center gap-1.5 text-xs font-black text-emerald-600 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-xl transition-colors border border-emerald-100"
+                          className="flex items-center gap-1.5 text-xs font-black text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-xl transition-colors border border-blue-100"
                         >
                           🔍 Audit
                         </button>

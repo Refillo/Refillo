@@ -2,15 +2,22 @@
 
 @layer base {
   :root {
-    --text: #6b6375;
-    --text-h: #08060d;
-    --bg: #fff;
-    --border: #e5e4e7;
-    --accent: #6366f1;
+    --text: #475569; /* slate-600 */
+    --text-h: #0f172a; /* slate-900 */
+    --bg: #ffffff;
+    --border: #f1f5f9; /* slate-100 */
+    --accent: #2563eb; /* blue-600 - Electric Blue */
+    --accent-dark: #1e40af; /* blue-800 */
   }
 
   body {
-    @apply bg-slate-50 text-slate-900;
+    @apply bg-white text-slate-900;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply tracking-tight font-black text-slate-900;
   }
 }
 
@@ -18,4 +25,19 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Custom Scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
 }

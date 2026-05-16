@@ -5,9 +5,9 @@ import { useRef, useEffect, useState } from 'react';
 import { useLanguage } from '../LanguageContext';
 
 const SECTOR_COLORS = {
-  'Automotive': '#10b981', // Emerald 500
-  'Energy': '#059669',     // Emerald 600
-  'Retail & Fashion': '#34d399', // Emerald 400
+  'Automotive': '#2563eb', // Blue 600
+  'Energy': '#1d4ed8',     // Blue 700
+  'Retail & Fashion': '#3b82f6', // Blue 500
   'General': '#94a3b8'     // Slate 400
 };
 
@@ -81,7 +81,7 @@ export default function MarketGraph({ data }) {
             value={searchQuery}
             onChange={handleSearch}
             placeholder={t('market_graph_search')}
-            className="w-full pl-12 pr-6 py-3 bg-white border border-slate-100 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-sm font-bold transition-all"
+            className="w-full pl-12 pr-6 py-3 bg-white border border-slate-100 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-sm font-bold transition-all"
           />
         </div>
       </div>
@@ -97,13 +97,13 @@ export default function MarketGraph({ data }) {
         d3VelocityDecay={0.3}
         
         nodeColor={node => {
-          if (highlightedNode && node.id === highlightedNode) return '#059669';
+          if (highlightedNode && node.id === highlightedNode) return '#1d4ed8';
           return SECTOR_COLORS[node.sector] || SECTOR_COLORS.General;
         }}
         nodeRelSize={6}
         linkDirectionalParticles={2}
         linkDirectionalParticleSpeed={0.003}
-        linkColor={() => 'rgba(16, 185, 129, 0.1)'}
+        linkColor={() => 'rgba(37, 99, 235, 0.1)'}
         
         nodeCanvasObject={(node, ctx, globalScale) => {
           const label = node.name;
@@ -112,7 +112,7 @@ export default function MarketGraph({ data }) {
 
           ctx.beginPath();
           ctx.arc(node.x, node.y, 5, 0, 2 * Math.PI, false);
-          ctx.fillStyle = isHighlighted ? '#059669' : (SECTOR_COLORS[node.sector] || SECTOR_COLORS.General);
+          ctx.fillStyle = isHighlighted ? '#1d4ed8' : (SECTOR_COLORS[node.sector] || SECTOR_COLORS.General);
           ctx.fill();
           
           if (isHighlighted) {
@@ -129,7 +129,7 @@ export default function MarketGraph({ data }) {
 
             ctx.textAlign = 'center';
             ctx.textBaseline = 'top';
-            ctx.fillStyle = isHighlighted ? '#059669' : '#334155';
+            ctx.fillStyle = isHighlighted ? '#1d4ed8' : '#334155';
             ctx.fillText(label, node.x, node.y + 8);
           }
         }}

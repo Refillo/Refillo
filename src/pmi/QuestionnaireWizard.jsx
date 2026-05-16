@@ -98,7 +98,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
 
   if (loading) return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-      <div className="animate-spin rounded-full h-8 w-8 border-2 border-emerald-600 border-t-transparent"></div>
+      <div className="animate-spin rounded-full h-8 w-8 border-2 border-blue-600 border-t-transparent"></div>
     </div>
   );
 
@@ -120,7 +120,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
       <aside className="w-80 border-r border-slate-100 p-12 flex flex-col justify-between bg-white hidden lg:flex">
         <div>
           <div className="flex items-center gap-2 mb-16">
-            <div className="w-8 h-8 bg-emerald-600 rounded-lg shadow-lg shadow-emerald-100"></div>
+            <div className="w-8 h-8 bg-blue-600 rounded-lg shadow-lg shadow-blue-100"></div>
             <span className="text-lg font-black tracking-tight">Refillo</span>
           </div>
 
@@ -134,7 +134,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
             ].map((s, idx) => (
               <div key={s.id} className="flex items-center gap-4 group">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all border ${
-                  phase === s.id ? 'bg-emerald-600 text-white border-emerald-600 shadow-md' : 'bg-slate-50 text-slate-400 border-slate-100'
+                  phase === s.id ? 'bg-blue-600 text-white border-blue-600 shadow-md' : 'bg-slate-50 text-slate-400 border-slate-100'
                 }`}>
                   {idx + 1}
                 </div>
@@ -172,19 +172,19 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder={t('qw_search')}
-                    className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 font-bold transition-all"
+                    className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 font-bold transition-all"
                   />
                 </div>
 
                 <div className="flex flex-wrap gap-2 max-h-[200px] overflow-y-auto pr-2 custom-scrollbar">
                   {selectedClients.map(corp => (
-                    <button key={corp.id} onClick={() => toggleClient(corp.id, corp.name)} className="px-4 py-2 rounded-xl text-xs font-black bg-emerald-600 text-white flex items-center gap-2 shadow-lg shadow-emerald-100 animate-in zoom-in">
+                    <button key={corp.id} onClick={() => toggleClient(corp.id, corp.name)} className="px-4 py-2 rounded-xl text-xs font-black bg-blue-600 text-white flex items-center gap-2 shadow-lg shadow-blue-100 animate-in zoom-in">
                       {analyzingClients[corp.name] && <span className="w-2 h-2 border-2 border-white border-t-transparent rounded-full animate-spin"></span>}
                       {corp.name} ✕
                     </button>
                   ))}
                   {bigCorps.filter(c => !selectedClients.find(s => s.id === c.id) && c.name.toLowerCase().includes(searchTerm.toLowerCase())).map(corp => (
-                    <button key={corp.id} onClick={() => toggleClient(corp.id, corp.name)} className="px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-600 border border-slate-100 hover:border-emerald-200 transition-all">
+                    <button key={corp.id} onClick={() => toggleClient(corp.id, corp.name)} className="px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-600 border border-slate-100 hover:border-blue-200 transition-all">
                       {corp.name}
                     </button>
                   ))}
@@ -204,7 +204,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
           {phase === 'upload' && (
             <div className="animate-in fade-in slide-in-from-right-4 duration-500">
               <header className="mb-12">
-                <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">{t('qw_nav_upload')}</span>
+                <span className="text-[10px] font-black text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">{t('qw_nav_upload')}</span>
                 <h2 className="text-3xl font-black text-slate-900 mt-4 mb-4">{t('qw_evidence')}</h2>
                 <p className="text-lg text-slate-500 font-medium italic">"{t('qw_no_evidence')}"</p>
               </header>
@@ -224,12 +224,12 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                         fileInputRef.current.click();
                       }
                     }}
-                    className="p-6 bg-white border border-slate-100 rounded-3xl hover:border-emerald-500 hover:shadow-xl transition-all cursor-pointer group relative overflow-hidden"
+                    className="p-6 bg-white border border-slate-100 rounded-3xl hover:border-blue-500 hover:shadow-xl transition-all cursor-pointer group relative overflow-hidden"
                   >
                     <div className="flex justify-between items-start mb-4">
                       <div className="text-3xl group-hover:scale-110 transition-transform">{slot.icon}</div>
                       {uploads.find(u => u.slot === slot.id) && (
-                        <span className="text-[9px] font-black bg-emerald-600 text-white px-2 py-0.5 rounded-full">UPLOADED</span>
+                        <span className="text-[9px] font-black bg-blue-600 text-white px-2 py-0.5 rounded-full">UPLOADED</span>
                       )}
                     </div>
                     <p className="text-sm font-black text-slate-800 mb-1">{slot.label}</p>
@@ -237,7 +237,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                     
                     {isUploading && fileInputRef.current?.getAttribute('data-slot') === slot.id && (
                       <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center">
-                        <div className="w-6 h-6 border-3 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+                        <div className="w-6 h-6 border-3 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
                       </div>
                     )}
                   </div>
@@ -258,7 +258,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                 <button onClick={() => setPhase('vsme')} className="px-8 py-5 rounded-2xl font-black text-slate-400">{t('qw_back')}</button>
                 <button 
                   onClick={() => setPhase('welcome')}
-                  className="flex-1 bg-emerald-600 text-white py-5 rounded-2xl font-black text-lg shadow-lg shadow-emerald-100"
+                  className="flex-1 bg-blue-600 text-white py-5 rounded-2xl font-black text-lg shadow-lg shadow-blue-100"
                 >
                   {t('qw_continue')}
                 </button>
@@ -271,15 +271,15 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
             <div className="animate-in fade-in slide-in-from-right-4 duration-500">
               <header className="mb-12">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">{t('qw_nav_vsme')}</span>
+                  <span className="text-[10px] font-black text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">{t('qw_nav_vsme')}</span>
                   <span className="text-xs font-bold text-slate-400 italic">Standard: VSME (Voluntary SME)</span>
                 </div>
                 <h2 className="text-3xl font-black text-slate-900 mb-6">{t('vsme_title')}</h2>
                 
                 {/* Sector Insight Card */}
-                <div className="p-6 bg-slate-900 rounded-[2rem] relative overflow-hidden mb-8 shadow-2xl shadow-emerald-900/10">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
-                  <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest mb-2">{t('vsme_sector_label')}</p>
+                <div className="p-6 bg-slate-900 rounded-[2rem] relative overflow-hidden mb-8 shadow-2xl shadow-blue-900/10">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+                  <p className="text-[10px] text-blue-400 font-black uppercase tracking-widest mb-2">{t('vsme_sector_label')}</p>
                   <p className="text-sm text-slate-300 leading-relaxed font-medium">
                     {context.sector_insight}
                   </p>
@@ -290,14 +290,14 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                 {context.vsme_standard.map((q, idx) => {
                   const isPreFilled = uploads.length > 0 && q.id === 'vsme_1';
                   return (
-                    <div key={q.id} className={`p-6 rounded-3xl border transition-all ${isPreFilled ? 'bg-emerald-50/30 border-emerald-100' : 'bg-white border-slate-100'}`}>
+                    <div key={q.id} className={`p-6 rounded-3xl border transition-all ${isPreFilled ? 'bg-blue-50/30 border-blue-100' : 'bg-white border-slate-100'}`}>
                       <div className="flex justify-between items-start mb-3">
                         <div>
                           <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{q.kpi}</p>
                           <h4 className="text-sm font-black text-slate-800 leading-snug">{q.question}</h4>
                         </div>
                         {isPreFilled && (
-                          <span className="text-[9px] font-black bg-emerald-600 text-white px-2 py-0.5 rounded-full animate-pulse shadow-sm shadow-emerald-200">AI PRE-FILLED</span>
+                          <span className="text-[9px] font-black bg-blue-600 text-white px-2 py-0.5 rounded-full animate-pulse shadow-sm shadow-blue-200">AI PRE-FILLED</span>
                         )}
                       </div>
                       <p className="text-xs text-slate-500 mb-4 leading-relaxed font-medium">{q.description}</p>
@@ -308,8 +308,8 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                               type="number"
                               className={`w-full px-5 py-3 rounded-2xl border-2 focus:outline-none focus:ring-4 transition-all text-xl font-black ${
                                 isPreFilled 
-                                  ? 'bg-white border-emerald-200 focus:border-emerald-500 focus:ring-emerald-500/10 text-emerald-700' 
-                                  : 'bg-slate-50 border-slate-50 focus:border-emerald-600 focus:ring-emerald-500/10 text-slate-900'
+                                  ? 'bg-white border-blue-200 focus:border-blue-500 focus:ring-blue-500/10 text-blue-700' 
+                                  : 'bg-slate-50 border-slate-50 focus:border-blue-600 focus:ring-blue-500/10 text-slate-900'
                               }`}
                               placeholder="0.00"
                               value={responses[q.id] || (isPreFilled ? '5837' : '')}
@@ -327,7 +327,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                                 onClick={() => setResponses({ ...responses, [q.id]: opt })}
                                 className={`flex-1 min-w-[120px] py-3 px-4 rounded-xl font-bold border-2 transition-all text-sm ${
                                   responses[q.id] === opt 
-                                    ? 'border-emerald-500 bg-emerald-50 text-emerald-700' 
+                                    ? 'border-blue-500 bg-blue-50 text-blue-700' 
                                     : 'border-slate-100 bg-white text-slate-400 hover:border-slate-200'
                                 }`}
                               >
@@ -346,7 +346,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                 <button onClick={() => setPhase('welcome')} className="px-8 py-5 rounded-2xl font-black text-slate-400">{t('qw_back')}</button>
                 <button 
                   onClick={() => setPhase('upload')}
-                  className="flex-1 bg-emerald-600 text-white py-5 rounded-2xl font-black text-lg shadow-lg shadow-emerald-100"
+                  className="flex-1 bg-blue-600 text-white py-5 rounded-2xl font-black text-lg shadow-lg shadow-blue-100"
                 >
                   {t('qw_continue')}
                 </button>
@@ -358,7 +358,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
           {phase === 'predictive' && (
             <div className="animate-in fade-in slide-in-from-right-4 duration-500">
               <header className="mb-12">
-                <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">{t('qw_nav_predictive')}</span>
+                <span className="text-[10px] font-black text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">{t('qw_nav_predictive')}</span>
                 <h2 className="text-3xl font-black text-slate-900 mt-4 mb-4">{t('qw_predictive_title')}</h2>
                 <p className="text-lg text-slate-500 font-medium">{t('qw_predictive_sub')}</p>
               </header>
@@ -373,7 +373,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                           <button 
                             key={opt}
                             onClick={() => setResponses({ ...responses, [q.id]: opt })}
-                            className={`flex-1 py-3 rounded-xl font-bold border-2 transition-all ${responses[q.id] === opt ? 'border-emerald-500 bg-emerald-50 text-emerald-700' : 'border-slate-50 bg-slate-50 text-slate-400'}`}
+                            className={`flex-1 py-3 rounded-xl font-bold border-2 transition-all ${responses[q.id] === opt ? 'border-blue-500 bg-blue-50 text-blue-700' : 'border-slate-50 bg-slate-50 text-slate-400'}`}
                           >
                             {opt}
                           </button>
@@ -382,7 +382,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                     ) : (
                       <input 
                         type="number"
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 font-bold"
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 font-bold"
                         placeholder="0 %"
                         value={responses[q.id] || ''}
                         onChange={(e) => setResponses({ ...responses, [q.id]: e.target.value })}
@@ -404,29 +404,29 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
           {/* PHASE: SUMMARY (Step 5: Readiness) */}
           {phase === 'summary' && (
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 text-center">
-              <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center text-4xl mx-auto mb-12">✨</div>
+              <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center text-4xl mx-auto mb-12">✨</div>
               <h2 className="text-4xl font-black mb-12 text-slate-900">{t('qw_done')}</h2>
 
               <div className="bg-white rounded-3xl border border-slate-100 p-8 text-left mb-12 shadow-sm">
                 <div className="flex justify-between items-baseline mb-6">
                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{t('qw_nav_readiness')}</p>
-                  <span className="text-3xl font-black text-emerald-600">{uploads.length > 0 ? '75%' : '40%'}</span>
+                  <span className="text-3xl font-black text-blue-600">{uploads.length > 0 ? '75%' : '40%'}</span>
                 </div>
                 <div className="h-2 bg-slate-50 rounded-full overflow-hidden mb-8">
-                  <div className="h-full bg-emerald-500 transition-all duration-1000" style={{ width: uploads.length > 0 ? '75%' : '40%' }}></div>
+                  <div className="h-full bg-blue-500 transition-all duration-1000" style={{ width: uploads.length > 0 ? '75%' : '40%' }}></div>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 text-sm font-bold text-slate-600">
-                    <span className="w-5 h-5 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center text-[10px]">✓</span>
+                    <span className="w-5 h-5 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-[10px]">✓</span>
                     {selectedClients.length} {t('qw_partners_mapped')}
                   </div>
                   <div className="flex items-center gap-3 text-sm font-bold text-slate-600">
-                    <span className="w-5 h-5 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center text-[10px]">✓</span>
+                    <span className="w-5 h-5 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-[10px]">✓</span>
                     {t('qw_baseline_done')}
                   </div>
                   {uploads.length > 0 && (
                     <div className="flex items-center gap-3 text-sm font-bold text-slate-600">
-                      <span className="w-5 h-5 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center text-[10px]">✓</span>
+                      <span className="w-5 h-5 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-[10px]">✓</span>
                       {uploads.length} {t('qw_evidence')} (Level 1)
                     </div>
                   )}

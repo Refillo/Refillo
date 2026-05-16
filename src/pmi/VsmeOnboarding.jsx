@@ -66,7 +66,7 @@ export default function VsmeOnboarding({ org, onComplete }) {
 
   if (loading) return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-4 border-emerald-600 border-t-transparent"></div>
+      <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent"></div>
     </div>
   );
 
@@ -80,7 +80,7 @@ export default function VsmeOnboarding({ org, onComplete }) {
         {/* Header con Insight Settoriale */}
         <div className="mb-10">
           <div className="flex justify-between items-baseline mb-4">
-            <span className="bg-emerald-50 text-emerald-700 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-emerald-100">
+            <span className="bg-blue-50 text-blue-700 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-blue-100">
               {t('vsme_step')}: {q.category}
             </span>
             <span className="text-sm font-bold text-slate-400">{currentStep + 1} / {context.questions.length}</span>
@@ -88,15 +88,15 @@ export default function VsmeOnboarding({ org, onComplete }) {
           <h2 className="text-3xl font-black text-slate-900 leading-tight">{t('vsme_title')}</h2>
 
           <div className="mt-6 p-4 bg-slate-900 rounded-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
-            <p className="text-xs text-emerald-400 font-bold uppercase tracking-widest mb-1">{t('vsme_sector_label')}</p>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+            <p className="text-xs text-blue-400 font-bold uppercase tracking-widest mb-1">{t('vsme_sector_label')}</p>
             <p className="text-sm text-slate-300 leading-relaxed italic">{context.sector_insight}</p>
           </div>
         </div>
 
         {/* Progress Bar */}
         <div className="h-2 bg-slate-100 rounded-full mb-12 overflow-hidden">
-          <div className="h-full bg-emerald-500 transition-all duration-500 shadow-[0_0_10px_rgba(16,185,129,0.3)]" style={{ width: `${progress}%` }}></div>
+          <div className="h-full bg-blue-500 transition-all duration-500 shadow-[0_0_10px_rgba(16,185,129,0.3)]" style={{ width: `${progress}%` }}></div>
         </div>
 
         {/* Domanda Corrente */}
@@ -109,7 +109,7 @@ export default function VsmeOnboarding({ org, onComplete }) {
           {q.type === 'number' ? (
             <input 
               type="number"
-              className="w-full px-6 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-xl font-black text-slate-900"
+              className="w-full px-6 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-xl font-black text-slate-900"
               placeholder={t('vsme_placeholder')}
               value={responses[q.id] || ''}
               onChange={(e) => handleInput(q.id, e.target.value)}
@@ -122,7 +122,7 @@ export default function VsmeOnboarding({ org, onComplete }) {
                   onClick={() => handleInput(q.id, opt)}
                   className={`w-full text-left p-5 rounded-2xl border-2 transition-all font-bold ${
                     responses[q.id] === opt 
-                      ? 'border-emerald-500 bg-emerald-50 text-emerald-700' 
+                      ? 'border-blue-500 bg-blue-50 text-blue-700' 
                       : 'border-slate-50 hover:border-slate-100 bg-slate-50 text-slate-600'
                   }`}
                 >
@@ -145,7 +145,7 @@ export default function VsmeOnboarding({ org, onComplete }) {
           <button
             onClick={next}
             disabled={!responses[q.id] || saving}
-            className="flex-1 bg-emerald-600 text-white py-5 rounded-2xl font-black text-lg shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex-1 bg-blue-600 text-white py-5 rounded-2xl font-black text-lg shadow-lg shadow-blue-100 hover:bg-blue-700 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
           >
             {saving ? t('vsme_loading') : (currentStep === context.questions.length - 1 ? t('vsme_finalize') : t('vsme_continue'))}
           </button>

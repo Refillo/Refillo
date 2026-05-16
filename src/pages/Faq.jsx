@@ -78,18 +78,18 @@ export default function Faq() {
           </div>
         </div>
         <div>
-          <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_prod')}</h4>
+          <h4 className="font-black uppercase tracking-[0.2em] text-xs text-blue-500 mb-10">{t('footer_prod')}</h4>
           <ul className="space-y-5 text-base font-bold text-slate-400">
-            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
-            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/faq')}>{t('footer_faq')}</li>
-            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
+            <li className="hover:text-blue-500 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
+            <li className="hover:text-blue-500 cursor-pointer transition-colors" onClick={() => navigate('/faq')}>{t('footer_faq')}</li>
+            <li className="hover:text-blue-500 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
           </ul>
         </div>
         <div>
-          <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_legal')}</h4>
+          <h4 className="font-black uppercase tracking-[0.2em] text-xs text-blue-500 mb-10">{t('footer_legal')}</h4>
           <ul className="space-y-5 text-base font-bold text-slate-400">
-            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_privacy')}</li>
-            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_terms')}</li>
+            <li className="hover:text-blue-500 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_privacy')}</li>
+            <li className="hover:text-blue-500 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_terms')}</li>
           </ul>
         </div>
       </div>
@@ -108,9 +108,9 @@ export default function Faq() {
           <span className="text-2xl font-black text-slate-900 tracking-tighter">Refillo</span>
         </div>
         <div className="flex gap-6 items-center">
-          <button onClick={() => setLang(lang === 'it' ? 'en' : 'it')} className="w-10 h-10 flex items-center justify-center bg-slate-50 rounded-xl border border-slate-100 text-xs font-black text-slate-400 hover:text-emerald-600 transition-colors uppercase">{lang}</button>
-          <button onClick={() => navigate('/')} className="text-sm font-bold text-slate-600 hover:text-emerald-600 transition-colors">{t('nav_home')}</button>
-          <button onClick={startDemo} className="bg-emerald-600 text-white px-8 py-2 rounded-xl text-sm font-black shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition-all">{t('demo_cta')}</button>
+          <button onClick={() => setLang(lang === 'it' ? 'en' : 'it')} className="w-10 h-10 flex items-center justify-center bg-slate-50 rounded-xl border border-slate-100 text-xs font-black text-slate-400 hover:text-blue-600 transition-colors uppercase">{lang}</button>
+          <button onClick={() => navigate('/')} className="text-sm font-bold text-slate-600 hover:text-blue-600 transition-colors">{t('nav_home')}</button>
+          <button onClick={startDemo} className="bg-blue-600 text-white px-8 py-2 rounded-xl text-sm font-black shadow-lg shadow-blue-100 hover:bg-blue-700 transition-all">{t('demo_cta')}</button>
         </div>
       </nav>
 
