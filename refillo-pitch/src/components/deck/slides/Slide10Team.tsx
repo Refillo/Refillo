@@ -1,5 +1,5 @@
 import { SlideShell, SlideHeader } from "../SlideShell";
-import dataQr from "@/assets/esglab-data-qr.png";
+import dataQr from "@/assets/refillo-data-qr.png";
 import edoardoRivaPhoto from "@/assets/edoardo-riva.jpeg";
 import edoardoPolettiPhoto from "@/assets/edoardo-poletti.jpeg";
 import riccardoVismaraPhoto from "@/assets/riccardo-vismara.jpeg";
@@ -20,7 +20,7 @@ const team = [
 export default function Slide10Team() {
   return (
     <SlideShell>
-      <SlideHeader eyebrow="The team" title="The people behind ESGlab" />
+      <SlideHeader eyebrow="The team" title="The people behind Refillo" />
       <div className="grid grid-cols-3 gap-5">
         {team.map((m) => (
           <article key={m.initials} className="rounded-2xl bg-background border border-border p-5 accent-bar-left flex items-center gap-4">
@@ -52,7 +52,7 @@ export default function Slide10Team() {
           <img src={dataQr} alt="QR code" className="h-36 w-36 shrink-0" />
           <div className="flex items-center gap-3 text-lg">
             <span className="font-semibold text-foreground">
-              Explore the data behind ESGlab
+              Explore the data behind Refillo
             </span>
             <span className="text-primary underline underline-offset-4">
               https://bit.ly/4t8aiyC

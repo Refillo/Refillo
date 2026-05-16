@@ -31,9 +31,9 @@ export default function Slide12Competitive() {
 
   return (
     <SlideShell className="!py-8 !px-10 !pb-28">
-      <SlideHeader eyebrow="Competitive landscape" title="ESGlab sits where no one else does" />
+      <SlideHeader eyebrow="Competitive landscape" title="Refillo sits where no one else does" />
       <p className="text-base text-muted-foreground -mt-6 mb-3 max-w-4xl">
-        Every competitor is either manual or serves large corporates. ESGlab is the only AI-automated solution built for SMEs.
+        Every competitor is either manual or serves large corporates. Refillo is the only AI-automated solution built for SMEs.
       </p>
 
       {/* MATRIX */}
@@ -82,11 +82,11 @@ export default function Slide12Competitive() {
             );
           })}
 
-          {/* ESGlab dot */}
+          {/* Refillo dot */}
           <circle cx={esgX} cy={esgY} r="20" fill="none" stroke="#1D9E75" strokeWidth="1.5" opacity="0.25" />
           <circle cx={esgX} cy={esgY} r="13" fill="#1D9E75" />
           <text x={esgX - 24} y={esgY + 4} fontSize="11" fontFamily="Inter" fontWeight="700" fill="#085041" textAnchor="end">
-            ESGlab
+            Refillo
           </text>
         </svg>
       </div>

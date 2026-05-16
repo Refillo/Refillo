@@ -121,7 +121,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
         <div>
           <div className="flex items-center gap-2 mb-16">
             <div className="w-8 h-8 bg-emerald-600 rounded-lg shadow-lg shadow-emerald-100"></div>
-            <span className="text-lg font-black tracking-tight">ESGlab</span>
+            <span className="text-lg font-black tracking-tight">Refillo</span>
           </div>
 
           <nav className="space-y-8">

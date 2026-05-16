@@ -1,6 +1,6 @@
 const MOCK_DATA = {
   'auth/login': {
-    user: { id: 'demo-user', name: 'Azienda Demo SPA', email: 'demo@esglab.it', org: { id: 'org-123', name: 'Azienda Demo SPA', sector: 'Manufacturing' } },
+    user: { id: 'demo-user', name: 'Azienda Demo SPA', email: 'demo@refillo.it', org: { id: 'org-123', name: 'Azienda Demo SPA', sector: 'Manufacturing' } },
     token: 'mock-token-123'
   },
   'market-intelligence': {

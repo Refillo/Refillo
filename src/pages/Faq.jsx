@@ -66,8 +66,8 @@ export default function Faq() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
         <div className="col-span-1 md:col-span-2">
           <div className="flex items-center gap-2 mb-8" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
-            <img src="logo.png" alt="ESGlab Logo" className="h-10 w-auto brightness-0 invert" />
-            <span className="text-2xl font-black tracking-tighter">ESG<span className="text-emerald-600">lab</span></span>
+            <img src="logo.png" alt="Refillo Logo" className="h-10 w-auto brightness-0 invert" />
+            <span className="text-2xl font-black tracking-tighter">Refillo</span>
           </div>
           <p className="text-slate-400 text-base leading-relaxed mb-8 font-medium max-w-sm">
             {t('footer_desc')}
@@ -104,8 +104,8 @@ export default function Faq() {
     <div className="min-h-screen bg-slate-50 font-sans">
       <nav className="flex justify-between items-center px-12 py-6 bg-white border-b border-slate-100 sticky top-0 z-50">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
-          <img src="logo.png" alt="ESGlab Logo" className="h-10 w-auto" />
-          <span className="text-2xl font-black text-slate-900 tracking-tighter">ESG<span className="text-emerald-600">lab</span></span>
+          <img src="logo.png" alt="Refillo Logo" className="h-10 w-auto" />
+          <span className="text-2xl font-black text-slate-900 tracking-tighter">Refillo</span>
         </div>
         <div className="flex gap-6 items-center">
           <button onClick={() => setLang(lang === 'it' ? 'en' : 'it')} className="w-10 h-10 flex items-center justify-center bg-slate-50 rounded-xl border border-slate-100 text-xs font-black text-slate-400 hover:text-emerald-600 transition-colors uppercase">{lang}</button>

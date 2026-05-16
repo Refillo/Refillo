@@ -177,8 +177,8 @@ export default function PrivateDashboard({ org }) {
       {/* Private Navbar */}
       <nav className="flex justify-between items-center px-12 py-6 bg-white border-b border-slate-100 sticky top-0 z-50">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
-          <img src="logo.png" alt="ESGlab Logo" className="h-10 w-auto" />
-          <span className="text-2xl font-black text-slate-900 tracking-tighter">ESG<span className="text-emerald-600">lab</span></span>
+          <img src="logo.png" alt="Refillo Logo" className="h-10 w-auto" />
+          <span className="text-2xl font-black text-slate-900 tracking-tighter">Refillo</span>
           <div className="ml-4 flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-100">
             <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
             <span className="text-[10px] font-black uppercase tracking-widest">{t('dash_private')}</span>

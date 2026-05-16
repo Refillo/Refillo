@@ -61,8 +61,8 @@ function App() {
       {/* Navbar Pubblica */}
       <nav className="flex justify-between items-center px-6 md:px-12 py-6 bg-white border-b border-slate-100 sticky top-0 z-50">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
-          <img src="logo.png" alt="ESGlab Logo" className="h-8 md:h-10 w-auto" />
-          <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tighter">ESG<span className="text-emerald-600">lab</span></span>
+          <img src="logo.png" alt="Refillo Logo" className="h-8 md:h-10 w-auto" />
+          <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tighter">Refillo</span>
         </div>
         <div className="flex gap-3 md:gap-6 items-center">
           <button 
@@ -233,14 +233,14 @@ function App() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-16 mb-16 md:mb-20">
           <div className="col-span-1 md:col-span-2 text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-2 mb-8" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
-              <img src="logo.png" alt="ESGlab Logo" className="h-10 w-auto brightness-0 invert" />
-              <span className="text-2xl font-black tracking-tighter">ESG<span className="text-emerald-600">lab</span></span>
+              <img src="logo.png" alt="Refillo Logo" className="h-10 w-auto brightness-0 invert" />
+              <span className="text-2xl font-black tracking-tighter">Refillo</span>
             </div>
             <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-8 font-medium max-w-sm mx-auto md:mx-0">
               {t('footer_desc')}
             </p>
             <div className="flex justify-center md:justify-start gap-5">
-              <a href="https://github.com/esglab" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white cursor-pointer transition-colors text-lg">
+              <a href="https://github.com/Refillo" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white cursor-pointer transition-colors text-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
               </a>
             </div>
@@ -266,7 +266,7 @@ function App() {
 
         <div className="max-w-7xl mx-auto pt-12 md:pt-16 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8 text-center md:text-left">
           <p className="text-slate-500 text-xs md:text-sm font-bold">
-            © 2026 ESGlab
+            © 2026 Refillo
           </p>
           <p className="text-slate-600 text-[10px] md:text-xs font-black uppercase tracking-[0.3em]">
             Built for the Next Industrial Era

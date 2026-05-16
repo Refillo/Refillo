@@ -27,14 +27,14 @@ export default function Slide05Demo() {
             <span className="h-3 w-3 rounded-full bg-yellow-400/70" />
             <span className="h-3 w-3 rounded-full bg-primary/70" />
               <div className="ml-4 flex-1 max-w-md rounded-md bg-background border border-border px-3 py-1 text-xs text-muted-foreground">
-                app.esglab.com/dashboard
+                app.refillo.it/dashboard
               </div>
           </div>
 
           <div className="grid grid-cols-[220px_1fr] min-h-[420px]">
             {/* sidebar */}
             <aside className="bg-muted/60 border-r border-border p-4">
-              <div className="text-primary font-extrabold text-lg mb-5">ESGlab</div>
+              <div className="text-primary font-extrabold text-lg mb-5">Refillo</div>
               <ul className="space-y-1">
                 {menu.map(({ Icon, label, active }) => (
                   <li key={label}

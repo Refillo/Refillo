@@ -11,7 +11,7 @@ const steps = [
 export default function Slide04Solution() {
   return (
     <SlideShell>
-      <SlideHeader eyebrow="The solution" title="How ESGlab works" />
+      <SlideHeader eyebrow="The solution" title="How Refillo works" />
       <div className="flex-1 flex flex-col justify-center">
         <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr] items-stretch gap-6">
           {steps.map((s, i) => (

@@ -1,6 +1,6 @@
 import { SlideShell } from "../SlideShell";
 import { QrCode } from "lucide-react";
-import esglabLogo from "@/assets/esglab-logo.png";
+import refilloLogo from "@/assets/refillo-logo.png";
 
 export default function Slide11Closing() {
   return (
@@ -12,8 +12,8 @@ export default function Slide11Closing() {
             aria-hidden
           />
           <img
-            src={esglabLogo}
-            alt="ESGlab logo"
+            src={refilloLogo}
+            alt="Refillo logo"
             className="relative z-10"
             style={{ width: 110, height: 110, objectFit: "contain" }}
           />
@@ -31,8 +31,8 @@ export default function Slide11Closing() {
 
       <footer className="w-full pb-2 flex items-end justify-between text-primary-foreground">
         <div className="flex flex-col">
-          <span className="font-extrabold text-3xl">ESGlab</span>
-          <span className="text-sm opacity-80 mt-1">hello@esglab.com · esglab.com</span>
+          <span className="font-extrabold text-3xl">Refillo</span>
+          <span className="text-sm opacity-80 mt-1">hello@refillo.it · refillo.it</span>
         </div>
         <div className="flex flex-col items-center gap-2">
           <div className="h-24 w-24 rounded-lg bg-white/10 border border-white/30 flex items-center justify-center">

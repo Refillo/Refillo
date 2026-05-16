@@ -1,6 +1,6 @@
 # Refillo Static Demo
 
-Questa è una versione demo statica di ESGlab, configurata per funzionare senza un backend attivo.
+Questa è una versione demo statica di Refillo, configurata per funzionare senza un backend attivo.
 Ideale per il deployment su **GitHub Pages**.
 
 ## Funzionamento
@@ -11,6 +11,6 @@ Il sistema utilizza un `apiClient.js` che intercetta le chiamate e restituisce d
 2. `npm run dev`
 
 ## Deployment su GitHub Pages
-1. Assicurati che `vite.config.js` abbia il `base` corretto (es: `/esglab-demo/`).
+1. Assicurati che `vite.config.js` abbia il `base` corretto (es: `/refillo-demo/`).
 2. `npm run build`
 3. Carica il contenuto della cartella `dist` sul branch `gh-pages`.

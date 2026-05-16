@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* ESGlab brand */
+    /* Refillo brand */
     --background: 0 0% 100%;
     --foreground: 60 4% 17%;            /* #2C2C2A */
     --foreground-muted: 45 4% 37%;       /* #5F5E5A */

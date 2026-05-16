@@ -15,7 +15,7 @@ import puppeteer from 'puppeteer';
   
   console.log('Generazione PDF in corso...');
   await page.pdf({
-    path: 'presentazione_esglab.pdf',
+    path: 'presentazione_refillo.pdf',
     printBackground: true,
     preferCSSPageSize: true,
     displayHeaderFooter: false,
@@ -23,5 +23,5 @@ import puppeteer from 'puppeteer';
   });
 
   await browser.close();
-  console.log('PDF generato con successo: presentazione_esglab.pdf');
+  console.log('PDF generato con successo: presentazione_refillo.pdf');
 })();
