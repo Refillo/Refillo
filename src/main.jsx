@@ -11,6 +11,7 @@ import Login from './Login.jsx'
 import About from './pages/About.jsx'
 import Faq from './pages/Faq.jsx'
 import Pitch from './pages/Pitch.jsx'
+import News from './pages/News.jsx'
 
 createRoot(document.getElementById('root')).render(
   <LanguageProvider>
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/about" element={<About />} />
+        <Route path="/news" element={<News />} />
         <Route path="/login" element={<Login />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/pitch" element={<Pitch />} />
