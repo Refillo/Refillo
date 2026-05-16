@@ -162,8 +162,8 @@ export default function PrivateDashboard({ org }) {
   const carbonIntensity = Math.round(totalCO2kg / revenue_k);
 
   const chartData = [
-    { name: 'Scope 1', value: Math.round(s1), unit: 'tCO₂e', color: '#1d4ed8' },
-    { name: 'Scope 2', value: Math.round(s2 < 10 ? s2 * 100 : s2), unit: 'tCO₂e', color: '#3b82f6' },
+    { name: 'Scope 1', value: Math.round(s1), unit: 'tCO₂e', color: '#0f172a' },
+    { name: 'Scope 2', value: Math.round(s2 < 10 ? s2 * 100 : s2), unit: 'tCO₂e', color: '#2563eb' },
     { name: 'Intensità C.', value: carbonIntensity, unit: 'kg/€1k', color: '#60a5fa' },
   ];
 
@@ -352,61 +352,6 @@ export default function PrivateDashboard({ org }) {
             </button>
           </div>
         </div>
-      </main>
-
-      <AuditDrawer kpi={auditKpi} onClose={() => setAuditKpi(null)} />
-    </div>
-  );
-        {/* KPI Table with Audit — nascosto temporaneamente, vedi FUTURE_FEATURES.md */}
-        {false && kpis.length > 0 && (
-          <div className="mt-8 bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
-            <div className="px-8 py-5 border-b border-slate-100 flex justify-between items-center">
-              <h3 className="text-lg font-black text-slate-900">ESG Profilo — Dati Certificati</h3>
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{kpis.length} record</span>
-            </div>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-slate-50 text-slate-400 text-xs font-black uppercase tracking-widest">
-                    {['KPI', 'Scope', 'Valore', 'Periodo', 'Confidence', 'Audit'].map(h => (
-                      <th key={h} className="px-6 py-3 text-left">{h}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-50">
-                  {kpis.map(k => (
-                    <tr key={k.id} className="hover:bg-slate-50 transition-colors">
-                      <td className="px-6 py-3 font-semibold text-slate-800">{k.data_type}</td>
-                      <td className="px-6 py-3">
-                        <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${k.scope === 1 ? 'bg-indigo-100 text-indigo-700' : k.scope === 2 ? 'bg-violet-100 text-violet-700' : 'bg-slate-100 text-slate-600'}`}>
-                          Scope {k.scope}
-                        </span>
-                      </td>
-                      <td className="px-6 py-3 font-mono text-slate-800">{k.quantity?.toLocaleString()} <span className="text-slate-400 font-sans text-xs">{k.unit}</span></td>
-                      <td className="px-6 py-3 text-slate-500 text-xs">{k.period}</td>
-                      <td className="px-6 py-3">
-                        <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
-                          <div className="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                            <div className="h-full rounded-full" style={{ width: `${(k.confidence || 0) * 100}%`, background: (k.confidence || 0) >= 0.9 ? '#16a34a' : '#f59e0b' }} />
-                          </div>
-                          <span className="text-xs font-bold text-slate-500">{Math.round((k.confidence || 0) * 100)}%</span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-3">
-                        <button
-                          onClick={() => setAuditKpi(k)}
-                          className="flex items-center gap-1.5 text-xs font-black text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-xl transition-colors border border-blue-100"
-                        >
-                          🔍 Audit
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
       </main>
 
       <AuditDrawer kpi={auditKpi} onClose={() => setAuditKpi(null)} />
