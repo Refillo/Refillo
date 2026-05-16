@@ -2,22 +2,22 @@
 
 @layer base {
   :root {
-    --text: #94a3b8; /* slate-400 */
-    --text-h: #ffffff;
-    --bg: #000000;
-    --border: #1e293b; /* slate-800 */
+    --text: #64748b; /* slate-500 */
+    --text-h: #0f172a; /* slate-900 */
+    --bg: #ffffff;
+    --border: #f1f5f9; /* slate-100 */
     --accent: #10b981; /* emerald-500 */
     --accent-dark: #059669; /* emerald-600 */
   }
 
   body {
-    @apply bg-black text-slate-400;
+    @apply bg-white text-slate-500;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
   h1, h2, h3, h4 {
-    @apply tracking-tighter font-black text-white;
+    @apply tracking-tighter font-black text-slate-900;
   }
 }
 
@@ -27,11 +27,16 @@
   flex-direction: column;
 }
 
-/* Glassmorphism utility */
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+/* Premium Card utility */
+.premium-card {
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02), 0 1px 2px -1px rgba(0, 0, 0, 0.02);
+}
+
+.premium-card:hover {
+  border-color: #e2e8f0;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
 }
 
 /* Custom Scrollbar for a cleaner look */
@@ -39,12 +44,12 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #000;
+  background: #fff;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #f1f5f9;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #e2e8f0;
 }
