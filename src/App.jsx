@@ -48,24 +48,28 @@ const AnimatedNumber = ({ value, suffix = "" }) => {
   );
 };
 
-const FloatingElement = ({ delay = 0, x = "0%", y = "0%", size = "w-20" }) => (
+const FloatingElement = ({ delay = 0, x = "0%", y = "0%", size = "w-20", label = "" }) => (
   <motion.div 
-    initial={{ opacity: 0, scale: 0 }}
+    initial={{ opacity: 0, scale: 0, y: 0 }}
     animate={{ 
-      opacity: [0, 0.4, 0.2], 
-      scale: [0.8, 1.1, 1],
-      y: [0, -20, 0],
-      rotate: [0, 5, -5, 0]
+      opacity: [0, 0.6, 0.3], 
+      scale: [0.8, 1, 0.9],
+      y: [0, -30, 0],
+      rotate: [0, 10, -10, 0]
     }}
     transition={{ 
-      duration: 6, 
+      duration: 8, 
       repeat: Infinity, 
       delay,
       ease: "easeInOut"
     }}
-    className={`absolute ${size} aspect-square bg-emerald-500/5 rounded-3xl blur-xl -z-10`}
+    className={`absolute ${size} p-4 rounded-[2rem] bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 shadow-xl shadow-emerald-500/5 flex items-center justify-center -z-10`}
     style={{ left: x, top: y }}
-  />
+  >
+    <div className="w-full h-full rounded-2xl bg-emerald-500/5 flex items-center justify-center text-[8px] font-black text-emerald-600/40 uppercase tracking-tighter overflow-hidden whitespace-nowrap">
+      {label || "DATA_PILL"}
+    </div>
+  </motion.div>
 );
 
 function App() {
@@ -132,10 +136,11 @@ function App() {
         {/* Subtle Light Glow & Floating Elements */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] aspect-video bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
         
-        <FloatingElement x="10%" y="20%" size="w-32" delay={0} />
-        <FloatingElement x="80%" y="15%" size="w-24" delay={1} />
-        <FloatingElement x="15%" y="60%" size="w-40" delay={2} />
-        <FloatingElement x="75%" y="70%" size="w-28" delay={1.5} />
+        <FloatingElement x="12%" y="15%" size="w-32 h-20" delay={0} label="ESG_DATA" />
+        <FloatingElement x="78%" y="12%" size="w-24 h-16" delay={1} label="KPI_01" />
+        <FloatingElement x="8%" y="65%" size="w-40 h-24" delay={2} label="AUTO_COMP" />
+        <FloatingElement x="82%" y="72%" size="w-28 h-20" delay={1.5} label="VAULT" />
+        <FloatingElement x="45%" y="85%" size="w-36 h-20" delay={3} label="EMERALD" />
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
