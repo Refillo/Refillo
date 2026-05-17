@@ -14,7 +14,7 @@ const translations = {
     demo_cta: 'Prova la Demo Live →',
     
     // Hero
-    hero_title: 'Compilalo una volta.',
+    hero_title: 'Compila una volta.',
     hero_title_span: 'Rispondi a tutti.',
     hero_sub: 'L\'auto-compilatore ESG per le PMI Europee.',
     hero_cta: 'Inizia il tuo Onboarding VSME →',
@@ -263,7 +263,7 @@ const translations = {
     demo_cta: 'Try Live Demo →',
     
     // Hero
-    hero_title: 'Fill it in once.',
+    hero_title: 'Fill it once.',
     hero_title_span: 'Reply to everyone.',
     hero_sub: 'The ESG auto-compiler for European SMEs.',
     hero_cta: 'Start your VSME Onboarding →',

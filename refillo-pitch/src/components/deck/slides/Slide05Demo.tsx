@@ -34,7 +34,7 @@ export default function Slide05Demo() {
           <div className="grid grid-cols-[220px_1fr] min-h-[420px]">
             {/* sidebar */}
             <aside className="bg-muted/60 border-r border-border p-4">
-              <div className="text-primary font-extrabold text-lg mb-5">Refillo</div>
+              <div className="text-foreground font-extrabold text-lg mb-5 uppercase tracking-tighter">Refill<span className="text-primary">o</span></div>
               <ul className="space-y-1">
                 {menu.map(({ Icon, label, active }) => (
                   <li key={label}

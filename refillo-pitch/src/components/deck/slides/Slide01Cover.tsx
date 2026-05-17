@@ -13,11 +13,11 @@ export default function Slide01Cover() {
       />
       {/* Title block centered exactly at 50% of slide */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-16">
-        <h1 className="text-primary font-extrabold tracking-tight" style={{ fontSize: 96, lineHeight: 1 }}>
-          Refillo
+        <h1 className="text-foreground font-extrabold tracking-tighter uppercase" style={{ fontSize: 96, lineHeight: 1 }}>
+          Refill<span className="text-primary">o</span>
         </h1>
         <p className="mt-8 text-foreground font-semibold" style={{ fontSize: 28 }}>
-          Fill it in once. Reply to everyone.
+          Fill it once. Reply to everyone.
         </p>
         <p className="mt-3 text-muted-foreground" style={{ fontSize: 20 }}>
             The ESG auto-compiler for European SMEs

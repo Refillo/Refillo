@@ -11,7 +11,7 @@ const rows: [string, string][] = [
 export default function Slide07Positioning() {
   return (
     <SlideShell>
-      <SlideHeader eyebrow="Positioning" title="Why Refillo" />
+      <SlideHeader eyebrow="Positioning" title="Why REFILLO" />
       <div className="flex-1 flex flex-col justify-center max-w-5xl mx-auto w-full">
         <p className="text-primary font-bold text-center" style={{ fontSize: 32, lineHeight: 1.25 }}>
           "Everyone helps large companies ask the questions.<br />
@@ -22,7 +22,7 @@ export default function Slide07Positioning() {
           <div className="bg-muted px-6 py-4 text-muted-foreground font-semibold border-r border-border">
             Competitors (osapiens, EcoVadis...)
           </div>
-          <div className="bg-primary text-primary-foreground px-6 py-4 font-semibold">
+          <div className="bg-primary text-primary-foreground px-6 py-4 font-semibold uppercase tracking-tighter">
             Refillo
           </div>
           {rows.map(([a, b], i) => (
