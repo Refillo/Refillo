@@ -44,93 +44,83 @@ export default function Faq() {
     {
       q: lang === 'it' ? "I dati estratti sono verificabili?" : "Is the extracted data verifiable?",
       a: lang === 'it'
-        ? "Assolutamente. Ogni KPI generato mantiene un 'Audit Trail' completo: un drawer dedicato mostra il documento sorgente, lo snippet di testo grezzo estratto, la pagina esatta e un AI Confidence Score. Questo riduce i tempi di Limited Assurance da parte dei revisori esterni fino al 50%."
+        ? "Assolutamente. Ogni KPI generato mantiene un 'Audit Trail' completo: un drawer dedicato mostra il documento sorgente, lo snippet di testo grezzo estratto, la pagina esatta e un AI Confidence Score. Questo rriduce i tempi di Limited Assurance da parte dei revisori esterni fino al 50%."
         : "Absolutely. Every generated KPI maintains a complete 'Audit Trail': a dedicated drawer shows the source document, the raw text snippet extracted, the exact page, and an AI Confidence Score. This reduces Limited Assurance times by external auditors by up to 50%."
-    },
-    {
-      q: lang === 'it' ? "Il sistema impara dalle correzioni degli utenti?" : "Does the system learn from user corrections?",
-      a: lang === 'it'
-        ? "Sì, implementiamo un Continuous Learning Loop. Le correzioni umane vengono anonimizzate e utilizzate per il fine-tuning notturno dei nostri Small Language Models locali, garantendo un miglioramento costante dell'accuratezza specifica per i documenti di ogni settore merceologico."
-        : "Yes, we implement a Continuous Learning Loop. Human corrections are anonymized and used for nightly fine-tuning of our local Small Language Models, ensuring constant improvement in accuracy specific to documents in each product sector."
-    },
-    {
-      q: lang === 'it' ? "Come gestite la privacy e i costi dell'IA?" : "How do you handle privacy and AI costs?",
-      a: lang === 'it'
-        ? "Utilizziamo istanze isolate e tecniche di RAG (Retrieval-Augmented Generation). Per l'efficienza economica, adottiamo il Context Caching e il Batch Processing di Gemini 1.5 Flash, riducendo i costi di elaborazione a pochi centesimi per azienda, pur mantenendo performance di livello Enterprise."
-        : "We use isolated instances and RAG (Retrieval-Augmented Generation) techniques. For economic efficiency, we adopt Context Caching and Batch Processing of Gemini 1.5 Flash, reducing processing costs to a few cents per company while maintaining Enterprise-level performance."
     }
   ];
 
   const Footer = () => (
-    <footer className="bg-slate-900 pt-24 pb-12 px-12 text-white">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+    <footer className="bg-white border-t border-slate-100 pt-32 pb-16 px-12">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-24 mb-32">
         <div className="col-span-1 md:col-span-2">
-          <div className="flex items-center gap-2 mb-8" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
-            <img src="logo.png" alt="Refillo Logo" className="h-10 w-auto brightness-0 invert" />
-            <span className="text-2xl font-black tracking-tighter">Refillo</span>
+          <div className="flex items-center gap-2 mb-10 cursor-pointer" onClick={() => navigate('/')}>
+            <img src="logo.png" alt="Refillo Logo" className="h-8 w-auto" />
+            <span className="text-2xl font-black tracking-tighter text-slate-900">Refillo</span>
           </div>
-          <p className="text-slate-400 text-base leading-relaxed mb-8 font-medium max-w-sm">
+          <p className="text-slate-400 text-base font-medium leading-relaxed max-w-sm mb-10">
             {t('footer_desc')}
           </p>
-          <div className="flex gap-5">
-            <div className="w-10 h-10 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white cursor-pointer transition-colors text-lg">in</div>
-            <div className="w-10 h-10 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white cursor-pointer transition-colors text-lg">𝕏</div>
-          </div>
         </div>
         <div>
-          <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_prod')}</h4>
-          <ul className="space-y-5 text-base font-bold text-slate-400">
-            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
-            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/faq')}>{t('footer_faq')}</li>
-            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
+          <h4 className="font-black uppercase tracking-[0.3em] text-[10px] text-emerald-600 mb-12">{t('footer_prod')}</h4>
+          <ul className="space-y-5 text-sm font-black text-slate-400">
+            <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
+            <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/faq')}>{t('footer_faq')}</li>
+            <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
           </ul>
         </div>
         <div>
-          <h4 className="font-black uppercase tracking-[0.2em] text-xs text-emerald-500 mb-10">{t('footer_legal')}</h4>
-          <ul className="space-y-5 text-base font-bold text-slate-400">
-            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_privacy')}</li>
-            <li className="hover:text-emerald-500 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_terms')}</li>
+          <h4 className="font-black uppercase tracking-[0.3em] text-[10px] text-emerald-600 mb-12">{t('footer_legal')}</h4>
+          <ul className="space-y-5 text-sm font-black text-slate-400">
+            <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_privacy')}</li>
+            <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_terms')}</li>
           </ul>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto pt-16 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-8">
-        <p className="text-slate-500 text-sm font-bold">{t('footer_copy')}</p>
-        <p className="text-slate-600 text-xs font-black uppercase tracking-[0.3em]">Built for the Next Industrial Era</p>
+      <div className="max-w-7xl mx-auto pt-16 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-10">
+        <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.4em]">© 2026 Refillo Intelligence S.r.l.</p>
+        <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.4em]">Built for the Next Industrial Era</p>
       </div>
     </footer>
   );
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans">
-      <nav className="flex justify-between items-center px-12 py-6 bg-white border-b border-slate-100 sticky top-0 z-50">
+    <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-emerald-500/10 selection:text-emerald-600">
+      <nav className="flex justify-between items-center px-6 md:px-12 py-6 bg-white/80 backdrop-blur-xl border-b border-slate-100 sticky top-0 z-50">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
-          <img src="logo.png" alt="Refillo Logo" className="h-10 w-auto" />
-          <span className="text-2xl font-black text-slate-900 tracking-tighter">Refillo</span>
+          <img src="logo.png" alt="Refillo Logo" className="h-7 md:h-8 w-auto" />
+          <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tighter">Refillo</span>
         </div>
-        <div className="flex gap-6 items-center">
-          <button onClick={() => setLang(lang === 'it' ? 'en' : 'it')} className="w-10 h-10 flex items-center justify-center bg-slate-50 rounded-xl border border-slate-100 text-xs font-black text-slate-400 hover:text-emerald-600 transition-colors uppercase">{lang}</button>
-          <button onClick={() => navigate('/')} className="text-sm font-bold text-slate-600 hover:text-emerald-600 transition-colors">{t('nav_home')}</button>
-          <button onClick={startDemo} className="bg-emerald-600 text-white px-8 py-2 rounded-xl text-sm font-black shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition-all">{t('demo_cta')}</button>
+        <div className="flex gap-10 items-center">
+          <button onClick={() => setLang(lang === 'it' ? 'en' : 'it')} className="text-[10px] font-black text-slate-400 hover:text-emerald-600 transition-colors uppercase tracking-widest">{lang}</button>
+          <button onClick={() => navigate('/')} className="text-[11px] font-black text-slate-500 hover:text-slate-900 transition-colors uppercase tracking-widest">{t('nav_home')}</button>
+          <button onClick={startDemo} className="bg-slate-900 text-white px-6 md:px-8 py-2.5 rounded-full text-xs font-black hover:bg-emerald-600 transition-all active:scale-95 shadow-xl shadow-slate-200">{t('demo_cta')}</button>
         </div>
       </nav>
 
-      <header className="px-12 py-24 text-center max-w-4xl mx-auto">
-        <h1 className="text-6xl font-black text-slate-900 mb-6">FAQ</h1>
-        <p className="text-xl text-slate-500 font-medium">{lang === 'it' ? 'Dettagli tecnici sulla nostra pipeline di Intelligenza Artificiale.' : 'Technical details about our AI pipeline.'}</p>
+      <header className="px-6 md:px-12 pt-32 pb-24 md:pt-48 md:pb-32 text-center max-w-7xl mx-auto relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] aspect-video bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <h1 className="text-6xl md:text-[110px] font-black text-slate-900 leading-[0.9] mb-10 tracking-[-0.04em]">
+            Frequently Asked <br/>
+            <span className="text-emerald-600 drop-shadow-[0_10px_20px_rgba(16,185,129,0.1)]">Questions</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-slate-500 font-medium leading-relaxed max-w-3xl mx-auto tracking-tight">{lang === 'it' ? 'Dettagli tecnici sulla nostra pipeline di Intelligenza Artificiale.' : 'Technical details about our AI pipeline.'}</p>
+        </motion.div>
       </header>
 
-      <section className="px-12 pb-32 max-w-3xl mx-auto">
-        <div className="space-y-8">
+      <section className="px-6 md:px-12 pb-32 max-w-4xl mx-auto">
+        <div className="space-y-12">
           {faqs.map((f, i) => (
             <motion.div 
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm"
+              className="group"
             >
-              <h3 className="text-xl font-black text-slate-900 mb-4">{f.q}</h3>
-              <p className="text-slate-600 leading-relaxed font-medium">{f.a}</p>
+              <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tighter leading-snug group-hover:text-emerald-600 transition-colors">{f.q}</h3>
+              <p className="text-lg text-slate-500 leading-relaxed font-medium tracking-tight border-l-4 border-slate-100 pl-8 group-hover:border-emerald-500 transition-colors">{f.a}</p>
             </motion.div>
           ))}
         </div>

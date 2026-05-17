@@ -87,10 +87,10 @@ export default function VsmeOnboarding({ org, onComplete }) {
           </div>
           <h2 className="text-3xl font-black text-slate-900 leading-tight">{t('vsme_title')}</h2>
 
-          <div className="mt-6 p-4 bg-slate-900 rounded-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
-            <p className="text-xs text-emerald-400 font-bold uppercase tracking-widest mb-1">{t('vsme_sector_label')}</p>
-            <p className="text-sm text-slate-300 leading-relaxed italic">{context.sector_insight}</p>
+          <div className="mt-6 p-6 bg-emerald-600 rounded-2xl relative overflow-hidden shadow-xl shadow-emerald-100 border border-emerald-500">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+            <p className="text-[10px] text-emerald-100 font-black uppercase tracking-[0.2em] mb-1">{t('vsme_sector_label')}</p>
+            <p className="text-sm text-white leading-relaxed font-bold italic">{context.sector_insight}</p>
           </div>
         </div>
 

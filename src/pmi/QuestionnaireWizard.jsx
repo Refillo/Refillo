@@ -193,7 +193,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
 
               <div className="flex gap-4">
                 <button onClick={() => setPhase('upload')} className="px-8 py-5 rounded-2xl font-black text-slate-400">{t('qw_back')}</button>
-                <button onClick={() => setPhase('predictive')} className="flex-1 bg-slate-900 text-white py-5 rounded-2xl font-black text-lg hover:bg-slate-800 transition-all shadow-xl shadow-slate-200 active:scale-95">
+                <button onClick={() => setPhase('predictive')} className="flex-1 bg-emerald-600 text-white py-5 rounded-2xl font-black text-lg hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-100 active:scale-95">
                   {t('qw_continue')}
                 </button>
               </div>
@@ -276,11 +276,11 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                 </div>
                 <h2 className="text-3xl font-black text-slate-900 mb-6">{t('vsme_title')}</h2>
                 
-                {/* Sector Insight Card */}
-                <div className="p-6 bg-slate-900 rounded-[2rem] relative overflow-hidden mb-8 shadow-2xl shadow-emerald-900/10">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
-                  <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest mb-2">{t('vsme_sector_label')}</p>
-                  <p className="text-sm text-slate-300 leading-relaxed font-medium">
+                {/* Sector Insight Card - Light Premium */}
+                <div className="p-8 bg-emerald-600 rounded-[2rem] relative overflow-hidden mb-12 shadow-2xl shadow-emerald-100 border border-emerald-500">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+                  <p className="text-[10px] text-emerald-100 font-black uppercase tracking-[0.2em] mb-3">{t('vsme_sector_label')}</p>
+                  <p className="text-base text-white leading-relaxed font-bold">
                     {context.sector_insight}
                   </p>
                 </div>
@@ -397,7 +397,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                 )}
               </div>
 
-              <button onClick={() => setPhase('summary')} className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-lg">{t('qw_continue')}</button>
+              <button onClick={() => setPhase('summary')} className="w-full bg-emerald-600 text-white py-5 rounded-2xl font-black text-lg shadow-xl shadow-emerald-100 hover:bg-emerald-700 transition-all">{t('qw_continue')}</button>
             </div>
           )}
 
@@ -433,7 +433,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                 </div>
               </div>
 
-              <button onClick={finalize} className="w-full bg-slate-900 text-white py-6 rounded-2xl font-black text-xl shadow-2xl active:scale-95">
+              <button onClick={finalize} className="w-full bg-emerald-600 text-white py-6 rounded-2xl font-black text-xl shadow-2xl shadow-emerald-100 hover:bg-emerald-700 transition-all active:scale-95">
                 {t('qw_dashboard')}
               </button>
             </div>

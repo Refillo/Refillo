@@ -125,7 +125,7 @@ function App() {
           </button>
           <button onClick={() => navigate('/about')} className="text-[11px] font-black text-slate-500 hover:text-slate-900 transition-colors uppercase tracking-widest">{t('nav_about')}</button>
           <button onClick={() => navigate('/news')} className="text-[11px] font-black text-slate-500 hover:text-slate-900 transition-colors uppercase tracking-widest">News</button>
-          <button onClick={startDemo} className="bg-slate-900 text-white px-6 md:px-8 py-2.5 rounded-full text-xs font-black hover:bg-emerald-600 transition-all active:scale-95 shadow-xl shadow-slate-200">
+          <button onClick={startDemo} className="bg-emerald-600 text-white px-6 md:px-8 py-2.5 rounded-full text-xs font-black hover:bg-emerald-700 transition-all active:scale-95 shadow-xl shadow-emerald-100">
             {t('demo_cta')}
           </button>
         </div>
@@ -208,26 +208,27 @@ function App() {
 
             {/* Extension Card (Tall Bento) */}
             <motion.div 
-              className="md:col-span-4 bg-slate-900 text-white p-10 md:p-12 rounded-[3rem] shadow-2xl hover:scale-[1.02] transition-all group relative overflow-hidden flex flex-col justify-between"
+              className="md:col-span-4 bg-white p-10 md:p-12 rounded-[3rem] shadow-xl hover:shadow-2xl transition-all group relative overflow-hidden flex flex-col justify-between border border-slate-100"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.02 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
               <div className="relative z-10">
-                <div className="w-16 h-16 bg-white/10 text-white rounded-2xl flex items-center justify-center text-3xl mb-10 border border-white/10 group-hover:rotate-12 transition-transform">🧩</div>
-                <h3 className="text-3xl font-black mb-6 tracking-tighter">{t('feat_extension_title')}</h3>
-                <p className="text-slate-400 text-base font-bold leading-relaxed">
+                <div className="w-16 h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center text-3xl mb-10 group-hover:rotate-12 transition-transform">🧩</div>
+                <h3 className="text-3xl font-black text-slate-900 mb-6 tracking-tighter">{t('feat_extension_title')}</h3>
+                <p className="text-slate-500 text-base font-bold leading-relaxed">
                   {t('feat_extension_desc')}
                 </p>
               </div>
-              <div className="mt-12">
-                <div className="inline-flex items-center gap-3 bg-white/10 text-white px-6 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest border border-white/5">
+              <div className="mt-12 relative z-10">
+                <div className="inline-flex items-center gap-3 bg-emerald-50 text-emerald-600 px-6 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest border border-emerald-100">
                   <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
                   Live on Chrome Store
                 </div>
               </div>
-              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl opacity-20"></div>
+              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-emerald-500/[0.05] rounded-full blur-3xl opacity-50"></div>
             </motion.div>
 
             {/* Steps - Bottom Row */}
