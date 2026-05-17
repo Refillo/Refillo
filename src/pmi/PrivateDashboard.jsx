@@ -110,7 +110,7 @@ export default function PrivateDashboard({ org }) {
       <nav className="flex justify-between items-center px-12 py-5 bg-white border-b border-slate-100 sticky top-0 z-50">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
           <img src="logo.png" alt="Refillo Logo" className="h-8 md:h-9 w-auto" />
-          <span className="text-xl font-black text-slate-900 tracking-tighter uppercase">Refillo</span>
+          <span className="text-xl font-black text-slate-900 tracking-tighter uppercase">Refill<span className="text-emerald-500">o</span></span>
           <div className="ml-6 flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-600 rounded-full border border-emerald-100">
             <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
             <span className="text-[10px] font-black uppercase tracking-[0.2em]">{t('dash_private')}</span>

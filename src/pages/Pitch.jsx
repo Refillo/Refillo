@@ -68,7 +68,7 @@ export default function Pitch() {
       <nav className="flex justify-between items-center px-6 md:px-12 py-6 bg-white/80 backdrop-blur-xl border-b border-slate-100 sticky top-0 z-50">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
           <img src="logo.png" alt="Refillo Logo" className="h-8 md:h-9 w-auto" />
-          <span className="text-xl font-black text-slate-900 tracking-tighter">Refillo</span>
+          <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tighter uppercase">Refill<span className="text-emerald-500">o</span></span>
         </div>
         <div className="flex gap-4 md:gap-6 items-center">
           <button onClick={() => navigate('/')} className="text-[11px] font-black text-slate-500 hover:text-slate-900 transition-colors uppercase tracking-widest">{t('nav_home')}</button>
