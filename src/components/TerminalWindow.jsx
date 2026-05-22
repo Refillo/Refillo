@@ -7,17 +7,17 @@ export default function TerminalWindow({ children, title = "refillo.sh", classNa
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-      className={`rounded-2xl overflow-hidden bg-[#0B0F17] ${className}`}
+      className={`rounded-2xl overflow-hidden border border-slate-100 bg-white shadow-2xl shadow-slate-200/50 ${className}`}
     >
-      {/* Terminal Header */}
-      <div className="flex items-center justify-between px-6 py-4 bg-[#141B26] border-b border-slate-800">
+      {/* Terminal Header - Clean Light */}
+      <div className="flex items-center justify-between px-6 py-4 bg-slate-50 border-b border-slate-100">
         <div className="flex gap-2">
-          <div className="w-3.5 h-3.5 rounded-full bg-[#FF5F56]"></div>
-          <div className="w-3.5 h-3.5 rounded-full bg-[#FFBD2E]"></div>
-          <div className="w-3.5 h-3.5 rounded-full bg-[#27C93F]"></div>
+          <div className="w-3.5 h-3.5 rounded-full bg-slate-200"></div>
+          <div className="w-3.5 h-3.5 rounded-full bg-slate-200"></div>
+          <div className="w-3.5 h-3.5 rounded-full bg-slate-200"></div>
         </div>
-        <div className="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] font-mono">{title}</div>
-        <div className="w-10"></div> {/* Spacer for symmetry */}
+        <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] font-mono">{title}</div>
+        <div className="w-10"></div>
       </div>
 
       {/* Terminal Body */}

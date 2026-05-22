@@ -22,26 +22,26 @@ export default function AutoCompilerDemo() {
   }, []);
 
   return (
-    <div className="relative h-[480px] w-full bg-[#0B0F17] overflow-hidden">
+    <div className="relative h-[480px] w-full bg-white overflow-hidden">
       {/* Subtle Grid Background */}
-      <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
-
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+      
       {/* Top Header - Removed because it's now in TerminalWindow */}
 
-      {/* Document Representation - Dark Theme */}
+      {/* Document Representation - Ultra Clean Light */}
       <motion.div 
-        className="absolute left-16 top-1/2 -translate-y-1/2 w-56 h-72 bg-[#141B26] rounded-2xl border border-slate-800 p-8 flex flex-col gap-5 shadow-2xl"
+        className="absolute left-16 top-1/2 -translate-y-1/2 w-56 h-72 bg-white rounded-2xl border border-slate-100 p-8 flex flex-col gap-5 shadow-sm"
         initial={{ x: -60, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <div className="w-full h-4 bg-slate-800 rounded-sm"></div>
-        <div className="w-4/5 h-3 bg-slate-800/50 rounded-sm"></div>
-        <div className="w-full h-3 bg-slate-800/50 rounded-sm"></div>
+        <div className="w-full h-4 bg-slate-100 rounded-sm"></div>
+        <div className="w-4/5 h-3 bg-slate-50 rounded-sm"></div>
+        <div className="w-full h-3 bg-slate-50 rounded-sm"></div>
         <div className="mt-8 space-y-3">
-          <div className="w-full h-2 bg-slate-800/30 rounded-sm"></div>
-          <div className="w-11/12 h-2 bg-slate-800/30 rounded-sm"></div>
-          <div className="w-full h-2 bg-slate-800/50 rounded-sm"></div>
+          <div className="w-full h-2 bg-slate-50 rounded-sm"></div>
+          <div className="w-11/12 h-2 bg-slate-50 rounded-sm"></div>
+          <div className="w-full h-2 bg-slate-100 rounded-sm"></div>
         </div>
         {/* Elegant Emerald Scanning line */}
         <motion.div 
@@ -54,13 +54,13 @@ export default function AutoCompilerDemo() {
       {/* AI Extraction Node */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
         <motion.div 
-          className="w-24 h-24 bg-[#141B26] rounded-[2rem] border border-slate-800 flex items-center justify-center text-4xl shadow-2xl z-10"
+          className="w-24 h-24 bg-white rounded-[2rem] border border-slate-100 flex items-center justify-center text-4xl shadow-2xl z-10"
           animate={{ scale: [1, 1.05, 1], rotate: [0, 90, 180, 270, 360] }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         >
-          <span className="text-emerald-500 font-black">R</span>
+          <span className="text-emerald-600 font-black">R</span>
         </motion.div>
-        <div className="mt-8 text-slate-400 font-black text-[11px] uppercase tracking-[0.5em]">Processing...</div>
+        <div className="mt-8 text-slate-900 font-black text-[11px] uppercase tracking-[0.5em]">Processing...</div>
       </div>
 
       {/* Data Transmission Particles */}
@@ -77,7 +77,7 @@ export default function AutoCompilerDemo() {
             }}
             exit={{ opacity: 0 }}
             transition={{ duration: 3, ease: "anticipate" }}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-6 py-3 rounded-2xl bg-[#141B26] border border-slate-800 text-white text-[12px] font-black shadow-2xl flex items-center gap-4 whitespace-nowrap z-30"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-6 py-3 rounded-2xl bg-white border border-slate-100 text-slate-900 text-[12px] font-black shadow-xl flex items-center gap-4 whitespace-nowrap z-30"
           >
             <div className={`w-2 h-2 rounded-full ${point.color} shadow-[0_0_8px_rgba(16,185,129,0.6)]`}></div>
             {point.label}
@@ -85,18 +85,18 @@ export default function AutoCompilerDemo() {
         ))}
       </AnimatePresence>
 
-      {/* Destination Forms - Dark Stack */}
+      {/* Destination Forms - Modern Light Stack */}
       <div className="absolute right-16 top-1/2 -translate-y-1/2 w-72 h-[320px] flex flex-col items-end justify-center">
-
+        
         <div className="relative w-56 h-72">
           {[
-            { label: 'Standard ESRS', color: 'bg-[#141B26]', border: 'border-slate-800', text: 'text-white', delay: 0 },
-            { label: 'EcoVadis V3', color: 'bg-emerald-950/20', border: 'border-emerald-500/30', text: 'text-emerald-400', delay: 1 },
-            { label: 'Enterprise Portal', color: 'bg-[#141B26]', border: 'border-emerald-500/20', text: 'text-emerald-500', delay: 2 },
+            { label: 'Standard ESRS', color: 'bg-white', border: 'border-slate-100', text: 'text-slate-900', delay: 0 },
+            { label: 'EcoVadis V3', color: 'bg-emerald-50/50', border: 'border-emerald-100', text: 'text-emerald-900', delay: 1 },
+            { label: 'Enterprise Portal', color: 'bg-white', border: 'border-emerald-500/20', text: 'text-emerald-600', delay: 2 },
           ].map((form, i) => (
             <motion.div
               key={form.label}
-              className={`absolute inset-0 ${form.color} rounded-2xl p-6 shadow-2xl border ${form.border} flex flex-col gap-3 backdrop-blur-sm`}
+              className={`absolute inset-0 ${form.color} rounded-2xl p-6 shadow-xl border ${form.border} flex flex-col gap-3 backdrop-blur-sm`}
               style={{ zIndex: 10 - i }}
               initial={{ x: 50, opacity: 0 }}
               animate={{ 
@@ -111,18 +111,18 @@ export default function AutoCompilerDemo() {
                 <span className={`text-[10px] font-black ${form.text} uppercase tracking-widest`}>{form.label}</span>
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
               </div>
-
+              
               <div className="space-y-3 mt-2">
-                <div className="h-1 bg-slate-800 rounded-full overflow-hidden">
-                  <motion.div className="h-full bg-emerald-500/50" animate={{ width: ['10%', '95%', '10%'] }} transition={{ duration: 5, repeat: Infinity, delay: i * 0.4 }} />
+                <div className="h-1 bg-slate-100 rounded-full overflow-hidden">
+                  <motion.div className="h-full bg-emerald-500/30" animate={{ width: ['10%', '95%', '10%'] }} transition={{ duration: 5, repeat: Infinity, delay: i * 0.4 }} />
                 </div>
-                <div className="h-1 bg-slate-800 rounded-full overflow-hidden">
-                  <motion.div className="h-full bg-emerald-500/50" animate={{ width: ['30%', '80%', '30%'] }} transition={{ duration: 5, repeat: Infinity, delay: i * 0.6 }} />
+                <div className="h-1 bg-slate-100 rounded-full overflow-hidden">
+                  <motion.div className="h-full bg-emerald-500/30" animate={{ width: ['30%', '80%', '30%'] }} transition={{ duration: 5, repeat: Infinity, delay: i * 0.6 }} />
                 </div>
               </div>
 
               <div className="mt-auto flex justify-end">
-                <div className="px-3 py-1 rounded-lg bg-emerald-500/10 text-[8px] font-black text-emerald-400 uppercase tracking-[0.2em] border border-emerald-500/20">Ready to Submit</div>
+                <div className="px-3 py-1 rounded-lg bg-emerald-50 text-[8px] font-black text-emerald-600 uppercase tracking-[0.2em] border border-emerald-100">Ready to Submit</div>
               </div>
             </motion.div>
           ))}
@@ -134,8 +134,8 @@ export default function AutoCompilerDemo() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
         >
-          <div className="text-slate-400 font-black text-[11px] uppercase tracking-[0.6em]">Zero Friction</div>
-          <div className="text-slate-500 text-[10px] font-bold mt-2">Enterprise-Grade Automation</div>
+          <div className="text-slate-900 font-black text-[11px] uppercase tracking-[0.6em]">Zero Friction</div>
+          <div className="text-slate-400 text-[10px] font-bold mt-2">Enterprise-Grade Automation</div>
         </motion.div>
       </div>
 
