@@ -272,16 +272,23 @@ function App() {
         </div>
       </div>
 
-      {/* Interactive Engine Demo in Terminal */}
+      {/* Interactive Engine Demo - Restored Original Style */}
       <section className="px-6 md:px-12 py-32 md:py-48 max-w-7xl mx-auto relative">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-full bg-emerald-500/[0.02] -skew-y-3 -z-10"></div>
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter">{t('land_auto_title')}</h2>
           <p className="text-slate-500 text-xl font-medium max-w-2xl mx-auto">{t('land_auto_sub')}</p>
         </div>
-        <TerminalWindow title="refillo-core --analyze-documents" className="max-w-6xl mx-auto">
+        
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="max-w-6xl mx-auto rounded-[3rem] overflow-hidden border border-slate-100 bg-white shadow-2xl shadow-slate-200/50 group hover:border-emerald-500/30 transition-all"
+        >
           <AutoCompilerDemo />
-        </TerminalWindow>
+        </motion.div>
       </section>
 
       {/* Z-Pattern Features - Developer & Tech Focus */}
