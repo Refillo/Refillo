@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-mo
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import MarketGraph from './components/MarketGraph.jsx';
 import AutoCompilerDemo from './components/AutoCompilerDemo.jsx';
+import TerminalWindow from './components/TerminalWindow.jsx';
 import { useLanguage } from './LanguageContext';
 
 const AnimatedNumber = ({ value, suffix = "" }) => {
@@ -72,6 +73,95 @@ const FloatingElement = ({ delay = 0, x = "0%", y = "0%", size = "w-20", label =
   </motion.div>
 );
 
+const ComparisonTable = ({ t }) => (
+  <section className="px-6 md:px-12 py-32 md:py-48 bg-white overflow-hidden">
+    <div className="max-w-5xl mx-auto">
+      <h2 className="text-4xl md:text-7xl font-black text-slate-900 mb-24 text-center tracking-tighter leading-[0.9]">{t('vs_title')}</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-slate-100 rounded-[3rem] overflow-hidden shadow-2xl shadow-slate-200/50">
+        <div className="p-10 md:p-14 bg-slate-50 border-r border-slate-100 hidden md:block">
+           <div className="h-20 flex items-center">
+             <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Parameters</span>
+           </div>
+           <ul className="space-y-16 mt-8">
+             <li className="text-sm font-black text-slate-400 uppercase tracking-widest">{t('vs_time')}</li>
+             <li className="text-sm font-black text-slate-400 uppercase tracking-widest">{t('vs_accuracy')}</li>
+             <li className="text-sm font-black text-slate-400 uppercase tracking-widest">{t('vs_compliance')}</li>
+           </ul>
+        </div>
+        <div className="p-10 md:p-14 bg-white border-r border-slate-100">
+           <div className="h-20 flex flex-col justify-center">
+             <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Legacy Method</span>
+             <h4 className="text-2xl font-black text-slate-900 tracking-tight">{t('vs_manual')}</h4>
+           </div>
+           <ul className="space-y-16 mt-8">
+             <li className="flex flex-col">
+               <span className="md:hidden text-[10px] font-black text-slate-400 uppercase mb-2">{t('vs_time')}</span>
+               <span className="text-slate-500 font-bold text-lg">{t('vs_manual_time')}</span>
+             </li>
+             <li className="flex flex-col">
+               <span className="md:hidden text-[10px] font-black text-slate-400 uppercase mb-2">{t('vs_accuracy')}</span>
+               <span className="text-slate-500 font-bold text-lg">{t('vs_manual_accuracy')}</span>
+             </li>
+             <li className="flex flex-col">
+               <span className="md:hidden text-[10px] font-black text-slate-400 uppercase mb-2">{t('vs_compliance')}</span>
+               <span className="text-slate-500 font-bold text-lg">{t('vs_manual_compliance')}</span>
+             </li>
+           </ul>
+        </div>
+        <div className="p-10 md:p-14 bg-emerald-600 text-white relative">
+           <div className="absolute top-8 right-8 bg-white/20 px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest backdrop-blur-md">Recommended</div>
+           <div className="h-20 flex flex-col justify-center">
+             <span className="text-[10px] font-black text-emerald-200 uppercase tracking-[0.2em] mb-3">Refillo Platform</span>
+             <h4 className="text-2xl font-black tracking-tight">{t('vs_refillo')}</h4>
+           </div>
+           <ul className="space-y-16 mt-8">
+             <li className="flex flex-col">
+               <span className="md:hidden text-[10px] font-black text-emerald-200 uppercase mb-2">{t('vs_time')}</span>
+               <span className="font-black text-emerald-50 text-xl">{t('vs_refillo_time')}</span>
+             </li>
+             <li className="flex flex-col">
+               <span className="md:hidden text-[10px] font-black text-emerald-200 uppercase mb-2">{t('vs_accuracy')}</span>
+               <span className="font-black text-emerald-50 text-xl">{t('vs_refillo_accuracy')}</span>
+             </li>
+             <li className="flex flex-col">
+               <span className="md:hidden text-[10px] font-black text-emerald-200 uppercase mb-2">{t('vs_compliance')}</span>
+               <span className="font-black text-emerald-50 text-xl">{t('vs_refillo_compliance')}</span>
+             </li>
+           </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const SecurityBanner = ({ t }) => (
+  <section className="px-6 md:px-12 py-32 md:py-48 bg-slate-50 border-y border-slate-100 relative overflow-hidden">
+    <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/[0.03] blur-[100px] rounded-full -z-10"></div>
+    <div className="max-w-7xl mx-auto text-center">
+      <h2 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 tracking-tighter">{t('vs_security_title')}</h2>
+      <p className="text-slate-500 text-xl md:text-2xl font-medium mb-24 max-w-3xl mx-auto leading-relaxed">{t('vs_security_sub')}</p>
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12">
+        {[
+          { label: 'CSRD Compliant', icon: '🇪🇺' },
+          { label: 'ESRS Standard', icon: '📊' },
+          { label: 'AES-256', icon: '🔒' },
+          { label: 'GDPR Ready', icon: '🛡️' },
+          { label: 'ISO 27001', icon: '✅' },
+        ].map(item => (
+          <motion.div 
+            key={item.label} 
+            className="flex flex-col items-center gap-6 p-8 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all"
+            whileHover={{ y: -5 }}
+          >
+            <div className="w-20 h-20 bg-slate-50 rounded-[1.5rem] flex items-center justify-center text-4xl border border-slate-100">{item.icon}</div>
+            <span className="text-[10px] font-black text-slate-900 uppercase tracking-[0.3em] text-center leading-tight">{item.label}</span>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 function App() {
   const navigate = useNavigate();
   const { lang, setLang, t } = useLanguage();
@@ -131,31 +221,36 @@ function App() {
         </div>
       </nav>
 
-      {/* Hero Section - The "ctrl.xyz" Entrance in Light */}
-      <header className="px-6 md:px-12 pt-32 pb-24 md:pt-48 md:pb-40 text-center max-w-7xl mx-auto relative">
-        {/* Subtle Light Glow & Floating Elements */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] aspect-video bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
-        
-        <FloatingElement x="12%" y="15%" size="w-32 h-20" delay={0} label="ESG_DATA" />
-        <FloatingElement x="78%" y="12%" size="w-24 h-16" delay={1} label="KPI_01" />
-        <FloatingElement x="8%" y="65%" size="w-40 h-24" delay={2} label="AUTO_COMP" />
-        <FloatingElement x="82%" y="72%" size="w-28 h-20" delay={1.5} label="VAULT" />
-        <FloatingElement x="45%" y="85%" size="w-36 h-20" delay={3} label="EMERALD" />
+      {/* Hero Section - High Tech Modern */}
+      <header className="px-6 md:px-12 pt-32 pb-24 md:pt-48 md:pb-32 text-center max-w-7xl mx-auto relative overflow-hidden">
+        {/* Background Decorative Elements */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none">
+          <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-emerald-500/5 blur-[120px] rounded-full"></div>
+          <div className="absolute top-[20%] left-[10%] w-[300px] h-[300px] bg-blue-500/5 blur-[100px] rounded-full"></div>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10"
         >
-          <h1 className="text-6xl md:text-[110px] font-black text-slate-900 leading-[0.9] mb-10 tracking-[-0.04em]">
+          <div className="inline-flex items-center gap-3 bg-emerald-50 text-emerald-600 px-6 py-2 rounded-full text-[11px] font-black uppercase tracking-widest mb-10 border border-emerald-100 shadow-sm shadow-emerald-500/5">
+            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+            AI-Powered ESG Automation v2.0
+          </div>
+          
+          <h1 className="text-6xl md:text-[115px] font-black text-slate-900 leading-[0.85] mb-12 tracking-[-0.05em]">
             {t('hero_title')} <br className="hidden md:block"/>
-            <span className="text-emerald-600 drop-shadow-[0_10px_20px_rgba(16,185,129,0.1)]">{t('hero_title_span')}</span>
+            <span className="text-emerald-600 drop-shadow-[0_15px_30px_rgba(16,185,129,0.15)]">{t('hero_title_span')}</span>
           </h1>
+          
           <p className="text-xl md:text-2xl text-slate-500 font-medium leading-relaxed mb-16 max-w-3xl mx-auto tracking-tight">
             {t('hero_sub')}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <button onClick={startDemo} className="w-full sm:w-auto bg-emerald-600 text-white px-12 py-5 rounded-2xl font-black text-xl hover:bg-emerald-700 transition-all shadow-[0_20px_40px_rgba(16,185,129,0.2)] active:scale-95">
+          
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-24">
+            <button onClick={startDemo} className="w-full sm:w-auto bg-emerald-600 text-white px-12 py-5 rounded-2xl font-black text-xl hover:bg-emerald-700 transition-all shadow-[0_25px_50px_-12px_rgba(16,185,129,0.3)] active:scale-95">
               {t('demo_cta')}
             </button>
             <button onClick={handleComingSoon} className="w-full sm:w-auto px-12 py-5 border border-slate-200 rounded-2xl font-black text-xl hover:bg-slate-50 transition-all text-slate-900">
@@ -165,103 +260,180 @@ function App() {
         </motion.div>
       </header>
 
-      {/* Interactive Engine Demo */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-32 md:mb-48">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="rounded-[3rem] overflow-hidden border border-slate-100 bg-white shadow-2xl shadow-slate-200/50 group hover:border-emerald-500/30 transition-colors"
-        >
+      {/* Integration Banner - Trusted by */}
+      <div className="py-16 border-y border-slate-100 bg-slate-50/20 overflow-hidden relative">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] text-center mb-12 opacity-80">Seamlessly Integrated with Global Standards</p>
+          <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-10 opacity-30 grayscale hover:opacity-60 transition-all duration-700">
+            {['SAP', 'Oracle', 'Microsoft', 'EcoVadis', 'CDP', 'Synesgy', 'ESG Book'].map(partner => (
+               <span key={partner} className="text-sm md:text-lg font-black text-slate-900 tracking-tighter uppercase">{partner}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Interactive Engine Demo in Terminal */}
+      <section className="px-6 md:px-12 py-32 md:py-48 max-w-7xl mx-auto relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-full bg-emerald-500/[0.02] -skew-y-3 -z-10"></div>
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter">Automazione Senza Attrito</h2>
+          <p className="text-slate-500 text-xl font-medium max-w-2xl mx-auto">Dalla ricezione del documento alla compilazione del questionario, tutto in un unico flusso automatizzato.</p>
+        </div>
+        <TerminalWindow title="refillo-core --analyze-documents" className="max-w-6xl mx-auto">
           <AutoCompilerDemo />
-        </motion.div>
+        </TerminalWindow>
       </section>
 
-      {/* Bento Grid Features - Ultra Clean Light Cards */}
-      <section className="px-6 md:px-12 py-32 bg-slate-50/50 border-y border-slate-100">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-            
-            {/* Feature: Formats (Large Bento) */}
+      {/* Z-Pattern Features - Developer & Tech Focus */}
+      <section className="px-6 md:px-12 py-32 md:py-48 bg-white">
+        <div className="max-w-7xl mx-auto space-y-32 md:space-y-64">
+          
+          {/* Section 1: Data Discovery */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <motion.div 
-              className="md:col-span-8 bg-white p-10 md:p-16 rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-2xl transition-all group relative overflow-hidden"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -5 }}
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              className="order-2 lg:order-1"
             >
-              <div className="relative z-10">
-                <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-3xl mb-10 border border-emerald-100 group-hover:scale-110 transition-transform">📄</div>
-                <h3 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tighter">{t('feat_formats_title')}</h3>
-                <p className="text-slate-500 text-lg md:text-xl font-medium leading-relaxed max-w-xl">
-                  {t('feat_formats_desc')}
-                </p>
-                <div className="mt-12 flex flex-wrap gap-4">
-                  {['.xlsx', '.pdf', '.csv', '.json', '.xlsm'].map(ext => (
-                    <span key={ext} className="px-5 py-2 bg-slate-50 rounded-xl text-xs font-black text-slate-400 uppercase tracking-widest border border-slate-100 group-hover:border-emerald-200 transition-colors">{ext}</span>
+              <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-3xl mb-8 border border-emerald-100">⚡</div>
+              <h3 className="text-4xl md:text-7xl font-black text-slate-900 mb-8 tracking-tighter leading-[0.95]">{t('how_step1_title')}</h3>
+              <p className="text-slate-500 text-xl md:text-2xl font-medium leading-relaxed mb-10">
+                {t('how_step1_desc')}
+              </p>
+              <ul className="space-y-4">
+                {['Automatic extraction from PDF/XLS', 'Audit trail for every value', 'Universal document parser'].map(item => (
+                  <li key={item} className="flex items-center gap-3 text-sm font-black text-slate-900 uppercase tracking-widest">
+                    <div className="w-2 h-2 bg-emerald-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+            <div className="order-1 lg:order-2 bg-slate-50 rounded-[3rem] p-8 md:p-12 border border-slate-100 relative overflow-hidden group">
+               <div className="absolute inset-0 bg-emerald-500/[0.01] group-hover:bg-emerald-500/[0.03] transition-colors"></div>
+               <TerminalWindow title="discovery-engine --extract" className="shadow-none border-slate-200 bg-white">
+                 <div className="p-8 space-y-6">
+                    <div className="flex justify-between items-center text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                      <span>File: enel_invoice_2026.pdf</span>
+                      <span className="text-emerald-500 flex items-center gap-2"><span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>Extracted</span>
+                    </div>
+                    <div className="space-y-3 opacity-20">
+                      <div className="h-2 bg-slate-400 rounded-full w-full"></div>
+                      <div className="h-2 bg-slate-400 rounded-full w-4/5"></div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                       <div className="bg-emerald-50 p-6 rounded-2xl border border-emerald-100 shadow-sm">
+                         <div className="text-[9px] font-black text-emerald-600 uppercase mb-2 tracking-widest">Scope 2 Emissions</div>
+                         <div className="text-2xl font-black text-emerald-900">425.2 kg CO₂e</div>
+                       </div>
+                       <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                         <div className="text-[9px] font-black text-slate-400 uppercase mb-2 tracking-widest">Confidence</div>
+                         <div className="text-2xl font-black text-slate-900">99.8%</div>
+                       </div>
+                    </div>
+                 </div>
+               </TerminalWindow>
+            </div>
+          </div>
+
+          {/* Section 2: Universal Mapping (Reversed) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+            <div className="bg-slate-50 rounded-[3rem] p-8 md:p-12 border border-slate-100 relative overflow-hidden group">
+               <div className="absolute inset-0 bg-blue-500/[0.01] group-hover:bg-blue-500/[0.03] transition-colors"></div>
+               <div className="relative z-10 grid grid-cols-2 gap-4 md:gap-6">
+                  {[
+                    { label: 'VSME Baseline', value: '100%', color: 'text-emerald-500' },
+                    { label: 'ESRS Readiness', value: '94%', color: 'text-emerald-500' },
+                    { label: 'EcoVadis V3', value: '88%', color: 'text-blue-500' },
+                    { label: 'CDP Rating', value: '82%', color: 'text-purple-500' },
+                  ].map(stat => (
+                    <div key={stat.label} className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all">
+                      <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">{stat.label}</div>
+                      <div className={`text-5xl font-black ${stat.color} tracking-tighter`}>{stat.value}</div>
+                    </div>
                   ))}
-                </div>
-              </div>
-              <div className="absolute top-0 right-0 w-1/2 h-full bg-emerald-500/[0.02] blur-[100px] rounded-full pointer-events-none group-hover:bg-emerald-500/[0.05] transition-colors"></div>
-            </motion.div>
-
-            {/* Extension Card (Tall Bento) */}
+               </div>
+            </div>
             <motion.div 
-              className="md:col-span-4 bg-white p-10 md:p-12 rounded-[3rem] shadow-xl hover:shadow-2xl transition-all group relative overflow-hidden flex flex-col justify-between border border-slate-100"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.02 }}
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
             >
-              <div className="relative z-10">
-                <div className="w-16 h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center text-3xl mb-10 group-hover:rotate-12 transition-transform">🧩</div>
-                <h3 className="text-3xl font-black text-slate-900 mb-6 tracking-tighter">{t('feat_extension_title')}</h3>
-                <p className="text-slate-500 text-base font-bold leading-relaxed">
-                  {t('feat_extension_desc')}
-                </p>
+              <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-8 border border-blue-100">🧠</div>
+              <h3 className="text-4xl md:text-7xl font-black text-slate-900 mb-8 tracking-tighter leading-[0.95]">{t('how_step2_title')}</h3>
+              <p className="text-slate-500 text-xl md:text-2xl font-medium leading-relaxed mb-10">
+                {t('how_step2_desc')}
+              </p>
+              <div className="flex flex-wrap gap-4">
+                {['CSRD', 'ESRS', 'VSME', 'GRI', 'CDP', 'IFRS'].map(std => (
+                  <span key={std} className="px-5 py-2 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-[0.2em]">{std}</span>
+                ))}
               </div>
-              <div className="mt-12 relative z-10">
-                <div className="inline-flex items-center gap-3 bg-emerald-50 text-emerald-600 px-6 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest border border-emerald-100">
-                  <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-                  Live on Chrome Store
-                </div>
-              </div>
-              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-emerald-500/[0.05] rounded-full blur-3xl opacity-50"></div>
             </motion.div>
+          </div>
 
-            {/* Steps - Bottom Row */}
-            {[
-              { id: '01', title: t('how_step1_title'), desc: t('how_step1_desc'), icon: '⚡' },
-              { id: '02', title: t('how_step2_title'), desc: t('how_step2_desc'), icon: '🧠' },
-              { id: '03', title: t('how_step3_title'), desc: t('how_step3_desc'), icon: '🚀' },
-            ].map((step, idx) => (
-              <motion.div 
-                key={step.id}
-                className="md:col-span-4 bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all group hover:border-emerald-500/20"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -8 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 + (idx * 0.1) }}
-              >
-                <div className="text-sm font-black text-emerald-600 mb-8 uppercase tracking-[0.3em] flex items-center gap-3">
-                  <span className="w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center text-[11px] font-black border border-emerald-100 group-hover:bg-emerald-500 group-hover:text-white transition-colors">{step.id}</span>
-                  {step.icon}
+          {/* Section 3: Browser Extension (Large Full-Width) */}
+          <div className="bg-slate-900 rounded-[4rem] p-12 md:p-24 text-white relative overflow-hidden group">
+             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-500/10 blur-[150px] rounded-full group-hover:bg-emerald-500/20 transition-all duration-1000"></div>
+             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                <div>
+                  <div className="inline-flex items-center gap-3 bg-emerald-500/20 text-emerald-400 px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest mb-10 border border-emerald-500/30">
+                    <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+                    Chrome Store Featured
+                  </div>
+                  <h3 className="text-5xl md:text-7xl font-black mb-10 tracking-tighter leading-[0.95]">{t('feat_extension_title')}</h3>
+                  <p className="text-slate-400 text-xl md:text-2xl font-medium leading-relaxed mb-12">
+                    {t('feat_extension_desc')}
+                  </p>
+                  <button className="bg-emerald-600 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-emerald-700 transition-all shadow-2xl shadow-emerald-500/20 active:scale-95">
+                    Add to Chrome — Free
+                  </button>
                 </div>
-                <h3 className="text-2xl font-black text-slate-900 mb-5 tracking-tight">{step.title}</h3>
-                <p className="text-slate-500 text-base font-medium leading-relaxed">
-                  {step.desc}
-                </p>
-              </motion.div>
-            ))}
+                <div className="relative">
+                   <div className="absolute -inset-4 bg-emerald-500/20 blur-2xl rounded-[3rem] opacity-50"></div>
+                   <TerminalWindow title="refillo-extension --overlay" className="border-slate-700 bg-[#0B0F17]">
+                     <div className="p-8 space-y-8">
+                        <div className="flex items-center gap-4 border-b border-slate-800 pb-6">
+                           <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-2xl">📦</div>
+                           <div>
+                             <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Client Portal</div>
+                             <div className="text-lg font-black text-white uppercase tracking-tighter">STELLANTIS_V3</div>
+                           </div>
+                        </div>
+                        <div className="space-y-6">
+                           {[
+                             { label: 'Energy Consumption (MWh)', value: '450.2', status: 'Mapped' },
+                             { label: 'Recycling Rate (%)', value: '82.5', status: 'Mapped' },
+                             { label: 'Gender Pay Gap (%)', value: '2.1', status: 'Mapped' },
+                           ].map(row => (
+                             <div key={row.label} className="flex justify-between items-center group">
+                                <span className="text-sm font-medium text-slate-400 group-hover:text-white transition-colors">{row.label}</span>
+                                <div className="flex items-center gap-4">
+                                   <span className="text-sm font-black text-white">{row.value}</span>
+                                   <span className="text-[8px] font-black text-emerald-500 border border-emerald-500/30 px-2 py-0.5 rounded uppercase">{row.status}</span>
+                                </div>
+                             </div>
+                           ))}
+                        </div>
+                        <div className="pt-6 border-t border-slate-800 flex justify-end">
+                           <div className="bg-emerald-600 text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest">Auto-Fill Form</div>
+                        </div>
+                     </div>
+                   </TerminalWindow>
+                </div>
+             </div>
           </div>
         </div>
       </section>
 
+      <ComparisonTable t={t} />
+
+      <SecurityBanner t={t} />
+
       {/* Market Intelligence - High Contrast Light */}
-      <section className="px-6 md:px-12 py-32 md:py-48 bg-white">
+      <section className="px-6 md:px-12 py-32 md:py-48 bg-white relative overflow-hidden">
+        <div className="absolute top-[10%] right-[5%] w-96 h-96 bg-blue-500/[0.02] blur-[100px] rounded-full -z-10"></div>
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
             <div>

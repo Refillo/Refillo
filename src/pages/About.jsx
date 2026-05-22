@@ -35,7 +35,7 @@ export default function About() {
   ];
 
   const Footer = () => (
-    <footer className="bg-white border-t border-slate-100 pt-32 pb-16 px-12">
+    <footer className="bg-white border-t border-slate-100 pt-32 pb-16 px-6 md:px-12">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-24 mb-32">
         <div className="col-span-1 md:col-span-2">
           <div className="flex items-center gap-2 mb-10 cursor-pointer" onClick={() => navigate('/')}>
@@ -46,40 +46,50 @@ export default function About() {
             {t('footer_desc')}
           </p>
         </div>
+
         <div>
           <h4 className="font-black uppercase tracking-[0.3em] text-[10px] text-emerald-600 mb-12">{t('footer_prod')}</h4>
           <ul className="space-y-5 text-sm font-black text-slate-400">
             <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
-            <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/faq')}>{t('footer_faq')}</li>
+            <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/news')}>{t('footer_faq')}</li>
             <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
           </ul>
         </div>
+
         <div>
           <h4 className="font-black uppercase tracking-[0.3em] text-[10px] text-emerald-600 mb-12">{t('footer_legal')}</h4>
           <ul className="space-y-5 text-sm font-black text-slate-400">
-            <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_privacy')}</li>
-            <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_terms')}</li>
+            <li className="hover:text-emerald-600 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_privacy')}</li>
+            <li className="hover:text-emerald-600 cursor-pointer transition-colors" onClick={handleComingSoon}>{t('footer_terms')}</li>
           </ul>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto pt-16 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-10">
+
+      <div className="max-w-7xl mx-auto pt-16 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-10">
         <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.4em]">© 2026 Refillo Intelligence S.r.l.</p>
-        <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.4em]">Built for the Next Industrial Era</p>
+        <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.4em]">Milan, Italy • Built for the Next Industrial Era</p>
       </div>
     </footer>
   );
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-500 selection:bg-emerald-500/10 selection:text-emerald-600">
-      <nav className="flex justify-between items-center px-6 md:px-12 py-6 bg-white/80 backdrop-blur-xl border-b border-slate-100 sticky top-0 z-50">
+      <nav className="flex justify-between items-center px-6 md:px-12 py-5 bg-white/80 backdrop-blur-xl border-b border-slate-100 sticky top-0 z-50">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
           <img src="logo.png" alt="Refillo Logo" className="h-7 md:h-8 w-auto" />
           <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tighter uppercase">Refill<span className="text-emerald-500">o</span></span>
         </div>
-        <div className="flex gap-10 items-center">
-          <button onClick={() => setLang(lang === 'it' ? 'en' : 'it')} className="text-[10px] font-black text-slate-400 hover:text-emerald-600 transition-colors uppercase tracking-widest">{lang}</button>
+        <div className="flex gap-6 md:gap-10 items-center">
+          <button 
+            onClick={() => setLang(lang === 'it' ? 'en' : 'it')}
+            className="text-[10px] font-black text-slate-400 hover:text-emerald-600 transition-colors uppercase tracking-widest"
+          >
+            {lang}
+          </button>
           <button onClick={() => navigate('/')} className="text-[11px] font-black text-slate-500 hover:text-slate-900 transition-colors uppercase tracking-widest">{t('nav_home')}</button>
-          <button onClick={startDemo} className="bg-slate-900 text-white px-6 md:px-8 py-2.5 rounded-full text-xs font-black hover:bg-emerald-600 transition-all active:scale-95">{t('demo_cta')}</button>
+          <button onClick={startDemo} className="bg-emerald-600 text-white px-6 md:px-8 py-2.5 rounded-full text-xs font-black hover:bg-emerald-700 transition-all active:scale-95 shadow-xl shadow-emerald-100">
+            {t('demo_cta')}
+          </button>
         </div>
       </nav>
 

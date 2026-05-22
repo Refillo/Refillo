@@ -60,6 +60,22 @@ const translations = {
     footer_faq: 'FAQ',
     footer_pitch: 'Pitch Deck',
     
+    // Comparison & Security
+    vs_title: 'Il salto di qualità nell\'ESG',
+    vs_manual: 'Reporting Tradizionale',
+    vs_refillo: 'Engine Refillo',
+    vs_time: 'Tempo di Elaborazione',
+    vs_accuracy: 'Validazione Dati',
+    vs_compliance: 'Copertura Standard',
+    vs_manual_time: 'Settimane di lavoro',
+    vs_refillo_time: 'Secondi (Real-time)',
+    vs_manual_accuracy: 'Soggetta a errori umani',
+    vs_refillo_accuracy: 'Audit trail automatico',
+    vs_manual_compliance: 'Limitata a pochi form',
+    vs_refillo_compliance: 'Universale (ESRS, VSME, CDP)',
+    vs_security_title: 'Sicurezza di Grado Enterprise',
+    vs_security_sub: 'I tuoi dati sono protetti dai più alti standard di crittografia e conformità.',
+
     // About Page
     about_mission_title: 'Semplifichiamo la Sostenibilità',
     about_mission_span: 'per chi crea valore.',
@@ -309,6 +325,22 @@ const translations = {
     footer_faq: 'FAQ',
     footer_pitch: 'Pitch Deck',
     
+    // Comparison & Security
+    vs_title: 'The ESG Leap',
+    vs_manual: 'Traditional Reporting',
+    vs_refillo: 'Refillo Engine',
+    vs_time: 'Processing Time',
+    vs_accuracy: 'Data Validation',
+    vs_compliance: 'Standard Coverage',
+    vs_manual_time: 'Weeks of manual work',
+    vs_refillo_time: 'Seconds (Real-time)',
+    vs_manual_accuracy: 'Prone to human error',
+    vs_refillo_accuracy: 'Automated audit trail',
+    vs_manual_compliance: 'Limited to few forms',
+    vs_refillo_compliance: 'Universal (ESRS, VSME, CDP)',
+    vs_security_title: 'Enterprise-Grade Security',
+    vs_security_sub: 'Your data is protected by the highest standards of encryption and compliance.',
+
     // About Page
     about_mission_title: 'Simplifying Sustainability',
     about_mission_span: 'for those who build value.',
