@@ -276,8 +276,8 @@ function App() {
       <section className="px-6 md:px-12 py-32 md:py-48 max-w-7xl mx-auto relative">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-full bg-emerald-500/[0.02] -skew-y-3 -z-10"></div>
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter">Automazione Senza Attrito</h2>
-          <p className="text-slate-500 text-xl font-medium max-w-2xl mx-auto">Dalla ricezione del documento alla compilazione del questionario, tutto in un unico flusso automatizzato.</p>
+          <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter">{t('land_auto_title')}</h2>
+          <p className="text-slate-500 text-xl font-medium max-w-2xl mx-auto">{t('land_auto_sub')}</p>
         </div>
         <TerminalWindow title="refillo-core --analyze-documents" className="max-w-6xl mx-auto">
           <AutoCompilerDemo />
@@ -297,12 +297,12 @@ function App() {
               className="order-2 lg:order-1"
             >
               <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-3xl mb-8 border border-emerald-100">⚡</div>
-              <h3 className="text-4xl md:text-7xl font-black text-slate-900 mb-8 tracking-tighter leading-[0.95]">{t('how_step1_title')}</h3>
+              <h3 className="text-4xl md:text-7xl font-black text-slate-900 mb-8 tracking-tighter leading-[0.95]">{t('land_extract_title')}</h3>
               <p className="text-slate-500 text-xl md:text-2xl font-medium leading-relaxed mb-10">
                 {t('how_step1_desc')}
               </p>
               <ul className="space-y-4">
-                {['Automatic extraction from PDF/XLS', 'Audit trail for every value', 'Universal document parser'].map(item => (
+                {[t('land_extract_desc1'), t('land_extract_desc2'), t('land_extract_desc3')].map(item => (
                   <li key={item} className="flex items-center gap-3 text-sm font-black text-slate-900 uppercase tracking-widest">
                     <div className="w-2 h-2 bg-emerald-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
                     {item}
@@ -380,14 +380,14 @@ function App() {
                 <div>
                   <div className="inline-flex items-center gap-3 bg-emerald-500/20 text-emerald-400 px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest mb-10 border border-emerald-500/30">
                     <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
-                    Chrome Store Featured
+                    {t('land_chrome_featured')}
                   </div>
                   <h3 className="text-5xl md:text-7xl font-black mb-10 tracking-tighter leading-[0.95]">{t('feat_extension_title')}</h3>
                   <p className="text-slate-400 text-xl md:text-2xl font-medium leading-relaxed mb-12">
                     {t('feat_extension_desc')}
                   </p>
                   <button className="bg-emerald-600 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-emerald-700 transition-all shadow-2xl shadow-emerald-500/20 active:scale-95">
-                    Add to Chrome — Free
+                    {t('land_chrome_btn')}
                   </button>
                 </div>
                 <div className="relative">
@@ -417,7 +417,7 @@ function App() {
                            ))}
                         </div>
                         <div className="pt-6 border-t border-slate-800 flex justify-end">
-                           <div className="bg-emerald-600 text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest">Auto-Fill Form</div>
+                           <div className="bg-emerald-600 text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest">{t('land_autofill_btn')}</div>
                         </div>
                      </div>
                    </TerminalWindow>

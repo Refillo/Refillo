@@ -7,7 +7,7 @@ export default function TerminalWindow({ children, title = "refillo.sh", classNa
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-      className={`rounded-2xl overflow-hidden border border-slate-800 bg-[#0B0F17] shadow-2xl ${className}`}
+      className={`rounded-2xl overflow-hidden bg-[#0B0F17] ${className}`}
     >
       {/* Terminal Header */}
       <div className="flex items-center justify-between px-6 py-4 bg-[#141B26] border-b border-slate-800">

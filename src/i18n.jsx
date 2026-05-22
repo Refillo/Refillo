@@ -76,6 +76,17 @@ const translations = {
     vs_security_title: 'Sicurezza di Grado Enterprise',
     vs_security_sub: 'I tuoi dati sono protetti dai più alti standard di crittografia e conformità.',
 
+    // New Landing Sections
+    land_auto_title: 'Automazione Senza Attrito',
+    land_auto_sub: 'Dalla ricezione del documento alla compilazione del questionario, tutto in un unico flusso automatizzato.',
+    land_extract_title: 'Estrazione Automatica',
+    land_extract_desc1: 'Estrazione automatica da PDF/XLS',
+    land_extract_desc2: 'Audit trail per ogni valore',
+    land_extract_desc3: 'Document parser universale',
+    land_chrome_featured: 'Chrome Store Featured',
+    land_chrome_btn: 'Aggiungi a Chrome — Gratis',
+    land_autofill_btn: 'Auto-Fill Form',
+
     // About Page
     about_mission_title: 'Semplifichiamo la Sostenibilità',
     about_mission_span: 'per chi crea valore.',
@@ -340,6 +351,17 @@ const translations = {
     vs_refillo_compliance: 'Universal (ESRS, VSME, CDP)',
     vs_security_title: 'Enterprise-Grade Security',
     vs_security_sub: 'Your data is protected by the highest standards of encryption and compliance.',
+
+    // New Landing Sections
+    land_auto_title: 'Zero-Friction Automation',
+    land_auto_sub: 'From document receipt to questionnaire completion, all in one automated flow.',
+    land_extract_title: 'Automatic Extraction',
+    land_extract_desc1: 'Automatic extraction from PDF/XLS',
+    land_extract_desc2: 'Audit trail for every value',
+    land_extract_desc3: 'Universal document parser',
+    land_chrome_featured: 'Chrome Store Featured',
+    land_chrome_btn: 'Add to Chrome — Free',
+    land_autofill_btn: 'Auto-Fill Form',
 
     // About Page
     about_mission_title: 'Simplifying Sustainability',
