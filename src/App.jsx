@@ -303,7 +303,6 @@ function App() {
               viewport={{ once: true }}
               className="order-2 lg:order-1"
             >
-              <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-3xl mb-8 border border-emerald-100">⚡</div>
               <h3 className="text-4xl md:text-7xl font-black text-slate-900 mb-8 tracking-tighter leading-[0.95]">{t('land_extract_title')}</h3>
               <p className="text-slate-500 text-xl md:text-2xl font-medium leading-relaxed mb-10">
                 {t('how_step1_desc')}
