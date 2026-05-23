@@ -2,7 +2,6 @@ import { callApi } from './apiClient';
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import MarketGraph from './components/MarketGraph.jsx';
 import AutoCompilerDemo from './components/AutoCompilerDemo.jsx';
 import TerminalWindow from './components/TerminalWindow.jsx';

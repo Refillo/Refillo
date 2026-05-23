@@ -1,12 +1,55 @@
-import { callApi } from '../apiClient';
-const API = ''; // Mock API constant
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { callApi } from '../apiClient';
 import { useLanguage } from '../LanguageContext';
+
+const AnimatedNumber = ({ value, suffix = "" }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (isInView) {
+      let start = 0;
+      const end = parseFloat(value);
+      const duration = 2000;
+      const stepTime = 20;
+      const steps = duration / stepTime;
+      const increment = (end - start) / steps;
+      
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= end) {
+          setDisplayValue(end);
+          clearInterval(timer);
+        } else {
+          setDisplayValue(start);
+        }
+      }, stepTime);
+      return () => clearInterval(timer);
+    }
+  }, [isInView, value]);
+
+  return <span ref={ref}>{displayValue.toLocaleString(undefined, { minimumFractionDigits: value.includes('.') ? 1 : 0, maximumFractionDigits: 1 })}{suffix}</span>;
+};
 
 export default function About() {
   const navigate = useNavigate();
   const { lang, setLang, t } = useLanguage();
+  const [intel, setIntel] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    callApi('/market-intelligence')
+      .then(res => res.json())
+      .then(data => {
+        setIntel(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   const handleComingSoon = () => {
     alert(t('coming_soon'));
@@ -125,6 +168,66 @@ export default function About() {
              <p className="text-slate-400 font-black text-xs uppercase tracking-[0.3em]">{lang === 'it' ? 'Sviluppato con passione a Milano.' : 'Developed with passion in Milan.'}</p>
              <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl"></div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Live Market Intelligence - Supporting the Mission */}
+      <section className="px-6 md:px-12 py-32 md:py-48 bg-white relative overflow-hidden">
+        <div className="absolute top-[10%] right-[5%] w-96 h-96 bg-blue-500/[0.02] blur-[100px] rounded-full -z-10"></div>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
+            <div>
+              <h2 className="text-5xl md:text-7xl font-black text-slate-900 mb-10 leading-[0.95] tracking-tighter">
+                {t('market_title')}
+              </h2>
+              <p className="text-slate-500 text-xl md:text-2xl font-medium leading-relaxed mb-10 tracking-tight">
+                {t('market_sub')}
+              </p>
+              <p className="text-emerald-600 text-lg font-bold leading-relaxed mb-16 tracking-tight border-l-4 border-emerald-500 pl-8 italic">
+                "{t('about_market_context')}"
+              </p>
+
+              <div className="grid grid-cols-2 gap-16">
+                <div>
+                  <h4 className="text-emerald-500 text-6xl font-black mb-3 tracking-tighter">
+                    <AnimatedNumber value="150" suffix="+" />
+                  </h4>
+                  <p className="text-slate-900 font-black text-[11px] uppercase tracking-[0.2em] leading-tight">
+                    {t('market_node_title')}
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-emerald-500 text-6xl font-black mb-3 tracking-tighter">
+                    <AnimatedNumber value="3.5" />
+                  </h4>
+                  <p className="text-slate-900 font-black text-[11px] uppercase tracking-[0.2em] leading-tight">
+                    {t('market_quest_title')}
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-slate-50 p-10 md:p-16 rounded-[4rem] border border-slate-200 relative overflow-hidden shadow-sm">
+               <h3 className="text-xl font-black text-slate-900 mb-12 flex items-center gap-4 uppercase tracking-widest text-sm">
+                 <div className="w-1.5 h-6 bg-emerald-500 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.5)]"></div>
+                 {t('market_chart_title')}
+               </h3>
+               <div className="h-[350px] w-full">
+                 <ResponsiveContainer width="100%" height="100%">
+                   <BarChart data={intel?.stats || []}>
+                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+                     <XAxis dataKey="name" stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
+                     <YAxis stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
+                     <Tooltip 
+                       contentStyle={{ backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '16px', color: '#0f172a', fontSize: '12px', fontWeight: 'bold', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.05)' }}
+                       cursor={{ fill: 'rgba(16, 185, 129, 0.02)' }}
+                     />
+                     <Bar dataKey="emissions" fill="#10b981" radius={[6, 6, 0, 0]} barSize={40} />
+                   </BarChart>
+                 </ResponsiveContainer>
+               </div>
+            </div>
+          </div>
         </div>
       </section>
 
