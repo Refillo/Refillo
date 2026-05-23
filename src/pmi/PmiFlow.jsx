@@ -25,17 +25,14 @@ export default function PmiFlow() {
     }
 
     const path = location.pathname;
-    if (path === '/pmi/questionnaire') setStep(2);
-    else if (path === '/pmi/upload') setStep(2); // Entrambi usano ora il wizard rifattorizzato
-    else if (path === '/pmi/setup') setStep(2);
-    else if (path === '/pmi/dashboard') setStep(3);
+    if (path === '/pmi/dashboard') setStep(3);
+    else setStep(1); // Default to onboarding if not in dashboard
   }, [location]);
 
   const completeRegistration = orgData => { 
     setOrg(orgData); 
-    setStep(2); 
-    setInitialPhase('welcome');
-    navigate('/pmi/setup');
+    setStep(3); 
+    navigate('/pmi/dashboard');
   };
   
   const completeSetup = () => { 

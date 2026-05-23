@@ -58,6 +58,11 @@ const MOCK_DATA = {
   'organizations': [
      { id: 'org-123', name: 'Azienda Demo SPA', sector: 'Manufacturing' }
   ],
+  'client-forms': [
+    { id: 'f1', client_name: 'Stellantis', form_name: 'Supplier ESG Disclosure V3', status: 'ready', completion: 100, date: '22 May 2026' },
+    { id: 'f2', client_name: 'Enel', form_name: 'Standard Procurement ESG', status: 'partial', completion: 65, date: '15 May 2026' },
+    { id: 'f3', client_name: 'CDP', form_name: 'Supply Chain Questionnaire 2026', status: 'todo', completion: 0, date: '10 May 2026' }
+  ],
   'sector-context': {
     sector_insight: "Il settore Manifatturiero in Italia è sotto forte pressione per il reporting Scope 3. I contractor automotive richiedono dati granulari sui consumi energetici e sull'origine delle materie prime.",
     vsme_standard: [
