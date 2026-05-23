@@ -30,6 +30,9 @@ export default function About() {
 
   const team = [
     { name: "Davide Santaniello", role: "CEO & AI Lead", photo: "team/davide-santaniello.jpeg", linkedin: "https://www.linkedin.com/in/davide-santaniello-3210451a5/" },
+    { name: "Edoardo Riva", role: "Head of Product", photo: "team/edoardo-riva.jpeg", linkedin: "https://www.linkedin.com/in/edoardo-rinaldo-riva-98967b3b7/" },
+    { name: "Edoardo Poletti", role: "Head of Sales", photo: "team/edoardo-poletti.jpeg", linkedin: "https://www.linkedin.com/in/edoardo-poletti-9747a9399/" },
+    { name: "Riccardo Vismara", role: "Co-CTO", photo: "team/riccardo-vismara.jpeg", linkedin: "https://www.linkedin.com/in/riccardo-vismara-7443a9254/" },
     { name: "Pepe Rimoldi", role: "Head of Growth", photo: "team/pepe-rimoldi.jpeg", linkedin: "https://www.linkedin.com/in/pepe-rimoldi/" },
     { name: "Alessio Vaghi", role: "Chief Risk Officer", photo: "team/alessio-vaghi.jpeg", linkedin: "https://www.linkedin.com/in/alessio-vaghi-701284280/" }
   ];
