@@ -214,7 +214,7 @@ function App() {
             {lang}
           </button>
           <button onClick={() => navigate('/about')} className="text-[11px] font-black text-slate-500 hover:text-slate-900 transition-colors uppercase tracking-widest">{t('nav_about')}</button>
-          <button onClick={() => navigate('/news')} className="text-[11px] font-black text-slate-500 hover:text-slate-900 transition-colors uppercase tracking-widest">News</button>
+          <button onClick={() => navigate('/news')} className="text-[11px] font-black text-slate-500 hover:text-slate-900 transition-colors uppercase tracking-widest">{t('footer_news')}</button>
           <button onClick={startDemo} className="bg-emerald-600 text-white px-6 md:px-8 py-2.5 rounded-full text-xs font-black hover:bg-emerald-700 transition-all active:scale-95 shadow-xl shadow-emerald-100">
             {t('demo_cta')}
           </button>
@@ -511,7 +511,7 @@ function App() {
             <h4 className="font-black uppercase tracking-[0.3em] text-[10px] text-emerald-600 mb-12">{t('footer_prod')}</h4>
             <ul className="space-y-5 text-sm font-black text-slate-400">
               <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
-              <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/news')}>News</li>
+              <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/news')}>{t('footer_news')}</li>
               <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
             </ul>
           </div>

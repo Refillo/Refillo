@@ -29,12 +29,12 @@ export default function About() {
   };
 
   const team = [
-    { name: "Davide Santaniello", role: "CEO & AI Lead", photo: "team/davide-santaniello.jpeg", linkedin: "https://www.linkedin.com/in/davide-santaniello-3210451a5/" },
-    { name: "Edoardo Riva", role: "Head of Product", photo: "team/edoardo-riva.jpeg", linkedin: "https://www.linkedin.com/in/edoardo-rinaldo-riva-98967b3b7/" },
-    { name: "Edoardo Poletti", role: "Head of Sales", photo: "team/edoardo-poletti.jpeg", linkedin: "https://www.linkedin.com/in/edoardo-poletti-9747a9399/" },
-    { name: "Riccardo Vismara", role: "Co-CTO", photo: "team/riccardo-vismara.jpeg", linkedin: "https://www.linkedin.com/in/riccardo-vismara-7443a9254/" },
-    { name: "Pepe Rimoldi", role: "Head of Growth", photo: "team/pepe-rimoldi.jpeg", linkedin: "https://www.linkedin.com/in/pepe-rimoldi/" },
-    { name: "Alessio Vaghi", role: "Chief Risk Officer", photo: "team/alessio-vaghi.jpeg", linkedin: "https://www.linkedin.com/in/alessio-vaghi-701284280/" }
+    { name: "Davide Santaniello", role: t('role_cto'), desc: t('desc_davide'), photo: "team/davide-santaniello.jpeg", linkedin: "https://www.linkedin.com/in/davide-santaniello-3210451a5/" },
+    { name: "Riccardo Vismara", role: t('role_cto'), desc: t('desc_riccardo'), photo: "team/riccardo-vismara.jpeg", linkedin: "https://www.linkedin.com/in/riccardo-vismara-7443a9254/" },
+    { name: "Edoardo Riva", role: t('role_product'), desc: t('desc_riva'), photo: "team/edoardo-riva.jpeg", linkedin: "https://www.linkedin.com/in/edoardo-rinaldo-riva-98967b3b7/" },
+    { name: "Edoardo Poletti", role: t('role_sales'), desc: t('desc_poletti'), photo: "team/edoardo-poletti.jpeg", linkedin: "https://www.linkedin.com/in/edoardo-poletti-9747a9399/" },
+    { name: "Pepe Rimoldi", role: t('role_growth'), desc: t('desc_pepe'), photo: "team/pepe-rimoldi.jpeg", linkedin: "https://www.linkedin.com/in/pepe-rimoldi/" },
+    { name: "Alessio Vaghi", role: t('role_risk'), desc: t('desc_vaghi'), photo: "team/alessio-vaghi.jpeg", linkedin: "https://www.linkedin.com/in/alessio-vaghi-701284280/" }
   ];
 
   const Footer = () => (
@@ -54,7 +54,7 @@ export default function About() {
           <h4 className="font-black uppercase tracking-[0.3em] text-[10px] text-emerald-600 mb-12">{t('footer_prod')}</h4>
           <ul className="space-y-5 text-sm font-black text-slate-400">
             <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
-            <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/news')}>News</li>
+            <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/news')}>{t('footer_news')}</li>
             <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
           </ul>
         </div>
@@ -89,7 +89,8 @@ export default function About() {
           >
             {lang}
           </button>
-          <button onClick={() => navigate('/')} className="text-[11px] font-black text-slate-500 hover:text-slate-900 transition-colors uppercase tracking-widest">{t('nav_home')}</button>
+          <button onClick={() => navigate('/news')} className="text-[11px] font-black text-slate-500 hover:text-slate-900 transition-colors uppercase tracking-widest">{t('footer_news')}</button>
+
           <button onClick={startDemo} className="bg-emerald-600 text-white px-6 md:px-8 py-2.5 rounded-full text-xs font-black hover:bg-emerald-700 transition-all active:scale-95 shadow-xl shadow-emerald-100">
             {t('demo_cta')}
           </button>
@@ -142,11 +143,12 @@ export default function About() {
                 </div>
                 <div className="text-center relative z-10">
                   <h3 className="text-3xl font-black text-slate-900 mb-2 tracking-tighter">{member.name}</h3>
-                  <p className="text-emerald-600 font-black text-[10px] mb-8 uppercase tracking-[0.4em]">{member.role}</p>
+                  <p className="text-emerald-600 font-black text-[10px] mb-4 uppercase tracking-[0.4em]">{member.role}</p>
+                  <p className="text-slate-500 text-sm font-medium mb-8 leading-tight italic px-4">{member.desc}</p>
                   
-                  <div className="space-y-2">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Bsc management engineering</p>
-                    <p className="text-slate-500 text-sm font-medium tracking-tight italic">Politecnico di Milano</p>
+                  <div className="space-y-2 pt-4 border-t border-slate-50">
+                    <p className="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em]">{t('edu_bsc')}</p>
+                    <p className="text-slate-400 text-[9px] font-medium tracking-tight uppercase">{t('edu_uni')}</p>
                   </div>
                 </div>
                 <a 
