@@ -84,7 +84,7 @@ export default function News() {
           <h4 className="font-black uppercase tracking-[0.3em] text-[10px] text-emerald-600 mb-12">{t('footer_prod')}</h4>
           <ul className="space-y-5 text-sm font-black text-slate-400">
             <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
-            <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/news')}>{t('footer_faq')}</li>
+            <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/news')}>News</li>
             <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
           </ul>
         </div>
@@ -187,28 +187,6 @@ export default function News() {
       </section>
 
       <div className="mb-32"></div>
-
-      <Footer />
-    </div>
-  );
-}8 max-w-7xl mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="bg-emerald-600 rounded-[4rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl shadow-emerald-100 border border-emerald-500"
-        >
-          <div className="relative z-10">
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tighter">Stay updated.</h2>
-            <p className="text-emerald-100 text-lg md:text-xl font-medium mb-12 max-w-xl mx-auto tracking-tight opacity-90">Iscriviti alla nostra newsletter per ricevere approfondimenti mensili sull'ESG e l'automazione dei dati.</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-              <input type="email" placeholder="La tua email" className="bg-white/10 border border-white/20 rounded-2xl px-6 py-4 text-white placeholder:text-white/60 text-sm focus:outline-none focus:border-white transition-all flex-1" />
-              <button className="bg-white text-emerald-600 px-8 py-4 rounded-2xl font-black text-sm hover:bg-emerald-50 transition-all active:scale-95 shadow-xl">Subscribe</button>
-            </div>
-          </div>
-          <div className="absolute top-0 right-0 w-full h-full bg-white/[0.05] blur-[100px] rounded-full pointer-events-none"></div>
-        </motion.div>
-      </section>
 
       <Footer />
     </div>
