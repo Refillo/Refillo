@@ -186,8 +186,12 @@ export default function News() {
         </div>
       </section>
 
-      {/* Newsletter / CTA */}
-      <section className="px-6 md:px-12 py-32 md:py-48 max-w-7xl mx-auto">
+      <div className="mb-32"></div>
+
+      <Footer />
+    </div>
+  );
+}8 max-w-7xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
