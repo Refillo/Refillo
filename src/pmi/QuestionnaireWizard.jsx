@@ -212,9 +212,9 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
               <div className="grid grid-cols-2 gap-4 mb-12">
                 {[
                   { id: 'bill', label: t('qw_type_bill'), icon: '⚡' },
-                  { id: 'iso', label: t('qw_type_iso'), icon: '📜' },
-                  { id: 'policy', label: t('qw_type_policy'), icon: '🌿' },
-                  { id: 'other', label: t('qw_upload_doc'), icon: '📁' }
+                  { id: 'payroll', label: t('qw_type_payroll'), icon: '👥' },
+                  { id: 'finance', label: t('qw_type_finance'), icon: '📊' },
+                  { id: 'iso', label: t('qw_type_iso'), icon: '📜' }
                 ].map(slot => (
                   <div 
                     key={slot.id}
@@ -288,7 +288,20 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
 
               <div className="space-y-6 mb-12 max-h-[500px] overflow-y-auto pr-4 custom-scrollbar">
                 {context.vsme_standard.map((q, idx) => {
-                  const isPreFilled = uploads.length > 0 && q.id === 'vsme_1';
+                  const hasBill = uploads.find(u => u.slot === 'bill');
+                  const hasPayroll = uploads.find(u => u.slot === 'payroll');
+                  const hasFinance = uploads.find(u => u.slot === 'finance');
+                  
+                  let prefillValue = null;
+                  if (hasBill && q.id === 'vsme_1') prefillValue = '58.37'; // 58.37 MWh from bill
+                  if (hasBill && q.id === 'vsme_2') prefillValue = '12.45'; // 12.45 MWh from fuel/gas
+                  if (hasBill && q.id === 'vsme_3') prefillValue = 'Sì';
+                  if (hasPayroll && q.id === 'vsme_4') prefillValue = '142'; // FTE from payroll
+                  if (hasPayroll && q.id === 'vsme_5') prefillValue = '64'; // 64% Male
+                  if (hasFinance && q.id === 'vsme_7') prefillValue = 'No';
+
+                  const isPreFilled = prefillValue !== null;
+                  
                   return (
                     <div key={q.id} className={`p-6 rounded-3xl border transition-all ${isPreFilled ? 'bg-emerald-50/30 border-emerald-100' : 'bg-white border-slate-100'}`}>
                       <div className="flex justify-between items-start mb-3">
@@ -312,7 +325,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                                   : 'bg-slate-50 border-slate-50 focus:border-emerald-600 focus:ring-emerald-500/10 text-slate-900'
                               }`}
                               placeholder="0.00"
-                              value={responses[q.id] || (isPreFilled ? '5837' : '')}
+                              value={responses[q.id] || (isPreFilled ? prefillValue : '')}
                               onChange={(e) => setResponses({ ...responses, [q.id]: e.target.value })}
                             />
                             <span className="absolute right-5 top-1/2 -translate-y-1/2 text-xs font-black text-slate-400 uppercase tracking-widest">
@@ -326,7 +339,7 @@ export default function QuestionnaireWizard({ org, onComplete, initialPhase = 'w
                                 key={opt}
                                 onClick={() => setResponses({ ...responses, [q.id]: opt })}
                                 className={`flex-1 min-w-[120px] py-3 px-4 rounded-xl font-bold border-2 transition-all text-sm ${
-                                  responses[q.id] === opt 
+                                  (responses[q.id] || (isPreFilled ? prefillValue : '')) === opt 
                                     ? 'border-emerald-500 bg-emerald-50 text-emerald-700' 
                                     : 'border-slate-100 bg-white text-slate-400 hover:border-slate-200'
                                 }`}
