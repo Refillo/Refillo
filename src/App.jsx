@@ -134,34 +134,6 @@ const ComparisonTable = ({ t }) => (
   </section>
 );
 
-const SecurityBanner = ({ t }) => (
-  <section className="px-6 md:px-12 py-32 md:py-48 bg-slate-50 border-y border-slate-100 relative overflow-hidden">
-    <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/[0.03] blur-[100px] rounded-full -z-10"></div>
-    <div className="max-w-7xl mx-auto text-center">
-      <h2 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 tracking-tighter">{t('vs_security_title')}</h2>
-      <p className="text-slate-500 text-xl md:text-2xl font-medium mb-24 max-w-3xl mx-auto leading-relaxed">{t('vs_security_sub')}</p>
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12">
-        {[
-          { label: 'CSRD Compliant', icon: '🇪🇺' },
-          { label: 'ESRS Standard', icon: '📊' },
-          { label: 'AES-256', icon: '🔒' },
-          { label: 'GDPR Ready', icon: '🛡️' },
-          { label: 'ISO 27001', icon: '✅' },
-        ].map(item => (
-          <motion.div 
-            key={item.label} 
-            className="flex flex-col items-center gap-6 p-8 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all"
-            whileHover={{ y: -5 }}
-          >
-            <div className="w-20 h-20 bg-slate-50 rounded-[1.5rem] flex items-center justify-center text-4xl border border-slate-100">{item.icon}</div>
-            <span className="text-[10px] font-black text-slate-900 uppercase tracking-[0.3em] text-center leading-tight">{item.label}</span>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
 function App() {
   const navigate = useNavigate();
   const { lang, setLang, t } = useLanguage();
@@ -434,8 +406,6 @@ function App() {
       </section>
 
       <ComparisonTable t={t} />
-
-      <SecurityBanner t={t} />
 
       {/* Market Intelligence - High Contrast Light */}
       <section className="px-6 md:px-12 py-32 md:py-48 bg-white relative overflow-hidden">
