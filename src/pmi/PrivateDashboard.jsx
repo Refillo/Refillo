@@ -265,6 +265,8 @@ export default function PrivateDashboard({ org }) {
                                if (hasBill && q.id === 'vsme_1') prefillValue = '58.37';
                                if (hasBill && q.id === 'vsme_2') prefillValue = '12.45';
                                if (hasBill && q.id === 'vsme_3') prefillValue = 'Sì';
+                               if (uploads.find(u => u.slot === 'water') && q.id === 'vsme_water') prefillValue = '420.5'; // 420.5 m3 from water bill
+                               if (uploads.find(u => u.slot === 'travel') && q.id === 'vsme_logistics') prefillValue = '8.2'; // 8.2 tCO2e from logistics
                                if (hasPayroll && q.id === 'vsme_4') prefillValue = '142';
                                if (hasPayroll && q.id === 'vsme_5') prefillValue = '64';
                                if (hasFinance && q.id === 'vsme_7') prefillValue = 'No';
@@ -321,6 +323,8 @@ export default function PrivateDashboard({ org }) {
                          <div className="grid grid-cols-1 gap-4">
                             {[
                               { id: 'bill', label: t('qw_type_bill'), icon: '⚡' },
+                              { id: 'water', label: t('qw_type_water'), icon: '💧' },
+                              { id: 'travel', label: t('qw_type_travel'), icon: '🚛' },
                               { id: 'payroll', label: t('qw_type_payroll'), icon: '👥' },
                               { id: 'finance', label: t('qw_type_finance'), icon: '📊' },
                               { id: 'iso', label: t('qw_type_iso'), icon: '📜' }
@@ -408,10 +412,10 @@ export default function PrivateDashboard({ org }) {
                              <div className="space-y-6">
                                 {[
                                   { cell: 'B18', question: 'Total Energy Consumption (MWh)', value: responses['vsme_1'] || '58.37', source: 'A2 Energy Bill', status: 'mapped' },
-                                  { cell: 'B22', question: 'Renewable Energy Percentage (%)', value: responses['vsme_3'] === 'Sì' ? '100' : '0', source: 'A2 Energy Bill (GO Cert)', status: 'mapped' },
+                                  { cell: 'B32', question: 'Total Water Withdrawal (m3)', value: responses['vsme_water'] || '420.5', source: 'Water Utility Bill', status: 'mapped' },
+                                  { cell: 'C10', question: 'Logistics GHG Emissions (tCO2e)', value: responses['vsme_logistics'] || '8.2', source: 'Route Log Summary', status: 'mapped' },
                                   { cell: 'C45', question: 'Total FTE Employees', value: responses['vsme_4'] || '142', source: 'LUL Register 2025', status: 'mapped' },
                                   { cell: 'D12', question: 'Anti-Corruption Policy Adoption', value: 'Yes', source: 'Corporate Code of Conduct', status: 'mapped' },
-                                  { cell: 'E09', question: 'Supply Chain Water Intensity', value: '-', source: 'Pending Documentation', status: 'missing' },
                                 ].map((row, i) => (
                                   <div key={i} className="grid grid-cols-12 gap-8 items-center py-6 border-b border-slate-50 last:border-0 group">
                                      <div className="col-span-1 font-mono text-[10px] text-slate-300 font-bold">{row.cell}</div>

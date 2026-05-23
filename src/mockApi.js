@@ -68,6 +68,8 @@ const MOCK_DATA = {
     vsme_standard: [
       { id: 'vsme_1', question: "Consumo totale di energia elettrica (MWh)", type: 'number', kpi: 'B3 - Energy', description: "Elettricità totale prelevata dalla rete, come riflesso nelle bollette delle utenze." },
       { id: 'vsme_2', question: "Consumo di carburanti/combustibili (MWh)", type: 'number', kpi: 'B3 - Energy', description: "Consumo di gas naturale, gasolio o altri combustibili per riscaldamento o processi." },
+      { id: 'vsme_water', question: "Consumo idrico totale (m3)", type: 'number', kpi: 'B6 - Water', description: "Prelievi totali da acquedotto o fonti sotterranee." },
+      { id: 'vsme_logistics', question: "Emissioni da trasporti e logistica (tCO2e)", type: 'number', kpi: 'B4 - Emissions', description: "Calcolo basato sui chilometri percorsi e tipologia di mezzi per spedizioni e flotta." },
       { id: 'vsme_3', question: "L'impresa ha ottenuto informazioni sul breakdown energetico?", type: 'choice', options: ['Sì', 'No'], kpi: 'B3 - Energy', description: "Capacità di distinguere tra fonti rinnovabili e non rinnovabili." },
       { id: 'vsme_4', question: "Numero totale di dipendenti (FTE)", type: 'number', kpi: 'B8 - Workforce', description: "Media dei dipendenti durante il periodo di riferimento in termini di Full-time equivalent." },
       { id: 'vsme_5', question: "Ripartizione per genere: Uomini (%)", type: 'number', kpi: 'B8 - Workforce', description: "Percentuale di dipendenti di genere maschile sul totale." },
