@@ -379,17 +379,17 @@ function App() {
             </motion.div>
           </div>
 
-          {/* Section 3: Browser Extension (Large Full-Width) */}
-          <div className="bg-slate-900 rounded-[4rem] p-12 md:p-24 text-white relative overflow-hidden group">
-             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-500/10 blur-[150px] rounded-full group-hover:bg-emerald-500/20 transition-all duration-1000"></div>
+          {/* Section 3: Browser Extension (Large Full-Width) - Switched to Light for Readability */}
+          <div className="bg-white rounded-[4rem] p-12 md:p-24 text-slate-900 relative overflow-hidden group border border-slate-100 shadow-2xl shadow-slate-200/50">
+             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-500/[0.03] blur-[150px] rounded-full group-hover:bg-emerald-500/[0.05] transition-all duration-1000"></div>
              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
                 <div>
-                  <div className="inline-flex items-center gap-3 bg-emerald-500/20 text-emerald-400 px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest mb-10 border border-emerald-500/30">
-                    <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+                  <div className="inline-flex items-center gap-3 bg-emerald-50 text-emerald-600 px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest mb-10 border border-emerald-100 shadow-sm">
+                    <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
                     {t('land_chrome_featured')}
                   </div>
                   <h3 className="text-5xl md:text-7xl font-black mb-10 tracking-tighter leading-[0.95]">{t('feat_extension_title')}</h3>
-                  <p className="text-slate-400 text-xl md:text-2xl font-medium leading-relaxed mb-12">
+                  <p className="text-slate-500 text-xl md:text-2xl font-medium leading-relaxed mb-12 tracking-tight">
                     {t('feat_extension_desc')}
                   </p>
                   <button className="bg-emerald-600 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-emerald-700 transition-all shadow-2xl shadow-emerald-500/20 active:scale-95">
@@ -397,14 +397,14 @@ function App() {
                   </button>
                 </div>
                 <div className="relative">
-                   <div className="absolute -inset-4 bg-emerald-500/20 blur-2xl rounded-[3rem] opacity-50"></div>
-                   <TerminalWindow title="refillo-extension --overlay" className="border-slate-700 bg-[#0B0F17]">
-                     <div className="p-8 space-y-8">
-                        <div className="flex items-center gap-4 border-b border-slate-800 pb-6">
-                           <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-2xl">📦</div>
+                   <div className="absolute -inset-4 bg-emerald-500/5 blur-2xl rounded-[3rem] opacity-50"></div>
+                   <TerminalWindow title="refillo-extension --overlay" className="shadow-2xl border-slate-100 bg-white">
+                     <div className="p-8 space-y-8 bg-white">
+                        <div className="flex items-center gap-4 border-b border-slate-50 pb-6">
+                           <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-2xl border border-slate-100 shadow-sm">📦</div>
                            <div>
-                             <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Client Portal</div>
-                             <div className="text-lg font-black text-white uppercase tracking-tighter">STELLANTIS_V3</div>
+                             <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Client Portal</div>
+                             <div className="text-lg font-black text-slate-900 uppercase tracking-tighter">STELLANTIS_V3</div>
                            </div>
                         </div>
                         <div className="space-y-6">
@@ -414,16 +414,16 @@ function App() {
                              { label: 'Gender Pay Gap (%)', value: '2.1', status: 'Mapped' },
                            ].map(row => (
                              <div key={row.label} className="flex justify-between items-center group">
-                                <span className="text-sm font-medium text-slate-400 group-hover:text-white transition-colors">{row.label}</span>
+                                <span className="text-sm font-medium text-slate-500 group-hover:text-slate-900 transition-colors">{row.label}</span>
                                 <div className="flex items-center gap-4">
-                                   <span className="text-sm font-black text-white">{row.value}</span>
-                                   <span className="text-[8px] font-black text-emerald-500 border border-emerald-500/30 px-2 py-0.5 rounded uppercase">{row.status}</span>
+                                   <span className="text-sm font-black text-slate-900">{row.value}</span>
+                                   <span className="text-[8px] font-black text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded uppercase">{row.status}</span>
                                 </div>
                              </div>
                            ))}
                         </div>
-                        <div className="pt-6 border-t border-slate-800 flex justify-end">
-                           <div className="bg-emerald-600 text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest">{t('land_autofill_btn')}</div>
+                        <div className="pt-6 border-t border-slate-50 flex justify-end">
+                           <div className="bg-emerald-600 text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-emerald-500/20">{t('land_autofill_btn')}</div>
                         </div>
                      </div>
                    </TerminalWindow>
