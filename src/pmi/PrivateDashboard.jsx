@@ -1,8 +1,7 @@
 import { callApi } from '../apiClient';
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { BarChart, Bar, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import TerminalWindow from '../components/TerminalWindow';
 import { useLanguage } from '../LanguageContext';
 
