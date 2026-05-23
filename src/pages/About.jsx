@@ -28,6 +28,7 @@ export default function About() {
     }
   };
 
+  // Team of 6 Members - Verified
   const team = [
     { name: "Davide Santaniello", role: t('role_cto'), desc: t('desc_davide'), photo: "team/davide-santaniello.jpeg", linkedin: "https://www.linkedin.com/in/davide-santaniello-3210451a5/" },
     { name: "Riccardo Vismara", role: t('role_cto'), desc: t('desc_riccardo'), photo: "team/riccardo-vismara.jpeg", linkedin: "https://www.linkedin.com/in/riccardo-vismara-7443a9254/" },
@@ -154,7 +155,7 @@ export default function About() {
                 <a 
                   href={member.linkedin} 
                   target="_blank" 
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer" 
                   className="absolute top-10 right-10 text-slate-300 hover:text-emerald-500 transition-colors"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
