@@ -52,6 +52,7 @@ export default function PrivateDashboard({ org }) {
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef();
   const clientFormInputRef = useRef();
+  const handleComingSoon = () => alert(t("coming_soon"));
 
   useEffect(() => {
     if (!org) { navigate('/login'); return; }
