@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from './LanguageContext';
+import logoUrl from './assets/logo.png';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 28 },
@@ -52,7 +53,7 @@ export default function App() {
       {/* ── NAVBAR ── */}
       <nav className="flex justify-between items-center px-10 py-4 bg-white/90 backdrop-blur border-b border-slate-100 sticky top-0 z-50">
         <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => navigate('/')}>
-          <img src="/logo.png" alt="Refillo" className="h-8 w-auto" />
+          <img src={logoUrl} alt="Refillo" className="h-8 w-auto" />
           <span className="text-xl font-black text-slate-900 tracking-tight">Re<span className="text-emerald-600">fillo</span></span>
         </div>
 
@@ -403,7 +404,7 @@ export default function App() {
         <div className="max-w-5xl mx-auto flex justify-between items-start gap-16">
           <div className="max-w-xs">
             <div className="flex items-center gap-2 mb-5">
-              <img src="/logo.png" alt="Refillo" className="h-7 w-auto" />
+              <img src={logoUrl} alt="Refillo" className="h-7 w-auto" />
               <span className="text-lg font-black tracking-tight">Re<span className="text-emerald-400">fillo</span></span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">{t('footer_desc')}</p>

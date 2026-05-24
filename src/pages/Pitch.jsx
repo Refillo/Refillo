@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../LanguageContext';
 import { useRef } from 'react';
+import logoUrl from '../assets/logo.png';
 
 export default function Pitch() {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ export default function Pitch() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-24 mb-32">
         <div className="col-span-1 md:col-span-2">
           <div className="flex items-center gap-2 mb-10 cursor-pointer" onClick={() => navigate('/')}>
-            <img src="logo.png" alt="Refillo Logo" className="h-8 w-auto" />
+            <img src={logoUrl} alt="Refillo Logo" className="h-8 w-auto" />
             <span className="text-2xl font-black tracking-tighter text-slate-900">Refillo</span>
           </div>
           <p className="text-slate-400 text-base font-medium leading-relaxed max-w-sm mb-10">
@@ -67,7 +68,7 @@ export default function Pitch() {
     <div className="min-h-screen bg-white font-sans text-slate-900 flex flex-col">
       <nav className="flex justify-between items-center px-6 md:px-12 py-6 bg-white/80 backdrop-blur-xl border-b border-slate-100 sticky top-0 z-50">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
-          <img src="logo.png" alt="Refillo Logo" className="h-8 md:h-9 w-auto" />
+          <img src={logoUrl} alt="Refillo Logo" className="h-8 md:h-9 w-auto" />
           <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tighter uppercase">Refill<span className="text-emerald-500">o</span></span>
         </div>
         <div className="flex gap-4 md:gap-6 items-center">
