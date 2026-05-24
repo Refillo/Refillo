@@ -1,57 +1,93 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../LanguageContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const articles = [
+const ARTICLES = [
   {
     id: 1,
     category: 'Insights',
-    date: '15 Maggio 2026',
-    title: 'Guida all\'ESG per le PMI: Perché la Sostenibilità è il nuovo standard competitivo',
+    date: { it: '15 Maggio 2026', en: 'May 15, 2026' },
+    title: {
+      it: "Guida all'ESG per le PMI: Perché la Sostenibilità è il nuovo standard competitivo",
+      en: 'ESG Guide for SMEs: Why Sustainability is the New Competitive Standard',
+    },
+    excerpt: {
+      it: "Non più solo per le grandi corporation: l'ESG sta diventando fondamentale per l'accesso al credito e la partecipazione ai bandi enterprise.",
+      en: 'No longer just for large corporations: ESG is becoming essential for credit access and participation in enterprise tenders.',
+    },
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
-    excerpt: 'Non più solo per le grandi corporation: l\'ESG sta diventando fondamentale per l\'accesso al credito e la partecipazione ai bandi enterprise.'
   },
   {
     id: 2,
     category: 'Technology',
-    date: '10 Maggio 2026',
-    title: 'Come l\'AI sta automatizzando il Reporting di Sostenibilità',
+    date: { it: '10 Maggio 2026', en: 'May 10, 2026' },
+    title: {
+      it: "Come l'AI sta automatizzando il Reporting di Sostenibilità",
+      en: 'How AI is Automating Sustainability Reporting',
+    },
+    excerpt: {
+      it: 'Dalle bollette ai report finali: scopri come il nostro motore di auto-compilazione elimina ore di lavoro manuale.',
+      en: 'From invoices to final reports: discover how our auto-compilation engine eliminates hours of manual work.',
+    },
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop',
-    excerpt: 'Dalle bollette ai report finali: scopri come il nostro motore di auto-compilazione elimina ore di lavoro manuale.'
   },
   {
     id: 3,
     category: 'Market',
-    date: '2 Maggio 2026',
-    title: 'La Nuova Direttiva CSRD: Cosa cambia per i fornitori italiani',
+    date: { it: '2 Maggio 2026', en: 'May 2, 2026' },
+    title: {
+      it: 'La Nuova Direttiva CSRD: Cosa cambia per i fornitori italiani',
+      en: 'The New CSRD Directive: What Changes for Italian Suppliers',
+    },
+    excerpt: {
+      it: "Un'analisi dettagliata dei requisiti richiesti dalle Big Corp ai propri partner della supply chain.",
+      en: 'A detailed analysis of the requirements demanded by large corporates from their supply chain partners.',
+    },
     image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800&auto=format&fit=crop',
-    excerpt: 'Un\'analisi dettagliata dei requisiti richiesti dalle Big Corp ai propri partner della supply chain.'
   },
   {
     id: 4,
     category: 'Product',
-    date: '28 Aprile 2026',
-    title: 'Refillo Extension: Compilare portali ESG non è mai stato così veloce',
-    image: 'https://images.unsplash.com/photo-1586717791821-3f44a563dc4c?q=80&w=800&auto=format&fit=crop',
-    excerpt: 'Lancio ufficiale della nostra estensione per Chrome e Edge. Riduci del 90% il tempo di copy-paste.'
+    date: { it: '28 Aprile 2026', en: 'April 28, 2026' },
+    title: {
+      it: 'Refillo Extension: Compilare portali ESG non è mai stato così veloce',
+      en: 'Refillo Extension: Filling ESG Portals Has Never Been This Fast',
+    },
+    excerpt: {
+      it: 'Lancio ufficiale della nostra estensione per Chrome e Edge. Riduci del 90% il tempo di copy-paste.',
+      en: 'Official launch of our Chrome and Edge extension. Reduce copy-paste time by 90%.',
+    },
+    image: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 5,
     category: 'Insights',
-    date: '15 Aprile 2026',
-    title: 'Carbon Intensity: Come misurarla e migliorarla',
+    date: { it: '15 Aprile 2026', en: 'April 15, 2026' },
+    title: {
+      it: 'Carbon Intensity: Come misurarla e migliorarla',
+      en: 'Carbon Intensity: How to Measure and Improve It',
+    },
+    excerpt: {
+      it: "Tutto quello che c'è da sapere sullo Scope 1, 2 e 3 per la tua azienda manifatturiera.",
+      en: 'Everything you need to know about Scope 1, 2 and 3 for your manufacturing company.',
+    },
     image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=800&auto=format&fit=crop',
-    excerpt: 'Tutto quello che c\'è da sapere sullo Scope 1, 2 e 3 per la tua azienda manifatturiera.'
   },
   {
     id: 6,
     category: 'Market',
-    date: '5 Aprile 2026',
-    title: 'Trend 2026: La sostenibilità come driver di crescita nel settore arredamento',
+    date: { it: '5 Aprile 2026', en: 'April 5, 2026' },
+    title: {
+      it: 'Trend 2026: La sostenibilità come driver di crescita nel settore arredamento',
+      en: '2026 Trends: Sustainability as a Growth Driver in the Furniture Sector',
+    },
+    excerpt: {
+      it: 'Case study su come le aziende del Made in Italy stanno scalando i mercati esteri grazie ai dati ESG.',
+      en: 'Case study on how Made in Italy companies are scaling international markets through ESG data.',
+    },
     image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800&auto=format&fit=crop',
-    excerpt: 'Case study su come le aziende del Made in Italy stanno scalando i mercati esteri grazie ai dati ESG.'
-  }
+  },
 ];
 
 export default function News() {
@@ -59,9 +95,19 @@ export default function News() {
   const { lang, setLang, t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState('All');
 
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   const categories = ['All', 'Insights', 'Technology', 'Market', 'Product'];
-  const filteredArticles = activeCategory === 'All' 
-    ? articles 
+
+  const articles = ARTICLES.map(a => ({
+    ...a,
+    date: a.date[lang] || a.date.it,
+    title: a.title[lang] || a.title.it,
+    excerpt: a.excerpt[lang] || a.excerpt.it,
+  }));
+
+  const filteredArticles = activeCategory === 'All'
+    ? articles
     : articles.filter(a => a.category === activeCategory);
 
   const handleComingSoon = () => alert(t('coming_soon'));
@@ -73,7 +119,7 @@ export default function News() {
         <div className="col-span-1 md:col-span-2">
           <div className="flex items-center gap-2 mb-10 cursor-pointer" onClick={() => navigate('/')}>
             <img src="logo.png" alt="Refillo Logo" className="h-8 w-auto" />
-            <span className="text-2xl font-black tracking-tighter text-slate-900">Refillo</span>
+            <span className="text-2xl font-black tracking-tighter text-slate-900">Re<span className="text-emerald-500">fillo</span></span>
           </div>
           <p className="text-slate-400 text-base font-medium leading-relaxed max-w-sm mb-10">
             {t('footer_desc')}
@@ -84,7 +130,7 @@ export default function News() {
           <h4 className="font-black uppercase tracking-[0.3em] text-[10px] text-emerald-600 mb-12">{t('footer_prod')}</h4>
           <ul className="space-y-5 text-sm font-black text-slate-400">
             <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/about')}>{t('nav_about')}</li>
-            <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/news')}>{t('footer_news')}</li>
+            <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/news')}>News</li>
             <li className="hover:text-slate-900 cursor-pointer transition-colors" onClick={() => navigate('/pitch')}>{t('footer_pitch')}</li>
           </ul>
         </div>
@@ -110,14 +156,14 @@ export default function News() {
       <nav className="flex justify-between items-center px-6 md:px-12 py-5 bg-white/80 backdrop-blur-xl border-b border-slate-100 sticky top-0 z-50">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
           <img src="logo.png" alt="Refillo Logo" className="h-7 md:h-8 w-auto" />
-          <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tighter uppercase">Refill<span className="text-emerald-500">o</span></span>
+          <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tighter">Re<span className="text-emerald-500">fillo</span></span>
         </div>
         <div className="flex gap-6 md:gap-10 items-center">
-          <button 
+          <button
             onClick={() => setLang(lang === 'it' ? 'en' : 'it')}
             className="text-[10px] font-black text-slate-400 hover:text-emerald-600 transition-colors uppercase tracking-widest"
           >
-            {lang}
+            {lang === 'it' ? 'EN' : 'IT'}
           </button>
           <button onClick={() => navigate('/')} className="text-[11px] font-black text-slate-500 hover:text-slate-900 transition-colors uppercase tracking-widest">{t('nav_home')}</button>
           <button onClick={() => navigate('/about')} className="text-[11px] font-black text-slate-500 hover:text-slate-900 transition-colors uppercase tracking-widest">{t('nav_about')}</button>
@@ -132,19 +178,21 @@ export default function News() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
           <p className="text-emerald-600 font-black text-[10px] uppercase tracking-[0.4em] mb-8">Refillo Intelligence Journal</p>
           <h1 className="text-6xl md:text-[100px] font-black text-slate-900 leading-[0.9] mb-10 tracking-[-0.04em]">
-            News and <br/>
-            <span className="text-emerald-600">ESG Insights</span>
+            {lang === 'it' ? <>Notizie e <br /><span className="text-emerald-600">Approfondimenti ESG</span></> : <>News and <br /><span className="text-emerald-600">ESG Insights</span></>}
           </h1>
-          <p className="text-xl md:text-2xl text-slate-500 font-medium leading-relaxed max-w-2xl tracking-tight">Esplora le ultime novità sul reporting ESG, l'automazione AI e le tendenze del mercato manifatturiero italiano.</p>
+          <p className="text-xl md:text-2xl text-slate-500 font-medium leading-relaxed max-w-2xl tracking-tight">
+            {lang === 'it'
+              ? "Esplora le ultime novità sul reporting ESG, l'automazione AI e le tendenze del mercato manifatturiero italiano."
+              : 'Explore the latest news on ESG reporting, AI automation, and trends in the Italian manufacturing market.'}
+          </p>
         </motion.div>
       </header>
 
       <section className="px-6 md:px-12 py-12 max-w-7xl mx-auto">
-        {/* Category Filter */}
         <div className="flex gap-8 mb-16 border-b border-slate-100 overflow-x-auto pb-4 scrollbar-hide">
           {categories.map(cat => (
-            <button 
-              key={cat} 
+            <button
+              key={cat}
               onClick={() => setActiveCategory(cat)}
               className={`text-[11px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${activeCategory === cat ? 'text-emerald-600 border-b-2 border-emerald-600 pb-4' : 'text-slate-400 hover:text-slate-900'}`}
             >
@@ -153,10 +201,9 @@ export default function News() {
           ))}
         </div>
 
-        {/* Article Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-x-12 md:gap-y-20">
           {filteredArticles.map((article, i) => (
-            <motion.div 
+            <motion.div
               key={article.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
